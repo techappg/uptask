@@ -14,6 +14,7 @@ class ProgrammingLanguage(models.Model):
 
     class Meta:
         verbose_name = 'Languages / Department'
+
 def get_upload_path(instance, filename):
     return 'profile_pictures/{0}/{1}'.format(instance.username, filename)
 
@@ -77,6 +78,8 @@ system_type_choices= [
         ("Laptop", 'Laptop'),
         ("Macbook", 'MacBook'),
     ]
+
+    
 class system_detail(models.Model):
     system_type = models.CharField(max_length=255,choices=system_type_choices,)
     specification = models.TextField()
@@ -103,7 +106,3 @@ class Assigned_System_Detail(models.Model):
 
     class Meta:
         verbose_name = 'Assigned System Detail'
-
-
-
-
