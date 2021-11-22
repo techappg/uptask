@@ -33,8 +33,6 @@ class User(AbstractUser):
         return self.username
 
 
-
-
 class TaskType(models.Model):
      type_name=models.CharField(max_length=255)
      is_active=models.BooleanField(default=True)

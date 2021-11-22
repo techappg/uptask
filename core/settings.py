@@ -84,12 +84,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #
+#LOCAL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#PRODUCTION
+
 DATABASES = {
 
     'default': {
@@ -189,4 +193,4 @@ if DEBUG:
        'INTERCEPT_REDIRECTS': False,
    }
 
-LOGOUT_REDIRECT_URL = '/'
+
