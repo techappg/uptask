@@ -4,7 +4,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">User Detail</a></li>
         </ol>
     </div>
 </div>
@@ -18,63 +18,90 @@
                 <div class="basic-form">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Profile image</label>
+                            <label class="col-sm-3 col-form-label">First name</label>
                             <div class="col-sm-9">
-                                {% if request.user.profile_updated %}
-                                <img src="/media/{{request.user.display_pic}}" class="img-thumbnail col-6">
-<!-- <button class="btn btn-dark my-4" type="submit" name="request_for_img">request for new image</button> -->
-                                {% else %}
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="upload" accept="image/*">
-                                    <label class="custom-file-label">Choose file</label>
-                                </div>
-                                <small>* can upload image only once</small><br>
-                                <button class="btn btn-dark my-4" type="submit">UPLOAD</button>
-                                {% endif %}
+                                <input type="text" class="form-control" name="first_name"  placeholder="Enter First name" required>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Name</label>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Last name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.first_name|title}} {{request.user.last_name|title}}" readonly>
+                                <input type="text" class="form-control" name="last_name" placeholder="Enter Last name"  required>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.username}} " readonly>
+                                <input type="text" class="form-control" name="username" placeholder="Enter Username"  required>
                             </div>
                         </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password1" placeholder="Enter Password"  required>
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Confirmation Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password2" placeholder="Enter Confirmation Password" required >
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.email}} " readonly>
+                                <input type="text" class="form-control"  name="email"  placeholder="Enter Email"  required>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Phone Number</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.phone_number}} " readonly>
+                                <input type="text" class="form-control"  name="phone_number"  placeholder="Enter Phone number"  required>
                             </div>
                         </div>
+
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Office Id</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.office_user_id}} " readonly>
+                                <input type="text" class="form-control"  name="office_user_id"  placeholder="Enter Office Id"  required>
                             </div>
                         </div>
+
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Reporting to</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.reporting_to}} " readonly>
+                                <input type="text" class="form-control"  name="reporting_to"  placeholder="Enter Reporting  to"  required>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="{{request.user.programming_language.language_name}} " readonly>
+                                <select name="programming_language"  id="id_programming_language" >
+                                    {%for i in data%}
+                                        <option value={{i.language_name}}>{{i.language_name}}</option>
+
+<!--                                    <option value={{i.id}}>{{i.language_name}}</option>-->
+<!--                                    <option value={{i.id}}>{{i.language_name}}</option>-->
+<!--                                    <option value={{i.id}}>{{i.language_name}}</option>-->
+                                        {% endfor %}
+                                    </select>
                             </div>
+
+                            <div class="row">
+                             <div class="col-md-12  text-right">
+                                     <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type=cancel" class="btn btn-warning">Cancel</button>
+                             </div>
+                           </div>
                         </div>
                         <!-- <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Joined Date</label>
@@ -82,6 +109,7 @@
                                                 <input type="text" class="form-control" value="{{request.user.programming_language.language_name}} " readonly>
                                             </div>
                                         </div> -->
+
                     </form>
                 </div>
             </div>

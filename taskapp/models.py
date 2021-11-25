@@ -24,6 +24,7 @@ def get_upload_files_path(instance, filename):
 class User(AbstractUser):
     phone_number=models.CharField(max_length=15,null=True,blank=True)
     office_user_id=models.CharField(max_length=255,null=True,blank=True)
+    reporting_to=models.CharField(max_length=50,null=True,blank=True)
     is_employee=models.BooleanField(default=False)
     profile_updated=models.BooleanField(default=False)
     display_pic=models.ImageField(blank=True,null=True,upload_to=get_upload_path)

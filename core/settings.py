@@ -85,29 +85,36 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #
 #LOCAL
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
+
+# LOCAL
+
 
 #PRODUCTION
 
 DATABASES = {
-
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'task_ker',
-        'USER': 'root',
-        'PASSWORD':'gloadmin123',
-        'HOST': '91.205.172.123',
-        'PORT': '3306',
-   # 'OPTIONS':  {
-   #      'ssl': { 'ca':'ca-certificate.crt'},
-   #  }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# PRODUCTION
+# DATABASES = {
+#
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'task_ker',
+#         'USER': 'root',
+#         'PASSWORD':'gloadmin123',
+#         'HOST': '91.205.172.123',
+#         'PORT': '3306',
+#     'OPTIONS':  {
+#          'ssl': { 'ca':'ca-certificate.crt'},
+#      }
+#     }
+# }
 
 
 # Password validation

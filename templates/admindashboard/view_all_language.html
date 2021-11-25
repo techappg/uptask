@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">DEPARTMENTS</h4>
+                  <div class="float-right"><a href="/admin-dashboard/create-language" class="btn btn-primary btn-sm">Add New Language</a>
+                  </div>
+            </div>
+
+
+             <div class="card-body">
+
+
+                <div class="table-responsive">
+                    <table id="example" class="display table-responsive-md" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>Sr. no</th>
+                                <th>Language Name</th>
+                                <th>Is Active</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                        {% for language in view_language  %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{language.language_name}}</td>
+                                <td>{{language.is_active}}</td>
+                                <td>{{language.is_active}}</td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
+{% endblock %}
+

@@ -24,7 +24,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>{% for task in all_task_details %}
+                        <tbody>
+                        {% for task in all_task_details %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{task.task_type.type_name}}</td>

@@ -59,15 +59,49 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="/tasks/">All Users</a></li>
-                    <li><a href="/tasks/add-task">Add New</a></li>
+                    <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">All Users</a>
+                                <ul aria-expanded="false">
+                                      <li><a href="/admin-dashboard/view-all_users/">View All Users</a></li>
+                                     <li><a href="/admin-dashboard/user-create/">Add New User</a></li>
+                                </ul>
+                            </li>
+                    </ul>
+                </ul>
+            </li>
+           <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">Department</span>
+               </a>
+                      <ul aria-expanded="false">
+                          <li><a href="/admin-dashboard/view-all_programming_language/">View All Languages</a></li>
+                          <li><a href="/admin-dashboard/create-language/">Add New Language</a></li>
+                      </ul>
+           </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">Task</span>
+               </a>
+                      <ul aria-expanded="false">
+                          <li><a href="/tasks/add-task">View All Task</a></li>
+                          <li><a href="/tasks/add-task">Add New Task</a></li>
+                      </ul>
+
+
+            </li>
+
+
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Task Type</a>
                         <ul aria-expanded="false">
                             {{request.user}}
                         </ul>
                     </li>
-                </ul>
-            </li>
+
+
+
+
+<!--                </ul>-->
+
             {% endif %}
             <!-- Superuser level dashboard Ends -->
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
