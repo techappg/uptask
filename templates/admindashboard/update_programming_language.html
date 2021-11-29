@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Programming Language</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Edit Languages</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Language Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="language_name"  value="{{language.language_name}}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Is Active</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="is_active"  value="{{language.is_active}}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="row">
+                                <div class="col-md-12  text-right">
+                                     <button type="submit" class="btn btn-primary">Update</button>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Joined Date</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="{{request.user.programming_language.language_name}} " readonly>
+                                            </div>
+                                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block js %}
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+{% endblock %}

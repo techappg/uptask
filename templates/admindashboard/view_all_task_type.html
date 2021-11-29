@@ -4,8 +4,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">DEPARTMENTS</h4>
-                  <div class="float-right"><a href="/admin-dashboard/create-language" class="btn btn-primary btn-sm">Add New Language</a>
+                <h4 class="card-title">TASK TYPES</h4>
+                  <div class="float-right"><a href="/admin-dashboard/create-tasktype" class="btn btn-primary btn-sm">Add New Task Type</a>
                   </div>
             </div>
 
@@ -18,20 +18,22 @@
                         <thead>
                             <tr>
                                 <th>Sr. no</th>
-                                <th>Language Name</th>
+                                <th>Tast Type Name</th>
                                 <th>Is Active</th>
+                                <th>For All</th>
+                                <th>Department</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                          <tbody>
-                        {% for language in view_language  %}
-                            <tr>
-                                <td>{{forloop.counter}}</td>
-                                <td>{{language.language_name}}</td>
-                                <td>{{language.is_active}}</td>
-                                <td><a href="/admin-dashboard/edit-programming-language/{{language.id}}">Edit</a></td>
-                            </tr>
-                         {% endfor %}
+<!--                        {% for language in view_language  %}-->
+<!--                            <tr>-->
+<!--                                <td>{{forloop.counter}}</td>-->
+<!--                                <td>{{language.language_name}}</td>-->
+<!--                                <td>{{language.is_active}}</td>-->
+<!--                                <td><a href="/admin-dashboard/edit-programming-language/{{language.id}}">Edit</a></td>-->
+<!--                            </tr>-->
+<!--                         {% endfor %}-->
                         </tbody>
                     </table>
                 </div>

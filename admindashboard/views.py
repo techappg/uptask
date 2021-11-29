@@ -16,21 +16,62 @@ def all_users(request,layout=None):
 
 def add_new_user(request):
     data = ProgrammingLanguage.objects.all()
+    print(data)
     print(request.user.is_superuser)
-    if(request.user.is_superuser)=="True":
-      if request.method=='POST':
-          form = UserCreationForm(request.POST)
-          if form.is_valid():
-           form.save()
-
+    if request.method=='POST':
+      form = UserCreationForm(request.POST)
+      print(form)
+      if form.is_valid():
+          first_name=request.POST["first_name"]
+          last_name=request.POST["last_name"]
+          username=request.POST["username"]
+          password1=request.POST["password1"]
+          password2=request.POST["password2"]
+          email=request.POST["email"]
+          phone_number=request.POST["phone_number"]
+          office_user_id=request.POST["office_user_id"]
+          reporting_to=request.POST["reporting_to"]
+          programming_language=request.POST["programming_language"]
+          f1=form.save()
+          f1.first_name=first_name
+          f1.last_name=last_name
+          f1.username=username
+          f1.password1=password1
+          f1.password2=password2
+          f1.email=email
+          f1.phone_nmuber=phone_number
+          f1.office_user_id=office_user_id
+          f1.reporting_to=reporting_to
+          f1.is_employee=True
+          f1.save()
     else:
             form=UserCreationForm(request.POST)
-    return render(request,"admindashboard/add_new_user.html", locals())
+    return render(request,"admindashboard/add_new_user.html",locals())
 
 
 def view_all_users(request):
     view_user=User.objects.all()
     return render (request,"admindashboard/view_all_user.html",locals())
+
+
+def update_user(request,id):
+    ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
+    user=User.objects.get(id=id)
+    print(user.id)
+    if request.method=="POST":
+        user.first_name = request.POST["first_name"]
+        print( user.first_name )
+        user.last_name = request.POST["last_name"]
+        user.username = request.POST["username"]
+        user.password1 = request.POST["password1"]
+        user.email = request.POST["email"]
+        user.phone_number = request.POST["phone_number"]
+        user.office_user_id = request.POST["office_user_id"]
+        user.programming_language_id = request.POST["programming_language"]
+        user.reporting_to = request.POST["reporting_to"]
+        user.save()
+    return render(request,"admindashboard/update_user.html",locals())
+
 
 
 def add_programming_language(request):
@@ -47,3 +88,15 @@ def view_all_programming_language(request):
     view_language=ProgrammingLanguage.objects.all()
 
     return render(request,"admindashboard/view_all_language.html",locals())
+
+
+def update_programming_language(request,id):
+    language= ProgrammingLanguage.objects.get(id=id)
+    print(language.id)
+    if request.method == "POST":
+        language.language_name = request.POST["language_name"]
+        language.is_active = request.POST["is_active"]
+        language.save()
+    return render(request, "admindashboard/update_programming_language.html", locals())
+
+

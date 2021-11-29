@@ -12,7 +12,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Profile</h4>
+                <h4 class="card-title">Edit Profile</h4>
             </div>
             <div class="card-body">
                 <div class="basic-form">
@@ -22,79 +22,82 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">First name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="first_name"  placeholder="Enter First name" required>
+                                <input type="text" class="form-control" name="first_name" value="{{user.first_name}}" required>
                             </div>
                         </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Last name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="last_name" placeholder="Enter Last name"  required>
+                                <input type="text" class="form-control" name="last_name" value="{{user.last_name}}" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="username" placeholder="Enter Username"  required>
+                                <input type="text" class="form-control"  name="username"  value="{{user.username}}" required>
                             </div>
                         </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" name="password1" placeholder="Enter Password"  required>
+                                <input type="password" class="form-control"  name="password1"  value="{{user.password1}"  required>
                             </div>
                         </div>
 
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Confirmation Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" name="password2" placeholder="Enter Confirmation Password" required >
-                            </div>
-                        </div>
+<!--                          <div class="form-group row">-->
+<!--                            <label class="col-sm-3 col-form-label">Confirmation Password</label>-->
+<!--                            <div class="col-sm-9">-->
+<!--                                <input type="password" class="form-control" value="{{user.password2}}" required >-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  name="email"  placeholder="Enter Email"  required>
+                                <input type="text" class="form-control" name="email"  value="{{user.email}}"  required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Phone Number</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  name="phone_number"  placeholder="Enter Phone number"  required>
+                                <input type="text" class="form-control" name="phone_number"  value="{{user.phone_number}}"  required>
                             </div>
                         </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Office Id</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  name="office_user_id"  placeholder="Enter Office Id"  required>
+                                <input type="text" class="form-control"  name="office_user_id"  value="{{user.office_user_id}}"  required>
                             </div>
                         </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Reporting to</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  name="reporting_to"  placeholder="Enter Reporting  to"  required>
+                                <input type="text" class="form-control"  name="reporting_to" value="{{user.reporting_to}}" required>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
-                                <select class="form-control"  name="programming_language"  id="id_programming_language">
-                                    {%for i in data%}
-                                        <option value={{i.pk}}>{{i.language_name}}</option>
+
+                                  <select class="form-control"  name="programming_language"  id="id_programming_language">
+
+                                             {%for i in ProgrammingLanguage_data%}
+                                        <option value={{i.pk}} {% if user.programming_language.pk == i.pk %} selected {% endif %}>{{i.language_name}}</option>
                                         {% endfor %}
                                     </select>
                             </div>
 
                             <div class="row">
                              <div class="col-md-12  text-right">
-                                     <button type="submit" class="btn btn-primary">Save</button>
-                                    <button type="cancel" class="btn btn-warning">Cancel</button>
+                                     <button type="submit" class="btn btn-primary">Update</button>
+
                              </div>
                            </div>
                         </div>
