@@ -12,7 +12,7 @@
 
 
                 <div class="table-responsive">
-                    <table id="example" class="display table-responsive-md" style="min-width: 845px">
+                    <table id="example" class="display table-responsive-md" style="min-width: 1050px">
                         <thead>
                             <tr>
                                 <th>Sr. no</th>
@@ -34,7 +34,9 @@
                                 <td>{{person.username}}</td>
                                 <td>{{person.is_employee}}</td>
                                 <td>{{person.programming_language_id}}</td>
-                                <td><a href="/admin-dashboard/edit-user/{{person.id}}">Edit</a></td>
+                                <td><a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-info">Edit</a></td>
+                                <td><a href="/admin-dashboard/delete-user/{{person.id}}"  class="btn btn-sm btn-info">Delete</a></td>
+                                <td><a href="/admin-dashboard/view-single-user/{{person.id}}" class="btn btn-sm btn-info">View</a></td>
                             </tr>
                          {% endfor %}
                         </tbody>

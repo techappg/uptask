@@ -29,7 +29,8 @@
                                 <td>{{forloop.counter}}</td>
                                 <td>{{language.language_name}}</td>
                                 <td>{{language.is_active}}</td>
-                                <td><a href="/admin-dashboard/edit-programming-language/{{language.id}}">Edit</a></td>
+                                <td><a href="/admin-dashboard/edit-programming-language/{{language.id}}"  class="btn btn-sm btn-info">Edit</a></td>
+                                <td><a href="/admin-dashboard/delete-programming-language/{{language.id}}"  class="btn btn-sm btn-info">Delete</a></td>
                             </tr>
                          {% endfor %}
                         </tbody>

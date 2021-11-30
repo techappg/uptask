@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
-from admindashboard.forms import UserCreationForm,ProgrammingLanguageForm
+from admindashboard.forms import UserCreationForm,ProgrammingLanguageForm,TaskTypeForm
 def all_users(request,layout=None):
     all_users_admin_data=User.objects.filter(is_superuser=True)
     all_employees_data=User.objects.filter(is_superuser=False)
@@ -44,6 +44,7 @@ def add_new_user(request):
           f1.reporting_to=reporting_to
           f1.is_employee=True
           f1.save()
+          added=True
     else:
             form=UserCreationForm(request.POST)
     return render(request,"admindashboard/add_new_user.html",locals())
@@ -52,7 +53,6 @@ def add_new_user(request):
 def view_all_users(request):
     view_user=User.objects.all()
     return render (request,"admindashboard/view_all_user.html",locals())
-
 
 def update_user(request,id):
     ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
@@ -74,12 +74,29 @@ def update_user(request,id):
 
 
 
+def delete_user(request,id):
+      user=User.objects.get(id=id)
+      user.delete()
+      return render (request,"admindashboard/add_new_user.html",locals())
+
+
+
+def view_single_user(request,id):
+        ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
+        user = User.objects.get(id=id)
+        print(user)
+        return render(request,"admindashboard/view_single_user.html", locals())
+
+
+
+
 def add_programming_language(request):
     if request.method=="POST":
         form = ProgrammingLanguageForm(request.POST)
         print(form)
         if form.is_valid():
             form.save()
+            added=True
     else:
         form =ProgrammingLanguageForm(request.POST)
     return render(request, "admindashboard/add_programming_language.html", locals())
@@ -100,3 +117,46 @@ def update_programming_language(request,id):
     return render(request, "admindashboard/update_programming_language.html", locals())
 
 
+def delete_programming_language(request,id):
+    language = ProgrammingLanguage.objects.get(id=id)
+    language.delete()
+    return render (request,"admindashboard/add_programming_language.html",locals())
+
+
+def add_new_task_type(request):
+    data = ProgrammingLanguage.objects.all()
+    print(data)
+    if request.method == 'POST':
+        form = TaskTypeForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            added=True
+    else:
+        form =TaskTypeForm(request.POST)
+    return render(request, "admindashboard/add_new_task_type.html", locals())
+
+
+def view_all_tasktype(request):
+    view_type_name=TaskType.objects.all()
+
+    return render(request,"admindashboard/view_all_task_type.html",locals())
+
+
+def update_task_type(request,id):
+    ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
+    view_type_name=TaskType.objects.get(id=id)
+    print(view_type_name.id)
+    if request.method == "POST":
+        view_type_name.type_name = request.POST["type_name"]
+        view_type_name.is_active = request.POST["is_active"]
+        view_type_name.for_all = request.POST["for_all"]
+        view_type_name.programming_language_id = request.POST["programming_language"]
+        view_type_name.save()
+    return render(request, "admindashboard/update_task_type.html", locals())
+
+def delete_task_type(request,id):
+    tasktype=TaskType.objects.get(id=id)
+    tasktype.delete()
+
+    return render (request,"admindashboard/add_new_task_type.html",locals())

@@ -26,14 +26,19 @@
                             </tr>
                         </thead>
                          <tbody>
-<!--                        {% for language in view_language  %}-->
-<!--                            <tr>-->
-<!--                                <td>{{forloop.counter}}</td>-->
-<!--                                <td>{{language.language_name}}</td>-->
-<!--                                <td>{{language.is_active}}</td>-->
-<!--                                <td><a href="/admin-dashboard/edit-programming-language/{{language.id}}">Edit</a></td>-->
-<!--                            </tr>-->
-<!--                         {% endfor %}-->
+                        {% for typename in  view_type_name  %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{typename.type_name}}</td>
+                                <td>{{typename.is_active}}</td>
+                                <td>{{typename.for_all}}</td>
+                                <td>{{typename.programming_language_id}}</td>
+                                <td>
+                                    <a href="/admin-dashboard/edit-task-type/{{typename.id}}"  class="btn btn-sm btn-info">Edit</a>
+                                </td>
+                                <td><a href="/admin-dashboard/delete-task-type/{{typename.id}}" class="btn btn-sm btn-info">Delete</a></td>
+                            </tr>
+                         {% endfor %}
                         </tbody>
                     </table>
                 </div>

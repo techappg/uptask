@@ -31,3 +31,9 @@ class ProgrammingLanguageForm(forms.ModelForm):
     class Meta:
         model=ProgrammingLanguage
         fields=("language_name",)
+
+class TaskTypeForm(forms.ModelForm):
+
+     class Meta:
+         model= TaskType
+         fields=("type_name","programming_language",)

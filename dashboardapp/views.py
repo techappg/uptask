@@ -20,7 +20,7 @@ def dashboard_index(request):
     if request.user.is_superuser:
         super_user_tab=True
         total_users=User.objects.all().count()
-        total_tasks=Task.objects.all().count()
+        total_tasks=TaskType.objects.all().count()
         total_departments=ProgrammingLanguage.objects.all().count()
         total_systems=system_detail.objects.all().count()
     return render(request,"dashboardapp/dashboard_home.html",locals())
