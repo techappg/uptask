@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">SYSTEM DETAILS</h4>
+                  <div class="float-right"><a href="/admin-dashboard/create-system-details" class="btn btn-primary btn-sm">Add New System Details</a>
+                  </div>
+            </div>
+
+
+             <div class="card-body">
+
+
+                <div class="table-responsive">
+                    <table id="example" class="display table-responsive-md" style="min-width: 1050px">
+                        <thead>
+                            <tr>
+                                <th>Sr. no</th>
+                                <th>System Id</th>
+                                <th>System Type Name</th>
+                                <th>Specification</th>
+                                <th>System Service</th>
+                                <th>Added On</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for detail in  systemdetail %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{detail.system_id}}</td>
+                                <td>{{detail.system_type}}</td>
+                                <td>{{detail.specification}}</td>
+                                <td>{{detail.system_service}}</td>
+                                <td>{{detail.added_on}}</td>
+                                <td><a href="/admin-dashboard/view-single-system-details/{{detail.pk}}" class="btn btn-sm btn-info">View</a></td>
+                                <td><a href="/admin-dashboard/edit-system-details/{{detail.pk}}"  class="btn btn-sm btn-info">Edit</a></td>
+                                <td><a href="/admin-dashboard/delete-system-details/{{detail.pk}}" class="btn btn-sm btn-info">Delete</a></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
+{% endblock %}
+

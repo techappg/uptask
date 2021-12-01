@@ -37,3 +37,9 @@ class TaskTypeForm(forms.ModelForm):
      class Meta:
          model= TaskType
          fields=("type_name","programming_language",)
+
+class  SystemDetailForm(forms.ModelForm):
+     class Meta:
+         model= system_detail
+         fields=("system_type","specification","system_service","system_id","added_on")
+

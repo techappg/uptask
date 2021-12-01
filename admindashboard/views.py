@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
-from admindashboard.forms import UserCreationForm,ProgrammingLanguageForm,TaskTypeForm
+from admindashboard.forms import UserCreationForm,ProgrammingLanguageForm,TaskTypeForm,SystemDetailForm
 def all_users(request,layout=None):
     all_users_admin_data=User.objects.filter(is_superuser=True)
     all_employees_data=User.objects.filter(is_superuser=False)
@@ -52,6 +52,7 @@ def add_new_user(request):
 
 def view_all_users(request):
     view_user=User.objects.all()
+    data = ProgrammingLanguage.objects.all()
     return render (request,"admindashboard/view_all_user.html",locals())
 
 def update_user(request,id):
@@ -160,3 +161,45 @@ def delete_task_type(request,id):
     tasktype.delete()
 
     return render (request,"admindashboard/add_new_task_type.html",locals())
+
+def add_system_details(request):
+    if request.method == 'POST':
+        form = SystemDetailForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            added=True
+    else:
+        form = SystemDetailForm(request.POST)
+    return render(request, "admindashboard/add_system_detail.html", locals())
+
+
+def view_all_system_details(request):
+    systemdetail=system_detail.objects.all()
+    return render (request,"admindashboard/view_all_system_detail.html",locals())
+
+
+def update_system_details(request,pk):
+    systemdetail=system_detail.objects.get(pk=pk)
+
+    print(systemdetail.system_type)
+    if request.method == "POST":
+        systemdetail.system_type= request.POST["system_type"]
+        systemdetail.specification = request.POST["specification"]
+        systemdetail.system_service = request.POST["system_service"]
+        systemdetail.system_id = request.POST["system_id"]
+        systemdetail.added_on = request.POST["added_on"]
+        systemdetail.save()
+    return render(request, "admindashboard/update_system_detail.html", locals())
+
+def delete_system_details(request,pk):
+     systemdetail=system_detail.objects.get(pk=pk)
+     print(systemdetail.pk)
+     systemdetail.delete()
+     return render(request, "admindashboard/add_system_detail.html", locals())
+
+
+def view_single_system_details(request,pk):
+        systemdetail= system_detail.objects.get(pk=pk)
+        print(systemdetail)
+        return render(request,"admindashboard/view_single_system_detail.html", locals())
