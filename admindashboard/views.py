@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
-from admindashboard.forms import UserCreationForm,ProgrammingLanguageForm,TaskTypeForm,SystemDetailForm
+from admindashboard.forms import *
+
 def all_users(request,layout=None):
     all_users_admin_data=User.objects.filter(is_superuser=True)
     all_employees_data=User.objects.filter(is_superuser=False)
@@ -14,10 +15,10 @@ def all_users(request,layout=None):
         return render(request,"admindashboard/all_users_grid_layout.html",locals())
 
 
+
+
 def add_new_user(request):
     data = ProgrammingLanguage.objects.all()
-    print(data)
-    print(request.user.is_superuser)
     if request.method=='POST':
       form = UserCreationForm(request.POST)
       print(form)
@@ -44,11 +45,11 @@ def add_new_user(request):
           f1.reporting_to=reporting_to
           f1.is_employee=True
           f1.save()
+
           added=True
     else:
             form=UserCreationForm(request.POST)
     return render(request,"admindashboard/add_new_user.html",locals())
-
 
 def view_all_users(request):
     view_user=User.objects.all()
@@ -58,7 +59,6 @@ def view_all_users(request):
 def update_user(request,id):
     ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
     user=User.objects.get(id=id)
-    print(user.id)
     if request.method=="POST":
         user.first_name = request.POST["first_name"]
         print( user.first_name )
@@ -71,21 +71,18 @@ def update_user(request,id):
         user.programming_language_id = request.POST["programming_language"]
         user.reporting_to = request.POST["reporting_to"]
         user.save()
+
+        added = True
     return render(request,"admindashboard/update_user.html",locals())
-
-
 
 def delete_user(request,id):
       user=User.objects.get(id=id)
       user.delete()
       return render (request,"admindashboard/add_new_user.html",locals())
 
-
-
 def view_single_user(request,id):
         ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
         user = User.objects.get(id=id)
-        print(user)
         return render(request,"admindashboard/view_single_user.html", locals())
 
 
@@ -97,6 +94,7 @@ def add_programming_language(request):
         print(form)
         if form.is_valid():
             form.save()
+
             added=True
     else:
         form =ProgrammingLanguageForm(request.POST)
@@ -104,19 +102,17 @@ def add_programming_language(request):
 
 def view_all_programming_language(request):
     view_language=ProgrammingLanguage.objects.all()
-
     return render(request,"admindashboard/view_all_language.html",locals())
-
 
 def update_programming_language(request,id):
     language= ProgrammingLanguage.objects.get(id=id)
-    print(language.id)
     if request.method == "POST":
         language.language_name = request.POST["language_name"]
         language.is_active = request.POST["is_active"]
         language.save()
-    return render(request, "admindashboard/update_programming_language.html", locals())
 
+        added = True
+    return render(request, "admindashboard/update_programming_language.html", locals())
 
 def delete_programming_language(request,id):
     language = ProgrammingLanguage.objects.get(id=id)
@@ -124,36 +120,35 @@ def delete_programming_language(request,id):
     return render (request,"admindashboard/add_programming_language.html",locals())
 
 
+
+
 def add_new_task_type(request):
     data = ProgrammingLanguage.objects.all()
-    print(data)
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
+
             added=True
     else:
         form =TaskTypeForm(request.POST)
     return render(request, "admindashboard/add_new_task_type.html", locals())
 
-
 def view_all_tasktype(request):
     view_type_name=TaskType.objects.all()
-
     return render(request,"admindashboard/view_all_task_type.html",locals())
-
 
 def update_task_type(request,id):
     ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
     view_type_name=TaskType.objects.get(id=id)
-    print(view_type_name.id)
     if request.method == "POST":
         view_type_name.type_name = request.POST["type_name"]
         view_type_name.is_active = request.POST["is_active"]
         view_type_name.for_all = request.POST["for_all"]
         view_type_name.programming_language_id = request.POST["programming_language"]
         view_type_name.save()
+
+        added=True
     return render(request, "admindashboard/update_task_type.html", locals())
 
 def delete_task_type(request,id):
@@ -162,44 +157,90 @@ def delete_task_type(request,id):
 
     return render (request,"admindashboard/add_new_task_type.html",locals())
 
+
+
+
+
 def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
+
             added=True
     else:
         form = SystemDetailForm(request.POST)
     return render(request, "admindashboard/add_system_detail.html", locals())
 
-
 def view_all_system_details(request):
     systemdetail=system_detail.objects.all()
     return render (request,"admindashboard/view_all_system_detail.html",locals())
 
-
 def update_system_details(request,pk):
     systemdetail=system_detail.objects.get(pk=pk)
-
     print(systemdetail.system_type)
     if request.method == "POST":
         systemdetail.system_type= request.POST["system_type"]
         systemdetail.specification = request.POST["specification"]
         systemdetail.system_service = request.POST["system_service"]
-        systemdetail.system_id = request.POST["system_id"]
-        systemdetail.added_on = request.POST["added_on"]
         systemdetail.save()
+
+        added=True
     return render(request, "admindashboard/update_system_detail.html", locals())
 
 def delete_system_details(request,pk):
      systemdetail=system_detail.objects.get(pk=pk)
-     print(systemdetail.pk)
      systemdetail.delete()
      return render(request, "admindashboard/add_system_detail.html", locals())
 
-
 def view_single_system_details(request,pk):
         systemdetail= system_detail.objects.get(pk=pk)
-        print(systemdetail)
+        print(systemdetail.system_type)
         return render(request,"admindashboard/view_single_system_detail.html", locals())
+
+
+
+
+def add_new_assigned_system_detail(request):
+    user=User.objects.all()
+    systemdetail=system_detail.objects.all()
+
+    if request.method == "POST":
+        form =SystemAssignedDetailForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+
+            added = True
+    else:
+        form =SystemAssignedDetailForm(request.POST)
+    return render(request, "admindashboard/add_new_assigned_system_detail.html", locals())
+
+def view_all_assigned_system_detail(request):
+    assignedsystem= Assigned_System_Detail.objects.all()
+    return render(request, "admindashboard/view_all_assigned_system_detail.html", locals())
+
+
+def view_single_assigned_system_detail(request,id):
+        assignedsystem=Assigned_System_Detail.objects.get(id=id)
+        print(assignedsystem)
+        return render(request,"admindashboard/view_single_assigned_system_detail.html", locals())
+
+def update_assigned_system_details(request,id):
+    user = User.objects.all()
+    systemdetail = system_detail.objects.all()
+    assignedsystem=Assigned_System_Detail.objects.get(id=id)
+
+    if request.method == "POST":
+        assignedsystem.system_id= request.POST["system_id"]
+        assignedsystem.user= request.POST["user"]
+        assignedsystem.assigned_type = request.POST["assigned_type"]
+        assignedsystem.save()
+
+        added=True
+    return render(request, "admindashboard/update_assigned_system_detail.html", locals())
+
+def delete_assigned_system_details(request,id):
+     assignedsystem=Assigned_System_Detail.objects.get(id=id)
+     assignedsystem.delete()
+     return render(request, "admindashboard/view_all_assigned_system_detail.html")

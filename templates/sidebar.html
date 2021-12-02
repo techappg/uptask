@@ -16,10 +16,10 @@
            <span class="nav-text">Projects</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/projects/">all projects</a></li>
-                      <li><a href="/projects/add-project">add new</a></li>
-                    <li><a href="/projects/project-type/active">active projects</a></li>
-                    <li><a href="/projects/project-type/completed">completed projects</a></li>
+                    <li><a href="/projects/">All Projects</a></li>
+                      <li><a href="/projects/add-project">Add New Project</a></li>
+                    <li><a href="/projects/project-type/active">Active Projects</a></li>
+                    <li><a href="/projects/project-type/completed">Completed Projects</a></li>
                     <!--  <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Task Type</a>
                         <ul aria-expanded="false">
                             {{request.user|user_all_task_type}}
@@ -42,6 +42,8 @@
             </li>
             {% endif %}
             <!-- Employee level dashboard Ends -->
+
+
             <!-- Superuser level dashboard Start-->
             {% if request.user.is_superuser %}
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -62,8 +64,8 @@
                     <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">All Users</a>
                                 <ul aria-expanded="false">
-                                      <li><a href="/admin-dashboard/view-all_users/">View All Users</a></li>
-                                     <li><a href="/admin-dashboard/user-create/">Add New User</a></li>
+                                      <li><a href="/admin-dashboard/view-all_users/">All Users</a></li>
+                                     <li><a href="/admin-dashboard/user-create/">Add New </a></li>
                                 </ul>
                             </li>
                     </ul>
@@ -74,21 +76,21 @@
                     <span class="nav-text">Department</span>
                </a>
                       <ul aria-expanded="false">
-                          <li><a href="/admin-dashboard/view-all_programming_language/">View All Languages</a></li>
-                          <li><a href="/admin-dashboard/create-language/">Add New Language</a></li>
+                          <li><a href="/admin-dashboard/view-all_programming_language/">All Languages</a></li>
+                          <li><a href="/admin-dashboard/create-language/">Add New</a></li>
                       </ul>
            </li>
+
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
                     <span class="nav-text">Task Type </span>
                </a>
                       <ul aria-expanded="false">
-                          <li><a href="/admin-dashboard/view-all-tasktype/">View All Task Type</a></li>
-                          <li><a href="/admin-dashboard/create-tasktype/">Add New Task Type</a></li>
+                          <li><a href="/admin-dashboard/view-all-tasktype/">All Task Type</a></li>
+                          <li><a href="/admin-dashboard/create-tasktype/">Add New</a></li>
                       </ul>
-
-
             </li>
+
               <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
                     <span class="nav-text">IT Admin</span>
@@ -97,8 +99,8 @@
                          <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Systems</a>
                                  <ul aria-expanded="false">
-                                  <li><a href="/admin-dashboard/view-all-system-details/">View All System Details </a></li>
-                                  <li><a href="/admin-dashboard/create-system-details/">Add New System Details</a></li>
+                                  <li><a href="/admin-dashboard/view-all-system-details/">All System Details </a></li>
+                                  <li><a href="/admin-dashboard/create-system-details/">Add New</a></li>
                                  </ul>
                             </li>
                          </ul>
@@ -107,8 +109,8 @@
                          <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Assigned System</a>
                                  <ul aria-expanded="false">
-                                  <li><a href="/admin-dashboard/view-all-assigned-system-details/">View All Assigned System</a></li>
-                                  <li><a href="/admin-dashboard/create-assigned-system-details/">Add New Assigned System </a></li>
+                                  <li><a href="/admin-dashboard/view-all-assigned-system-details/">All Assigned System</a></li>
+                                  <li><a href="/admin-dashboard/create-assigned-system-details/">Add New</a></li>
                                  </ul>
                             </li>
                          </ul>

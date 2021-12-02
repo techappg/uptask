@@ -43,3 +43,7 @@ class  SystemDetailForm(forms.ModelForm):
          model= system_detail
          fields=("system_type","specification","system_service","system_id","added_on")
 
+class SystemAssignedDetailForm(forms.ModelForm):
+    class Meta:
+        model=Assigned_System_Detail
+        fields=("system_id","user","assigned_type","assigned_on","returned_on",)
