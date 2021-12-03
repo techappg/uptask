@@ -78,7 +78,8 @@ def update_user(request,id):
 def delete_user(request,id):
       user=User.objects.get(id=id)
       user.delete()
-      return render (request,"admindashboard/add_new_user.html",locals())
+      view_user = User.objects.all()
+      return render (request,"admindashboard/view_all_user.html",locals())
 
 def view_single_user(request,id):
         ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
@@ -117,7 +118,8 @@ def update_programming_language(request,id):
 def delete_programming_language(request,id):
     language = ProgrammingLanguage.objects.get(id=id)
     language.delete()
-    return render (request,"admindashboard/add_programming_language.html",locals())
+    view_language = ProgrammingLanguage.objects.all()
+    return render (request,"admindashboard/view_all_language.html",locals())
 
 
 
@@ -154,8 +156,8 @@ def update_task_type(request,id):
 def delete_task_type(request,id):
     tasktype=TaskType.objects.get(id=id)
     tasktype.delete()
-
-    return render (request,"admindashboard/add_new_task_type.html",locals())
+    view_type_name = TaskType.objects.all()
+    return render (request,"admindashboard//view_all_task_type.html",locals())
 
 
 
@@ -191,7 +193,8 @@ def update_system_details(request,pk):
 def delete_system_details(request,pk):
      systemdetail=system_detail.objects.get(pk=pk)
      systemdetail.delete()
-     return render(request, "admindashboard/add_system_detail.html", locals())
+     systemdetail = system_detail.objects.all()
+     return render(request, "admindashboard/view_all_system_detail.html", locals())
 
 def view_single_system_details(request,pk):
         systemdetail= system_detail.objects.get(pk=pk)
@@ -243,4 +246,27 @@ def update_assigned_system_details(request,id):
 def delete_assigned_system_details(request,id):
      assignedsystem=Assigned_System_Detail.objects.get(id=id)
      assignedsystem.delete()
+     assignedsystem = Assigned_System_Detail.objects.all()
      return render(request, "admindashboard/view_all_assigned_system_detail.html")
+
+
+
+def view_all_user_task(request):
+    usertask = Task.objects.all()
+    return render(request, "admindashboard/view_all_user_task.html", locals())
+
+def view_single_user_task(request,id):
+        task=Task.objects.get(id=id)
+        print(task)
+        return render(request,"admindashboard/view_single_user_task.html", locals())
+
+
+
+def view_all_user_project(request):
+    userproject=Project.objects.all()
+    return render(request,"admindashboard/view_all_user_project.html",locals())
+def view_single_user_project(request,project_id):
+    userproject=Project.objects.get(id=project_id)
+    task_details = Task.objects.filter(user=request.user, project_id=project_id).order_by('-id')
+    uploaded_files_data = task_uploaded_file.objects.filter(task__project_id=project_id)
+    return render(request,"admindashboard/view_single_user_project.html",locals())

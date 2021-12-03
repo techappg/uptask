@@ -8,14 +8,14 @@ urlpatterns = [
     path('all-users/', views.all_users),
     path('all-users/<str:layout>/', views.all_users),
     path('user-create/', views.add_new_user),
-    path('view-all_users/', views.view_all_users),
+    path('view-all-users/', views.view_all_users),
     path('edit-user/<str:id>/', views.update_user),
     path('delete-user/<str:id>/', views.delete_user),
     path('view-single-user/<str:id>/', views.view_single_user),
 
     # PROGRAMMING LANGUAGE
     path('create-language/', views.add_programming_language),
-    path('view-all_programming_language/', views.view_all_programming_language),
+    path('view-all-programming-language/', views.view_all_programming_language),
     path('edit-programming-language/<str:id>/',views.update_programming_language),
     path('delete-programming-language/<str:id>/', views.delete_programming_language),
 
@@ -40,9 +40,13 @@ urlpatterns = [
     path('delete-assigned-system-details/<str:id>/', views.delete_assigned_system_details),
 
 
+    #ALL USER TASK
+    path('view-all-user-task/', views.view_all_user_task),
+    path('view-single-user-task/<str:id>', views.view_single_user_task),
 
-
-
+    # ALL USER PROJECT
+    path('view-all-user-project/', views.view_all_user_project),
+    path('view-single-user-project/<str:project_id>', views.view_single_user_project),
 
 
     # path('view-chart',views.view_chart),

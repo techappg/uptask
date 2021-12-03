@@ -33,10 +33,11 @@
                                 <td>{{person.last_name}}</td>
                                 <td>{{person.username}}</td>
                                 <td>{{person.is_employee}}</td>
-                                <td>{{person.programming_language_id}}</td>
+                                <td>{{person.programming_language.language_name}}</td>
+                                <td><a href="/admin-dashboard/view-single-user/{{person.id}}" class="btn btn-sm btn-info">View</a></td>
                                 <td><a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-info">Edit</a></td>
                                 <td><a href="/admin-dashboard/delete-user/{{person.id}}"  class="btn btn-sm btn-info">Delete</a></td>
-                                <td><a href="/admin-dashboard/view-single-user/{{person.id}}" class="btn btn-sm btn-info">View</a></td>
+
                             </tr>
                          {% endfor %}
                         </tbody>

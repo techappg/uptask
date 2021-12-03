@@ -1,6 +1,8 @@
 from django import forms
 
 from taskapp.models import *
+from projectapp.models import *
+
 
 
 class UserCreationForm(forms.ModelForm):
@@ -47,3 +49,15 @@ class SystemAssignedDetailForm(forms.ModelForm):
     class Meta:
         model=Assigned_System_Detail
         fields=("system_id","user","assigned_type","assigned_on","returned_on",)
+
+
+class ViewUserTaskForm(forms.ModelForm):
+    class Meta:
+        model=Task
+        fields=("user","task_type","details","added_on")
+
+class ViewUserProjectForm(forms.ModelForm):
+    class Meta:
+        model= Project
+        fields=('user', 'title', 'details', 'is_active', 'completed', 'started', 'started_on', 'completed_on','id')
+

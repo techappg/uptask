@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">USER TASK</h4>
+                  <div class="float-right"><a href="/dashboard/" class="btn btn-primary btn-sm">Dashboard</a>
+                  </div>
+             </div>
+             <div class="card-body">
+
+
+                <div class="table-responsive">
+                    <table id="example" class="display table-responsive-md" style="min-width: 1050px">
+                        <thead>
+                            <tr>
+                                <th>Sr. no</th>
+                                <th>User</th>
+                                <th>Task Type</th>
+                                <th>Details</th>
+                                <th>Added On</th>
+                                <th>Updated On</th>
+                                <th>Action</th>
+                            </tr>
+                         <tbody>
+                        {% for task in  usertask %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{task.user.username}}</td>
+                                <td>{{task.task_type.type_name}}</td>
+                                <td>{{task.details}}</td>
+                                <td>{{task.added_on}}</td>
+                                <td>{{task.updated_on}}</td>
+<!--                                <td><a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-info">Edit</a></td>-->
+<!--                                <td><a href="/admin-dashboard/delete-user/{{person.id}}"  class="btn btn-sm btn-info">Delete</a></td>-->
+                                <td><a href="/admin-dashboard/view-single-user-task/{{task.id}}" class="btn btn-sm btn-info">View</a></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+             </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
+{% endblock %}

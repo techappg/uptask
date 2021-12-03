@@ -23,6 +23,9 @@ def dashboard_index(request):
         total_tasks=TaskType.objects.all().count()
         total_departments=ProgrammingLanguage.objects.all().count()
         total_systems=system_detail.objects.all().count()
+        total_user_task=Task.objects.all().count()
+        total_user_project=Project.objects.all().count()
+
     return render(request,"dashboardapp/dashboard_home.html",locals())
 
     
