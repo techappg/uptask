@@ -38,7 +38,7 @@ class TaskTypeForm(forms.ModelForm):
 
      class Meta:
          model= TaskType
-         fields=("type_name","programming_language",)
+         fields=("type_name","programming_language","for_all")
 
 class  SystemDetailForm(forms.ModelForm):
      class Meta:

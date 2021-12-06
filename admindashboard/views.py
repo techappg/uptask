@@ -2,17 +2,19 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
 from admindashboard.forms import *
-
-def all_users(request,layout=None):
-    all_users_admin_data=User.objects.filter(is_superuser=True)
-    all_employees_data=User.objects.filter(is_superuser=False)
-    if layout is None:
-        return render(request,"admindashboard/all_users_table_layout.html",locals())
-
-    if layout =="tabular":
-        return render(request,"admindashboard/all_users_table_layout.html",locals())
-    if layout =="grid":
-        return render(request,"admindashboard/all_users_grid_layout.html",locals())
+#
+# def all_users(request):
+#     all_users_admin_data=User.objects.filter(is_superuser=True).values()
+#     print(all_users_admin_data)
+#     return render(request, "admindashboard/view_all_user_admin.html")
+    # all_employees_data=User.objects.filter(is_superuser=False)
+    # if layout is None:
+    #     return render(request,"admindashboard/all_users_table_layout.html",locals())
+    #
+    # if layout =="tabular":
+    #     return render(request,"admindashboard/all_users_table_layout.html",locals())
+    # if layout =="grid":
+    #     return render(request,"admindashboard/all_users_grid_layout.html",locals())
 
 
 
@@ -21,7 +23,6 @@ def add_new_user(request):
     data = ProgrammingLanguage.objects.all()
     if request.method=='POST':
       form = UserCreationForm(request.POST)
-      print(form)
       if form.is_valid():
           first_name=request.POST["first_name"]
           last_name=request.POST["last_name"]
@@ -61,7 +62,6 @@ def update_user(request,id):
     user=User.objects.get(id=id)
     if request.method=="POST":
         user.first_name = request.POST["first_name"]
-        print( user.first_name )
         user.last_name = request.POST["last_name"]
         user.username = request.POST["username"]
         user.password1 = request.POST["password1"]
@@ -198,7 +198,6 @@ def delete_system_details(request,pk):
 
 def view_single_system_details(request,pk):
         systemdetail= system_detail.objects.get(pk=pk)
-        print(systemdetail.system_type)
         return render(request,"admindashboard/view_single_system_detail.html", locals())
 
 
@@ -210,7 +209,6 @@ def add_new_assigned_system_detail(request):
 
     if request.method == "POST":
         form =SystemAssignedDetailForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
 
@@ -226,7 +224,6 @@ def view_all_assigned_system_detail(request):
 
 def view_single_assigned_system_detail(request,id):
         assignedsystem=Assigned_System_Detail.objects.get(id=id)
-        print(assignedsystem)
         return render(request,"admindashboard/view_single_assigned_system_detail.html", locals())
 
 def update_assigned_system_details(request,id):
@@ -257,7 +254,6 @@ def view_all_user_task(request):
 
 def view_single_user_task(request,id):
         task=Task.objects.get(id=id)
-        print(task)
         return render(request,"admindashboard/view_single_user_task.html", locals())
 
 

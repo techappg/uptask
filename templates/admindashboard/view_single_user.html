@@ -86,13 +86,13 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
+                                  <input type="text" class="form-control"  name="programming_language_id" value="{{user.programming_language.language_name}}" readonly>
+<!--                                  <select class="form-control"  name="programming_language"  id="id_programming_language" readonly>-->
 
-                                  <select class="form-control"  name="programming_language"  id="id_programming_language" readonly>
-
-                                             {%for i in ProgrammingLanguage_data%}
-                                        <option value={{i.pk}} {% if user.programming_language.pk == i.pk %} selected {% endif %}>{{i.language_name}}</option>
-                                        {% endfor %}
-                                    </select>
+<!--                                             {%for i in ProgrammingLanguage_data%}-->
+<!--                                        <option value={{i.pk}} {% if user.programming_language.pk == i.pk %} selected {% endif %}>{{i.language_name}}</option>-->
+<!--                                        {% endfor %}-->
+<!--                                    </select>-->
                             </div>
 
 <!--                            <div class="row">-->

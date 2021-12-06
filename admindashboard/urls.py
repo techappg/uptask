@@ -5,8 +5,9 @@ from admindashboard import views
 urlpatterns = [
 
     # USER
-    path('all-users/', views.all_users),
-    path('all-users/<str:layout>/', views.all_users),
+    # path('all-users/', views.all_users),
+    # path('view-all-users-admin/', views.all_users),
+    # path('all-users/<str:layout>/', views.all_users),
     path('user-create/', views.add_new_user),
     path('view-all-users/', views.view_all_users),
     path('edit-user/<str:id>/', views.update_user),
