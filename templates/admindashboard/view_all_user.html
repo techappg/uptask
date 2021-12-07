@@ -24,7 +24,7 @@
                                 <th>Department/Language</th>
                                 <th>Action</th>
                             </tr>
-                         <tbody>
+                        <tbody>
                         {% for person in  view_user %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
@@ -44,12 +44,10 @@
                                     Admin
                                     </span>
                                 {% endif %}</td>
-
-<!--                                <td>{{person.is_employee}}</td>-->
                                 <td>{{person.programming_language.language_name}}</td>
-                                <td><a href="/admin-dashboard/view-single-user/{{person.id}}" class="btn btn-sm btn-info">View</a>
+                               <td> <a href="#view_single_user_{{person.id}}" data-toggle="modal" data-target="#view_single_user_{{person.id}}" class="btn btn-sm btn-primary">View</a>
                                 <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">Edit</a>
-                                <a href=<a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}"   class="btn btn-sm btn-danger">Delete</a></td>
+                                <a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">Delete</a></td>
 
                             </tr>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{person.id}}">
@@ -69,15 +67,109 @@
                                     </div>
                                 </div>
                             </div>
-                         {% endfor %}
-                        </tbody>
-                        </thead>
-                    </table>
-                </div>
-             </div>
+
+
+
+                          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_single_user_{{person.id}}">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">User Detail</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title">Profile</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="basic-form">
+                                                                <form method="post" enctype="multipart/form-data">
+                                                                    {% csrf_token %}
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">First name</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" name="first_name" value="{{person.first_name}}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                     <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Last name</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" name="last_name" value="{{person.last_name}}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Username</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control"  name="username"  value="{{person.username}}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Email</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" name="email"  value="{{person.email}}"  readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Phone Number</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" name="phone_number"  value="{{person.phone_number}}"  readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                     <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Office Id</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control"  name="office_user_id"  value="{{person.office_user_id}}"  readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                     <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Reporting to</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control"  name="reporting_to" value="{{person.reporting_to}}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 col-form-label">Department</label>
+                                                                        <div class="col-sm-9">
+                                                                              <input type="text" class="form-control"  name="programming_language_id" value="{{person.programming_language.language_name}}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-danger light" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                          </div>
+                        {% endfor %}
+                  </tbody>
+              </thead>
+             </table>
+           </div>
+         </div>
        </div>
     </div>
 </div>
+
 {% endblock %}
 {% block js %}<script type="text/javascript">
 $(document).ready(function() {

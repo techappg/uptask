@@ -35,9 +35,9 @@
                                 <td>{{detail.assigned_type}}</td>
                                 <td>{{detail.assigned_on}}</td>
                                 <td>{{detail.returned_on}}</td>
-                                <td><a href="/admin-dashboard/view-single-assigned-system-details/{{detail.id}}" class="btn btn-sm btn-info">View</a>>
-                                <a href="/admin-dashboard/edit-assigned-system-details/{{detail.id}}"  class="btn btn-sm btn-info">Edit</a>
-                                <a href="#delete_{{detail.id}}" data-toggle="modal" data-target="#delete_{{detail.id}}" class="btn btn-sm btn-info">Delete</a></td>
+                                <td><a href="#view_single_assigned_system_detail{{detail.id}}" data-toggle="modal" data-target="#view_single_assigned_system_detail{{detail.id}}" class="btn btn-sm btn-primary">View</a>
+                                <a href="/admin-dashboard/edit-assigned-system-details/{{detail.id}}"  class="btn btn-sm btn-success">Edit</a>
+                                <a href="#delete_{{detail.id}}" data-toggle="modal" data-target="#delete_{{detail.id}}" class="btn btn-sm btn-warning">Delete</a></td>
                             </tr>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{detail.id}}">
                                 <div class="modal-dialog modal-lg">
@@ -57,7 +57,74 @@
                                 </div>
                             </div>
 
+                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_single_assigned_system_detail{{detail.pk}}">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Assigned System Detail</h5>
+                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h4 class="card-title">Assigned System Detail</h4>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="basic-form">
+                                                                    <form method="post" enctype="multipart/form-data">
+                                                                        {% csrf_token %}
 
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">System Id</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="system_id" value="{{detail.system_id}}" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Assigned To</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="user" value="{{detail.user}}" readonly>
+                                                                            </div>
+                                                                        </div>
+
+                                                                         <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Assigned Type</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="assigned_type" value="{{detail.assigned_type}}" readonly>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Assigned On</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control"  name="assigned_on"  value="{{detail.assigned_on}}" readonly>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Returned On</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="returned_on"  value="{{detail.returned_on}}"  readonly>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    <div class="modal-footer">
+                                                <button type="button" class="btn btn-sm btn-danger light" data-dismiss="modal">Close</button>
+
+                                                </div>
+                                        </div>
+                                    </div>
+                             </div>
                          {% endfor %}
                         </tbody>
                     </table>

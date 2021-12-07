@@ -12,7 +12,7 @@ urlpatterns = [
     path('view-all-users/', views.view_all_users),
     path('edit-user/<str:id>/', views.update_user),
     path('delete-user/<str:id>/', views.delete_user),
-    path('view-single-user/<str:id>/', views.view_single_user),
+    # path('view-single-user/<str:id>/', views.view_single_user),
 
     # PROGRAMMING LANGUAGE
     path('create-language/', views.add_programming_language),
@@ -31,12 +31,12 @@ urlpatterns = [
     path('view-all-system-details/', views.view_all_system_details),
     path('edit-system-details/<str:pk>/',views.update_system_details),
     path('delete-system-details/<str:pk>', views.delete_system_details),
-    path('view-single-system-details/<str:pk>/', views.view_single_system_details),
+    # path('view-single-system-details/<str:pk>/', views.view_single_system_details),
 
     #ASSIGNED SYSTEM DETAIL
     path('create-assigned-system-details/', views.add_new_assigned_system_detail),
     path('view-all-assigned-system-details/', views.view_all_assigned_system_detail),
-    path('view-single-assigned-system-details/<str:id>', views.view_single_assigned_system_detail),
+    # path('view-single-assigned-system-details/<str:id>', views.view_single_assigned_system_detail),
     path('edit-assigned-system-details/<str:id>/', views.update_assigned_system_details),
     path('delete-assigned-system-details/<str:id>/', views.delete_assigned_system_details),
 

@@ -79,7 +79,7 @@ system_type_choices= [
     ]
 
     
-class system_detail(models.Model):
+class  system_detail(models.Model):
     system_type = models.CharField(max_length=255,choices=system_type_choices,)
     specification = models.TextField()
     system_service = models.TextField(null=True,blank=True)

@@ -3,6 +3,7 @@ from datetime import timedelta
 import pytz
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -17,10 +18,16 @@ def all_tasks(request):
     return render(request, "taskapp/all_tasks.html", {'all_task_details': all_task_details})
 
 
-def view_single_task(request, id):
-    all_task_details = Task.objects.get(pk=id)
-    return render(request, "taskapp/view_single_task.html", {'all_task_details': all_task_details})
+def view_single_task(request,task_id):
+    # all_task_details = Task.objects.get(pk=id)
+    uploaded_files_data = task_uploaded_file.objects.get(task_id=task_id)
+    print(uploaded_files_data.task.task_type.type_name)
+    print(uploaded_files_data.task.details)
+    print(uploaded_files_data.uploaded_file)
 
+    # return render(request, "taskapp/view_single_task.html", {'all_task_details': all_task_details})
+    return render(request, "taskapp/view_single_task.html", locals())
+    # return HttpResponse("hello")
 
 def task_type(request, type):
     all_task_details = Task.objects.select_related().filter(user=request.user, task_type__type_name=type).order_by(

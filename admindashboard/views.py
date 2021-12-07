@@ -78,14 +78,7 @@ def update_user(request,id):
 def delete_user(request,id):
       user=User.objects.get(id=id)
       user.delete()
-      view_user = User.objects.all()
-      return render (request,"admindashboard/view_all_user.html",locals())
-
-def view_single_user(request,id):
-        ProgrammingLanguage_data = ProgrammingLanguage.objects.all()
-        user = User.objects.get(id=id)
-        return render(request,"admindashboard/view_single_user.html", locals())
-
+      return redirect("/admin-dashboard/view-all-users/")
 
 
 
@@ -118,8 +111,7 @@ def update_programming_language(request,id):
 def delete_programming_language(request,id):
     language = ProgrammingLanguage.objects.get(id=id)
     language.delete()
-    view_language = ProgrammingLanguage.objects.all()
-    return render (request,"admindashboard/view_all_language.html",locals())
+    return redirect ("/admin-dashboard/view-all-programming-language/")
 
 
 
@@ -156,8 +148,7 @@ def update_task_type(request,id):
 def delete_task_type(request,id):
     tasktype=TaskType.objects.get(id=id)
     tasktype.delete()
-    view_type_name = TaskType.objects.all()
-    return render (request,"admindashboard//view_all_task_type.html",locals())
+    return redirect ("/admin-dashboard/view-all-tasktype/")
 
 
 
@@ -191,14 +182,9 @@ def update_system_details(request,pk):
     return render(request, "admindashboard/update_system_detail.html", locals())
 
 def delete_system_details(request,pk):
-     systemdetail=system_detail.objects.get(pk=pk)
-     systemdetail.delete()
-     systemdetail = system_detail.objects.all()
-     return render(request, "admindashboard/view_all_system_detail.html", locals())
-
-def view_single_system_details(request,pk):
-        systemdetail= system_detail.objects.get(pk=pk)
-        return render(request,"admindashboard/view_single_system_detail.html", locals())
+      systemdetail=system_detail.objects.get(pk=pk)
+      systemdetail.delete()
+      return redirect("/admin-dashboard/view-all-system-details/")
 
 
 
@@ -221,11 +207,6 @@ def view_all_assigned_system_detail(request):
     assignedsystem= Assigned_System_Detail.objects.all()
     return render(request, "admindashboard/view_all_assigned_system_detail.html", locals())
 
-
-def view_single_assigned_system_detail(request,id):
-        assignedsystem=Assigned_System_Detail.objects.get(id=id)
-        return render(request,"admindashboard/view_single_assigned_system_detail.html", locals())
-
 def update_assigned_system_details(request,id):
     user = User.objects.all()
     systemdetail = system_detail.objects.all()
@@ -243,8 +224,7 @@ def update_assigned_system_details(request,id):
 def delete_assigned_system_details(request,id):
      assignedsystem=Assigned_System_Detail.objects.get(id=id)
      assignedsystem.delete()
-     assignedsystem = Assigned_System_Detail.objects.all()
-     return render(request, "admindashboard/view_all_assigned_system_detail.html")
+     return redirect("/admin-dashboard/view-all-assigned-system-details/")
 
 
 
