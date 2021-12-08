@@ -141,3 +141,11 @@ def view_chart(request, id):
     if not taskapp_dict:
         empty = True
     return render(request, "view_chart.html", locals())
+
+def contact_user_reporting_to(request):
+    reporting_to_user=User.objects.get(username=request.user.reporting_to)
+    print(reporting_to_user.email)
+    print(reporting_to_user.username)
+    print(reporting_to_user.phone_number)
+    return render(request, "taskapp/view_user_reporting_to_contact_detail.html")
+

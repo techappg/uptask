@@ -20,6 +20,12 @@ def get_upload_path(instance, filename):
 
 def get_upload_files_path(instance, filename):
     return 'files/{0}/{1}'.format(instance.task.user.username, filename)
+#
+# class Reporting(models.Model):
+#     username=models.CharField(max_length=15)
+#     phone_number=models.CharField(max_length=15,null=True,blank=)
+#
+
 
 class User(AbstractUser):
     phone_number=models.CharField(max_length=15,null=True,blank=True)

@@ -37,11 +37,23 @@
                                 <input type="text" class="form-control" name="language_name"  value="{{language.language_name}}" required>
                             </div>
                         </div>
-                        <div class="form-group row">
+<!--                        <div class="form-group row">-->
+<!--                            <label class="col-sm-3 col-form-label">Is Active</label>-->
+<!--                            <div class="col-sm-9">-->
+<!--                                <input type="text" class="form-control" name="is_active"  value="{{language.is_active}}" required>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Is Active</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="is_active"  value="{{language.is_active}}" required>
-                            </div>
+                                <div>
+                                   &nbsp &nbsp <input type="radio" name="is_active" value="False" checked="checked">False&nbsp&nbsp&nbsp
+                                    <input type="radio" name="is_active" value="True" >True
+
+
+                                </div>
+<!--                            <div class="col-sm-9">-->
+<!--                                <input type="text" class="form-control" name="for_all"  value="{{view_type_name.for_all}}" required>-->
+<!--                            </div>-->
                         </div>
 
                         <div class="form-group row">

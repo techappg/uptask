@@ -101,6 +101,7 @@ def view_all_programming_language(request):
 def update_programming_language(request,id):
     language= ProgrammingLanguage.objects.get(id=id)
     if request.method == "POST":
+
         language.language_name = request.POST["language_name"]
         language.is_active = request.POST["is_active"]
         language.save()
@@ -137,12 +138,13 @@ def update_task_type(request,id):
     view_type_name=TaskType.objects.get(id=id)
     if request.method == "POST":
         view_type_name.type_name = request.POST["type_name"]
-        view_type_name.is_active = request.POST["is_active"]
+        # view_type_name.is_active = request.POST["is_active"]
         view_type_name.for_all = request.POST["for_all"]
         view_type_name.programming_language_id = request.POST["programming_language"]
         view_type_name.save()
 
         added=True
+        return redirect("/admin-dashboard/view-all-tasktype/")
     return render(request, "admindashboard/update_task_type.html", locals())
 
 def delete_task_type(request,id):
@@ -241,8 +243,16 @@ def view_single_user_task(request,id):
 def view_all_user_project(request):
     userproject=Project.objects.all()
     return render(request,"admindashboard/view_all_user_project.html",locals())
+
+
 def view_single_user_project(request,project_id):
     userproject=Project.objects.get(id=project_id)
     task_details = Task.objects.filter(user=request.user, project_id=project_id).order_by('-id')
     uploaded_files_data = task_uploaded_file.objects.filter(task__project_id=project_id)
     return render(request,"admindashboard/view_single_user_project.html",locals())
+
+
+
+def view_user_contact(request):
+    user_detail=User.objects.all()
+    return render(request,"admindashboard/view_user_contact.html",locals())

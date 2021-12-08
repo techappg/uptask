@@ -17,9 +17,10 @@
                             <tr>
                                 <th>Sr. no</th>
                                 <th>Office Id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th> Name</th>
+<!--                                <th>Last Name</th>-->
                                 <th>Username</th>
+                                <th>Email</th>
                                 <th>Role</th>
                                 <th>Department/Language</th>
                                 <th>Action</th>
@@ -29,9 +30,10 @@
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{person.office_user_id}}</td>
-                                <td>{{person.first_name}}</td>
-                                <td>{{person.last_name}}</td>
+                                <td>{{person.first_name|title}} {{person.last_name|title}}</td>
+<!--                                <td>{{person.last_name}}</td>-->
                                 <td>{{person.username}}</td>
+                                <td>{{person.email}}</td>
 
                                   {% if person.is_employee %}
                                <td> <span class="badge light badge-info">
@@ -48,7 +50,6 @@
                                <td> <a href="#view_single_user_{{person.id}}" data-toggle="modal" data-target="#view_single_user_{{person.id}}" class="btn btn-sm btn-primary">View</a>
                                 <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">Edit</a>
                                 <a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">Delete</a></td>
-
                             </tr>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{person.id}}">
                                 <div class="modal-dialog modal-lg">
@@ -119,12 +120,12 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-3 col-form-label">Phone Number</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="text" class="form-control" name="phone_number"  value="{{person.phone_number}}"  readonly>
-                                                                        </div>
-                                                                    </div>
+<!--                                                                    <div class="form-group row">-->
+<!--                                                                        <label class="col-sm-3 col-form-label">Phone Number</label>-->
+<!--                                                                        <div class="col-sm-9">-->
+<!--                                                                            <input type="text" class="form-control" name="phone_number"  value="{{person.phone_number}}"  readonly>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
 
                                                                      <div class="form-group row">
                                                                         <label class="col-sm-3 col-form-label">Office Id</label>
