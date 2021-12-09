@@ -42,17 +42,19 @@ urlpatterns = [
 
 
     #ALL USER TASK
-    path('view-all-user-task/', views.view_all_user_task),
-    path('view-single-user-task/<str:id>', views.view_single_user_task),
+     path('view-all-user-task/', views.view_all_user_task),
+     path('view-single-user-task/<str:id>', views.view_single_user_task),
+     path('view-single-user-all-task/<str:user_id>', views.view_single_user_all_task),
 
     # ALL USER PROJECT
-    path('view-all-user-project/<str:id>', views.view_all_user_project),
+    path('view-all-user-project/', views.view_all_user_project),
     path('view-single-user-project/<str:project_id>', views.view_single_user_project),
-
+    path('view-single-user-all-project/<str:user_id>',views.view_single_user_all_project),
 
     #VIEW CONTACT
     path('view-user-contact/', views.view_user_contact),
 
     # path('view-chart',views.view_chart),
+
 
 ]

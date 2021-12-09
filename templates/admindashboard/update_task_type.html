@@ -58,14 +58,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">For All</label>
                                 <div>
-                                   &nbsp &nbsp <input type="radio" name="for_all" value="False" checked="checked">In-Active&nbsp&nbsp&nbsp
+                                   &nbsp &nbsp <input type="radio" name="for_all" value="False" >In-Active&nbsp&nbsp&nbsp
                                     <input type="radio" name="for_all" value="True" >Active
 
-
                                 </div>
-<!--                            <div class="col-sm-9">-->
-<!--                                <input type="text" class="form-control" name="for_all"  value="{{view_type_name.for_all}}" required>-->
-<!--                            </div>-->
 
                         </div>
 
@@ -75,7 +71,7 @@
                             <div class="col-sm-9" >
 
                                   <select class="form-control"  name="programming_language"  id="id_programming_language">
-
+                                        <option value="">---------</option>
                                              {%for i in ProgrammingLanguage_data%}
                                         <option value={{i.pk}} {% if user.programming_language.pk == i.pk %} selected {% endif %}>{{i.language_name}}</option>
                                         {% endfor %}

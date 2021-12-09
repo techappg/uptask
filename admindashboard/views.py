@@ -55,6 +55,8 @@ def add_new_user(request):
 def view_all_users(request):
     view_user=User.objects.all()
     data = ProgrammingLanguage.objects.all()
+    usertask = Task.objects.all()
+
     return render (request,"admindashboard/view_all_user.html",locals())
 
 def update_user(request,id):
@@ -138,11 +140,13 @@ def update_task_type(request,id):
     view_type_name=TaskType.objects.get(id=id)
     if request.method == "POST":
         view_type_name.type_name = request.POST["type_name"]
-        # view_type_name.is_active = request.POST["is_active"]
         view_type_name.for_all = request.POST["for_all"]
-        view_type_name.programming_language_id = request.POST["programming_language"]
+        print(type(request.POST.get('for_all')),request.POST.get('for_all'))
+        if request.POST.get('for_all') == "False":
+         view_type_name.programming_language_id = request.POST["programming_language"]
+        elif request.POST.get('for_all') == "True":
+          view_type_name.programming_language_id =request.POST["programming_language"]
         view_type_name.save()
-
         added=True
         return redirect("/admin-dashboard/view-all-tasktype/")
     return render(request, "admindashboard/update_task_type.html", locals())
@@ -233,7 +237,7 @@ def delete_assigned_system_details(request,id):
 def view_all_user_task(request):
     usertask = Task.objects.all()
     return render(request, "admindashboard/view_all_user_task.html", locals())
-
+#
 def view_single_user_task(request,id):
         task=Task.objects.get(id=id)
         return render(request,"admindashboard/view_single_user_task.html", locals())
@@ -256,3 +260,17 @@ def view_single_user_project(request,project_id):
 def view_user_contact(request):
     user_detail=User.objects.all()
     return render(request,"admindashboard/view_user_contact.html",locals())
+
+
+
+def view_single_user_all_task(request,user_id):
+   taskdetail=Task.objects.filter(user_id=user_id)
+   return  render(request,"admindashboard/single_user_all_task.html",locals())
+
+
+def view_single_user_all_project(request,user_id):
+    projectdetail=Project.objects.filter(user_id=user_id)
+    # for i in projectdetail:
+    #     print(i.title)
+    # return HttpResponse("hrllo")
+    return render(request,"admindashboard/view_single_user_all_project.html",locals())
