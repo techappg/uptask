@@ -46,8 +46,13 @@
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Is Active</label>
                                 <div>
-                                   &nbsp &nbsp <input type="radio" name="is_active" value="False" checked="checked">False&nbsp&nbsp&nbsp
-                                    <input type="radio" name="is_active" value="True" >True
+                                    {% if language.is_active == False %}
+                                   &nbsp &nbsp <input type="radio" name="is_active" value="False" checked="checked">In-Active&nbsp&nbsp&nbsp
+                                                  <input type="radio" name="is_active" value="True">Active
+                                    {% else %}
+                                     &nbsp &nbsp <input type="radio" name="is_active" value="False">In-Active&nbsp&nbsp&nbsp
+                                      <input type="radio" name="is_active" value="True" checked="checked">Active
+                                    {%endif%}
 
 
                                 </div>

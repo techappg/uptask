@@ -1,3 +1,4 @@
+
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
@@ -66,7 +67,7 @@ def update_user(request,id):
         user.first_name = request.POST["first_name"]
         user.last_name = request.POST["last_name"]
         user.username = request.POST["username"]
-        user.password1 = request.POST["password1"]
+        # user.password1 = request.POST["password1"]
         user.email = request.POST["email"]
         user.phone_number = request.POST["phone_number"]
         user.office_user_id = request.POST["office_user_id"]
@@ -75,6 +76,7 @@ def update_user(request,id):
         user.save()
 
         added = True
+        return redirect("/admin-dashboard/view-all-users/")
     return render(request,"admindashboard/update_user.html",locals())
 
 def delete_user(request,id):
@@ -109,6 +111,7 @@ def update_programming_language(request,id):
         language.save()
 
         added = True
+        return redirect("/admin-dashboard/view-all-programming-language/")
     return render(request, "admindashboard/update_programming_language.html", locals())
 
 def delete_programming_language(request,id):
@@ -165,7 +168,6 @@ def add_system_details(request):
         form = SystemDetailForm(request.POST)
         if form.is_valid():
             form.save()
-
             added=True
     else:
         form = SystemDetailForm(request.POST)
@@ -185,6 +187,7 @@ def update_system_details(request,pk):
         systemdetail.save()
 
         added=True
+        return redirect("/admin-dashboard/view-all-system-details/")
     return render(request, "admindashboard/update_system_detail.html", locals())
 
 def delete_system_details(request,pk):
@@ -198,7 +201,6 @@ def delete_system_details(request,pk):
 def add_new_assigned_system_detail(request):
     user=User.objects.all()
     systemdetail=system_detail.objects.all()
-
     if request.method == "POST":
         form =SystemAssignedDetailForm(request.POST)
         if form.is_valid():
@@ -225,6 +227,7 @@ def update_assigned_system_details(request,id):
         assignedsystem.save()
 
         added=True
+        return redirect("/admin-dashboard/view-all-assigned-system-details/")
     return render(request, "admindashboard/update_assigned_system_detail.html", locals())
 
 def delete_assigned_system_details(request,id):
@@ -270,7 +273,4 @@ def view_single_user_all_task(request,user_id):
 
 def view_single_user_all_project(request,user_id):
     projectdetail=Project.objects.filter(user_id=user_id)
-    # for i in projectdetail:
-    #     print(i.title)
-    # return HttpResponse("hrllo")
     return render(request,"admindashboard/view_single_user_all_project.html",locals())

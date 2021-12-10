@@ -148,10 +148,10 @@ def contact_user_reporting_to(request):
     print(reporting_to_user.username)
     print(reporting_to_user.phone_number)
 
-    # reporting_to_user.username= request.POST["username"]
-    # reporting_to_user.phone_number= request.POST["phone_number"]
-    # reporting_to_user.email= request.POST["email"]
-    # reporting_to_user.save()
+    reporting_to_user.username= request.POST["username"]
+    reporting_to_user.phone_number= request.POST["phone_number"]
+    reporting_to_user.email= request.POST["email"]
+    reporting_to_user.save()
     return HttpResponse("HELLO")
     # return render(request, "taskapp/view_user_reporting_to_contact_detail.html")
 
