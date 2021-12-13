@@ -42,7 +42,7 @@ def add_new_user(request):
           f1.password1=password1
           f1.password2=password2
           f1.email=email
-          f1.phone_nmuber=phone_number
+          f1.phone_number=phone_number
           f1.office_user_id=office_user_id
           f1.reporting_to=reporting_to
           f1.is_employee=True
