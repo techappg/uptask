@@ -67,14 +67,12 @@ def update_user(request,id):
         user.first_name = request.POST["first_name"]
         user.last_name = request.POST["last_name"]
         user.username = request.POST["username"]
-        # user.password1 = request.POST["password1"]
         user.email = request.POST["email"]
         user.phone_number = request.POST["phone_number"]
         user.office_user_id = request.POST["office_user_id"]
         user.programming_language_id = request.POST["programming_language"]
         user.reporting_to = request.POST["reporting_to"]
         user.save()
-
         added = True
         return redirect("/admin-dashboard/view-all-users/")
     return render(request,"admindashboard/update_user.html",locals())

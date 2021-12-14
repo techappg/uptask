@@ -61,7 +61,7 @@ class Task(models.Model):
     title=models.CharField(max_length=255,default="",null=True,blank=True)
     project=models.ForeignKey(Project,on_delete=models.CASCADE,null=True,blank=True)
     details=models.TextField()
-    added_on=models.DateTimeField()
+    added_on=models.DateTimeField(auto_now=True)
     updated_on=models.DateTimeField(null=True,blank=True)
 
     class Meta:
@@ -83,9 +83,10 @@ system_type_choices= [
         ("Laptop", 'Laptop'),
         ("Macbook", 'MacBook'),
     ]
+#
 
-    
 class  system_detail(models.Model):
+    # created_on= models.DateTimeField()
     system_type = models.CharField(max_length=255,choices=system_type_choices,)
     specification = models.TextField()
     system_service = models.TextField(null=True,blank=True)
@@ -111,3 +112,4 @@ class Assigned_System_Detail(models.Model):
 
     class Meta:
         verbose_name = 'Assigned System Detail'
+

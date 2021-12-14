@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Contact</a></li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -32,8 +40,8 @@
                                 <td>{{person.username}}</td>
                                 <td>{{person.phone_number}}</td>
                                 <td>{{person.email}}</td>
-                                <td><a href="tel:+91{{person.phone_number}}"  class="btn btn-sm btn-primary">call</a>
-                                    <a href="mailto:{{person.email}}"  class="btn btn-sm btn-success">Send Mail</a></td>
+                                <td><a href="tel:+91{{person.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>
+                                    <a href="mailto:{{person.email}}"  class="btn btn-sm btn-success">SEND MAIL</a></td>
 
                             {% endfor %}
                             </tr>

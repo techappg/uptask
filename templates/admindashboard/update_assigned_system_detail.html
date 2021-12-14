@@ -58,8 +58,8 @@
                             <label class="col-sm-3 col-form-label">Assigned Type</label>
                             <div class="col-sm-9">
                                 <select class="form-control"  name="assigned_type"  id="id_assigned_type">
-                                    <option value="Temporary" {% ifequal assignedsystem.assigned_type'Temporary' %} selected {% endifequal %} >Temporary</option>
-                                    <option value="Permanent" {% ifequal assignedsystem.assigned_type 'Permanent' %} selected {% endifequal %} >Permanent</option>
+                                    <option value="Temporary" {% ifequal assignedsystem.assigned_type 'Temporary' %} selected {% endifequal %}>Temporary</option>
+                                    <option value="Permanent" {% ifequal assignedsystem.assigned_type 'Permanent' %} selected {% endifequal %}>Permanent</option>
                                 </select>
 
                             </div>
@@ -74,7 +74,7 @@
                         <div class="form-group row">
                             <div class="row">
                              <div class="col-md-12  text-right">
-                                     <button type="submit" class="btn btn-primary">Update</button>
+                                     <button type="submit" class="btn btn-sm btn-info">UPDATE</button>
 
                              </div>
                            </div>

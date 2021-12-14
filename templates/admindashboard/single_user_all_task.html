@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">USER TASK</h4>
-                  <div class="float-right"><a href="/dashboard/" class="btn btn-primary btn-sm">Dashboard</a>
+                  <div class="float-right"><a href="/admin-dashboard/view-all-users/" class="btn btn-primary btn-sm">User</a>
                   </div>
              </div>
              <div class="card-body">
@@ -35,7 +43,7 @@
                                 <td>{{detail.updated_on}}</td>
 <!--                                <td><a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-info">Edit</a></td>-->
 <!--                                <td><a href="/admin-dashboard/delete-user/{{person.id}}"  class="btn btn-sm btn-info">Delete</a></td>-->
-                                <td><a href="/admin-dashboard/view-single-user-task/{{detail.id}}" class="btn btn-sm btn-primary">View</a></td>
+                                <td><a href="/admin-dashboard/view-single-user-task/{{detail.id}}" class="btn btn-sm btn-primary">VIEW</a></td>
                             </tr>
                          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_detail_{{task.id}}">
                                 <div class="modal-dialog modal-lg">

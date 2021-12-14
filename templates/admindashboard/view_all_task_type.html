@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Task Type</a></li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -57,8 +65,8 @@
 
                                 <td>{{typename.programming_language.language_name}}</td>
                                 <td>
-                                    <a href="/admin-dashboard/edit-task-type/{{typename.id}}"  class="btn btn-sm btn-success">Edit</a>
-                                <a href=<a href="#delete_{{typename.id}}" data-toggle="modal" data-target="#delete_{{typename.id}}"   class="btn btn-sm btn-danger">Delete</a></td>
+                                    <a href="/admin-dashboard/edit-task-type/{{typename.id}}"  class="btn btn-sm btn-success">EDIT</a>
+                                <a href=<a href="#delete_{{typename.id}}" data-toggle="modal" data-target="#delete_{{typename.id}}"   class="btn btn-sm btn-danger">DELETE</a></td>
                             </tr>
                              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{typename.id}}">
                                 <div class="modal-dialog modal-lg">

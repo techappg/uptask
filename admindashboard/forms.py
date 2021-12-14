@@ -54,7 +54,7 @@ class SystemAssignedDetailForm(forms.ModelForm):
 class ViewUserTaskForm(forms.ModelForm):
     class Meta:
         model=Task
-        fields=("user","task_type","details","added_on")
+        fields=("user","task_type","details")
 
 class ViewUserProjectForm(forms.ModelForm):
     class Meta:

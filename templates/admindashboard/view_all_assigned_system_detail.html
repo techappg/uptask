@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Assigned System Detail</a></li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -18,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Sr. no</th>
-                                <th>System Id</th>
+                                <th>System Name</th>
                                 <th>Assigned To</th>
                                 <th>Assigned Type</th>
                                 <th>Assigned On</th>
@@ -30,14 +38,14 @@
                         {% for detail in  assignedsystem %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td>{{detail.system_id}}</td>
+                                <td>{{detail.system_id.system_type}}</td>
                                 <td>{{detail.user}}</td>
                                 <td>{{detail.assigned_type}}</td>
                                 <td>{{detail.assigned_on}}</td>
                                 <td>{{detail.returned_on}}</td>
-                                <td><a href="#view_single_assigned_system_detail{{detail.id}}" data-toggle="modal" data-target="#view_single_assigned_system_detail{{detail.id}}" class="btn btn-sm btn-primary">View</a>
-                                <a href="/admin-dashboard/edit-assigned-system-details/{{detail.id}}"  class="btn btn-sm btn-success">Edit</a>
-                                <a href="#delete_{{detail.id}}" data-toggle="modal" data-target="#delete_{{detail.id}}" class="btn btn-sm btn-warning">Delete</a></td>
+                                <td><a href="#view_single_assigned_system_detail{{detail.id}}" data-toggle="modal" data-target="#view_single_assigned_system_detail{{detail.id}}" class="btn btn-sm btn-primary">VIEW</a>
+                                <a href="/admin-dashboard/edit-assigned-system-details/{{detail.id}}"  class="btn btn-sm btn-success">EDIT</a>
+                                <a href="#delete_{{detail.id}}" data-toggle="modal" data-target="#delete_{{detail.id}}" class="btn btn-sm btn-danger">DELETE</a></td>
                             </tr>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{detail.id}}">
                                 <div class="modal-dialog modal-lg">
@@ -56,6 +64,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_single_assigned_system_detail{{detail.pk}}">
                                     <div class="modal-dialog modal-lg">
@@ -76,13 +85,32 @@
                                                                 <div class="basic-form">
                                                                     <form method="post" enctype="multipart/form-data">
                                                                         {% csrf_token %}
-
-                                                                        <div class="form-group row">
+                                                                       <div class="form-group row">
                                                                             <label class="col-sm-3 col-form-label">System Id</label>
                                                                             <div class="col-sm-9">
                                                                                 <input type="text" class="form-control" name="system_id" value="{{detail.system_id}}" readonly>
                                                                             </div>
                                                                         </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">System Name</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="system_id" value="{{detail.system_id.system_type}}" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                         <div class="form-group row">
+                                                                                    <label class="col-sm-3 col-form-label">Specification</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" class="form-control" name="specification" value="{{detail.system_id.specification}}" readonly>
+                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                                    <label class="col-sm-3 col-form-label">System Service</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" class="form-control"  name="system_service"  value="{{detail.system_id.system_service}}" readonly>
+                                                                                    </div>
+                                                                        </div>
+
                                                                         <div class="form-group row">
                                                                             <label class="col-sm-3 col-form-label">Assigned To</label>
                                                                             <div class="col-sm-9">
@@ -122,11 +150,13 @@
                                                 <button type="button" class="btn btn-sm btn-danger light" data-dismiss="modal">Close</button>
 
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
-                             </div>
+
                          {% endfor %}
                         </tbody>
+
                     </table>
                 </div>
              </div>

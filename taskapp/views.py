@@ -77,6 +77,7 @@ def add_task(request):
 def view_task(request, id):
     try:
         all_task_details = Task.objects.get(id=id, user=request.user)
+
     except:
         return redirect("/tasks")
     return render(request, "view_task.html", locals())
@@ -143,24 +144,15 @@ def view_chart(request, id):
     return render(request, "view_chart.html", locals())
 
 def contact_user_reporting_to(request):
-    # print("abc")
     reporting_to_user=User.objects.get(username=request.user.reporting_to)
     print(reporting_to_user.username)
     print(reporting_to_user.phone_number)
     print(reporting_to_user.email)
-    # context={
-    #     "username": reporting_to_user.username,
-    #     "phone_number":reporting_to_user.phone_number,
-    #     "email":reporting_to_user.email
-    # }
-    if request.method=="GET":
-        reporting_to_user.username=request.POST.get("username")
-        print(reporting_to_user.username)
-        reporting_to_user.phone_number=request.POST.get("phone_number")
-        print(reporting_to_user.phone_number)
-        reporting_to_user.email=request.POST.get("email")
-        print(reporting_to_user.email)
-    # reporting_to_user.save()
-    # return HttpResponse("HELLO")
-    return render(request, "taskapp/view_user_reporting_to_contact_detail.html")
+    return render(request, "taskapp/view_user_reporting_to_contact_detail.html", locals())
+
+
+def delete_task(request,id):
+      task=Task.objects.get(id=id)
+      task.delete()
+      return redirect("/tasks/")
 

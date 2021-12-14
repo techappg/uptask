@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">User</a></li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -53,8 +61,8 @@
                                 <td>
 
                                 <div class="btn-group" role="group" >
-                                    <a href="/admin-dashboard/view-single-user-all-task/{{person.id}}"  class="btn btn-sm btn-info">Task</a>
-                                    <a href="/admin-dashboard/view-single-user-all-project/{{person.id}}" class="btn btn-sm btn-light">Project</a>
+                                    <a href="/admin-dashboard/view-single-user-all-task/{{person.id}}"  class="btn btn-sm btn-info">TASK</a>
+                                    <a href="/admin-dashboard/view-single-user-all-project/{{person.id}}" class="btn btn-sm btn-light">PROJECT</a>
                                 </div>
                                 </td>
 
@@ -62,9 +70,9 @@
 
                                 <td>
                                <div class="btn-group" role="group" aria-label="Basic example">
-                                  <button type="button" a href="#view_single_user_{{person.id}}" data-toggle="modal" data-target="#view_single_user_{{person.id}}" class="btn btn-sm btn-primary">View</a></button>
-                                      <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">Edit</a>
-                                <button type="button" a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">Delete</a></button>
+                                  <button type="button" a href="#view_single_user_{{person.id}}" data-toggle="modal" data-target="#view_single_user_{{person.id}}" class="btn btn-sm btn-primary">VIEW</a></button>
+                                      <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">EDIT</a>
+                                <button type="button" a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">DELETE</a></button>
 
                 <!--                  <div class="btn-group" role="group">-->
                 <!--                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -147,7 +155,12 @@
                                                             <div class="basic-form">
                                                                 <form method="post" enctype="multipart/form-data">
                                                                     {% csrf_token %}
-
+                                                                     <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Profile image</label>
+                                                                            <div class="col-sm-9">
+                                                                                <img src="/media/{{person.display_pic}}" class="img-thumbnail col-6">
+                                                                            </div>
+                                                                     </div>
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-3 col-form-label">First name</label>
                                                                         <div class="col-sm-9">

@@ -10,6 +10,7 @@ from .models import *
 
 admin.site.unregister(Group)
 
+
 @admin.action(description='Mark selected as Active')
 def make_active(modeladmin, request, queryset):
     queryset.update(is_active=True)
@@ -77,7 +78,7 @@ class TaskTypeAdmin(ImportExportModelAdmin,admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(ImportExportModelAdmin,admin.ModelAdmin):
-    list_display = ("user", "task_type","display_programming_language","added_on","updated_on",)
+    list_display = ("user", "task_type","display_programming_language","updated_on",)
     list_filter = (("added_on",DateRangeFilter),"task_type__type_name","user__programming_language",)
     search_fields = ("user__username","user__first_name__startswith","user__email__startswith")
     # raw_id_fields = ("task_type", )
@@ -133,12 +134,15 @@ def get_app_list(self, request):
     registered in this site.
     """
     ordering = {
+
         "Users":1,
         "Tasks":2,
         "Task Types":3,
         "Languages / Departments":4,
         "System Details":5 ,
         "Assigned System Details":6,
+
+
 
     }
     app_dict = self._build_app_dict(request)

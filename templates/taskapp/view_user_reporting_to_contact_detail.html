@@ -15,23 +15,21 @@
                     <table id="example" class="display table-responsive-md" style="min-width: 1050px">
                         <thead>
                             <tr>
-                                <th>Sr. no</th>
+                                <th>Office Id</th>
                                 <th>Username</th>
                                 <th>Contact Number</th>
                                 <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         <tbody>
-<!--                                  {% for a in  reporting_to_user %}-->
                             <tr>
-                                <td>{{forloop.counter}}</td>
+                                <td>{{reporting_to_user.office_user_id}}</td>
                                 <td>{{reporting_to_user.username}}</td>
                                 <td>{{reporting_to_user.phone_number}}</td>
                                 <td>{{reporting_to_user.email}}</td>
-                                <td><a href="tel:+91{{reporting_to.phone_number}}"  class="btn btn-sm btn-primary">call</a>
-                                    <a href="mailto:{{reporting_to.email}}"  class="btn btn-sm btn-success">Send Mail</a></td>
+                                <td><a href="tel:+91{{reporting_to.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>
+                                    <a href="mailto:{{reporting_to.email}}"  class="btn btn-sm btn-success">SEND MAIL</a></td>
 
-<!--                            {% endfor %}-->
                             </tr>
                   </tbody>
               </thead>
