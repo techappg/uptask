@@ -23,11 +23,13 @@
 
              <div class="card-body">
                 <p class="card-text">Uploaded Files:  {{uploaded_files_data.uploaded_file }}</p>
+
+
             </div>
 
             <div class="card-footer d-sm-flex justify-content-between align-items-center">
                 <div class="card-footer-link mb-4 mb-sm-0">
-                    <p class="card-text text-dark d-inline">added on {{all_task_details.added_on}}</p>
+                    <p class="card-text text-dark d-inline">added on {{uploaded_files_data.task.added_on}}</p>
                 </div>
                 <a href="/tasks/" class="btn btn-primary">Go Back</a>
             </div>

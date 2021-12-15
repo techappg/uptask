@@ -21,9 +21,9 @@ def all_tasks(request):
 def view_single_task(request,task_id):
     # all_task_details = Task.objects.get(pk=id)
     uploaded_files_data = task_uploaded_file.objects.get(task_id=task_id)
-    print(uploaded_files_data.task.task_type.type_name)
-    print(uploaded_files_data.task.details)
-    print(uploaded_files_data.uploaded_file)
+    # print(uploaded_files_data.task.task_type.type_name)
+    # print(uploaded_files_data.task.details)
+    # print(uploaded_files_data.uploaded_file)
 
     # return render(request, "taskapp/view_single_task.html", {'all_task_details': all_task_details})
     return render(request, "taskapp/view_single_task.html", locals())
@@ -145,9 +145,9 @@ def view_chart(request, id):
 
 def contact_user_reporting_to(request):
     reporting_to_user=User.objects.get(username=request.user.reporting_to)
-    print(reporting_to_user.username)
-    print(reporting_to_user.phone_number)
-    print(reporting_to_user.email)
+    # print(reporting_to_user.username)
+    # print(reporting_to_user.phone_number)
+    # print(reporting_to_user.email)
     return render(request, "taskapp/view_user_reporting_to_contact_detail.html", locals())
 
 
@@ -156,3 +156,9 @@ def delete_task(request,id):
       task.delete()
       return redirect("/tasks/")
 
+def contact_team_members(request):
+    team_member=User.objects.filter(programming_language_id=request.user.programming_language)
+    # for i in team_member:
+    #  print(i.username)
+    # return HttpResponse("hello")
+    return render(request, "taskapp/view_user_team_member_detail.html", locals())

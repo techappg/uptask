@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">CONTACT TEAM</h4>
+<!--                  <div class="float-right"><a href="/admin-dashboard/user-create" class="btn btn-primary btn-sm">Add New User</a>-->
+<!--                  </div>-->
+             </div>
+         <div class="card-body">
+
+
+            <div class="table-responsive">
+                    <table id="example" class="display table-responsive-md" style="min-width: 1050px">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Username</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                        <tbody>
+                                {% for detail in team_member %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{detail.username}}</td>
+                                <td>{{detail.phone_number}}</td>
+                                <td>{{detail.email}}</td>
+                                <td><a href="tel:+91{{reporting_to.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>
+                                    <a href="mailto:{{reporting_to.email}}"  class="btn btn-sm btn-success">SEND MAIL</a></td>
+
+                            </tr>
+                                {% endfor %}
+                  </tbody>
+              </thead>
+             </table>
+            </div>
+         </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
+{% endblock %}
