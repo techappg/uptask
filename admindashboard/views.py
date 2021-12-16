@@ -142,6 +142,7 @@ def update_task_type(request,id):
     if request.method == "POST":
         view_type_name.type_name = request.POST["type_name"]
         view_type_name.for_all = request.POST["for_all"]
+        view_type_name.is_active=request.POST["is_active"]
         print(type(request.POST.get('for_all')),request.POST.get('for_all'))
         if request.POST.get('for_all') == "False":
          view_type_name.programming_language_id = request.POST["programming_language"]
