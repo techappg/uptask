@@ -7,6 +7,7 @@ urlpatterns =[
     path('add-task', views.add_task),
     path('view-task/<str:id>', views.view_single_task),
     path('edit-task/<str:id>', views.edit_task),
+    # path('ed', views.cell),
     path('task-type/<str:type>', views.task_type),
     path('view-user-reporting-to/',views.contact_user_reporting_to),
     path('delete-task/<str:id>', views.delete_task),

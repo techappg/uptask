@@ -19,11 +19,10 @@ def all_tasks(request):
 
 
 def view_single_task(request,id):
-    all_task_details = Task.objects.get(pk=id)
-    # uploaded_files_data = task_uploaded_file.objects.get(task_id=task_id)
-    # print(uploaded_files_data.task.task_type.type_name)
-    # print(uploaded_files_data.task.details)
-    # print(uploaded_files_data.uploaded_file)
+
+    all_task_details = Task.objects.get(id=id)
+
+    uploaded_files_data = task_uploaded_file.objects.get(task__id=id)
 
     # return render(request, "taskapp/view_single_task.html", {'all_task_details': all_task_details})
     return render(request, "taskapp/view_single_task.html", locals())
@@ -155,3 +154,13 @@ def delete_task(request,id):
 def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
+
+
+#
+# def cell(request):
+#     a=task_uploaded_file.objects.all()
+#     for i in a:
+#         print(i.task.id)
+#         print(i.task.task_type.type_name)
+#         print(i.uploaded_file)
+#     return HttpResponse("HLLOO")

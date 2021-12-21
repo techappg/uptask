@@ -58,7 +58,7 @@
                             <label>Select Task Type</label>
                             <select class="form-control form-control-lg" name="selected_task_type" required id="single-select">
                                 {% for tasks in all_tasks_type %}
-                                <option value="{{tasks.id}}">{{tasks.type_name}}</option>
+                                <option value="{{tasks.id}}">{{tasks.type_name|title}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -102,21 +102,7 @@
 </div>
 {% endblock %}
 {% block js %}
-<script>
-{ % if details_empty % }
-swal({
-    title: "Failed!",
-    text: "task details required!",
-    icon: "error",
-}); { % endif % }
 
-{ % if details_empty % }
-swal({
-    title: "Sucess!",
-    text: "task added successfully !",
-    icon: "success",
-}); { % endif % }
-</script>
 <script type="text/javascript">
 $(document).ready(function() {
     var selectedText = $('#single-select option:selected').text();
