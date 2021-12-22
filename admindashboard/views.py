@@ -1,8 +1,9 @@
-
+import self as self
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
 from admindashboard.forms import *
+from django.core.exceptions import ValidationError
 #
 # def all_users(request):
 #     all_users_admin_data=User.objects.filter(is_superuser=True).values()
@@ -24,17 +25,17 @@ def add_new_user(request):
     data = ProgrammingLanguage.objects.all()
     if request.method=='POST':
       form = UserCreationForm(request.POST)
+      first_name=request.POST["first_name"]
+      last_name=request.POST["last_name"]
+      username=request.POST["username"]
+      password1=request.POST["password1"]
+      password2=request.POST["password2"]
+      email=request.POST["email"]
+      phone_number=request.POST["phone_number"]
+      office_user_id=request.POST["office_user_id"]
+      reporting_to=request.POST["reporting_to"]
+      programming_language=request.POST["programming_language"]
       if form.is_valid():
-          first_name=request.POST["first_name"]
-          last_name=request.POST["last_name"]
-          username=request.POST["username"]
-          password1=request.POST["password1"]
-          password2=request.POST["password2"]
-          email=request.POST["email"]
-          phone_number=request.POST["phone_number"]
-          office_user_id=request.POST["office_user_id"]
-          reporting_to=request.POST["reporting_to"]
-          programming_language=request.POST["programming_language"]
           f1=form.save()
           f1.first_name=first_name
           f1.last_name=last_name
@@ -47,11 +48,16 @@ def add_new_user(request):
           f1.reporting_to=reporting_to
           f1.is_employee=True
           f1.save()
-
           added=True
-    else:
+
+      else:
             form=UserCreationForm(request.POST)
-    return render(request,"admindashboard/add_new_user.html",locals())
+            return render(request,"admindashboard/add_new_user.html",locals())
+
+    else:
+        form = UserCreationForm()
+    return render(request, "admindashboard/add_new_user.html", locals())
+
 
 def view_all_users(request):
     view_user=User.objects.all()

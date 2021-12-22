@@ -6,13 +6,25 @@ from projectapp.models import *
 
 
 class UserCreationForm(forms.ModelForm):
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
         # fields = '__all__'
-        fields=("first_name","last_name","username","password1","password2","email","phone_number","office_user_id","reporting_to","programming_language")
+        fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language")
+
+    def clean_username(self):
+        print("eeee")
+        username = self.cleaned_data.get('username')
+        if "_" in username:
+            print("eeee")
+            raise forms.ValidationError("Don't use special character")
+        else:
+            if User.objects.filter(username=username).exists():
+                raise forms.ValidationError("Username already exists")
+        return username
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

@@ -14,19 +14,19 @@ from taskapp.models import *
 @login_required(login_url="/")
 def all_tasks(request):
     all_task_details = Task.objects.select_related().filter(user=request.user).order_by('-id')
-
     return render(request, "taskapp/all_tasks.html", {'all_task_details': all_task_details})
 
-
 def view_single_task(request,id):
-
     all_task_details = Task.objects.get(id=id)
-
-    uploaded_files_data = task_uploaded_file.objects.get(task__id=id)
+    uploaded_files_data = task_uploaded_file.objects.filter(task__id=id)
+    for i in uploaded_files_data :
+        print(i.uploaded_file)
 
     # return render(request, "taskapp/view_single_task.html", {'all_task_details': all_task_details})
     return render(request, "taskapp/view_single_task.html", locals())
     # return HttpResponse("hello")
+
+
 
 def task_type(request, type):
     all_task_details = Task.objects.select_related().filter(user=request.user, task_type__type_name=type).order_by(
@@ -154,13 +154,3 @@ def delete_task(request,id):
 def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
-
-
-#
-# def cell(request):
-#     a=task_uploaded_file.objects.all()
-#     for i in a:
-#         print(i.task.id)
-#         print(i.task.task_type.type_name)
-#         print(i.uploaded_file)
-#     return HttpResponse("HLLOO")

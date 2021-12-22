@@ -47,7 +47,6 @@ def count_task_type(value,arg):
 @register.filter
 def check_type(value):
 
-
     return type(value)
 @register.filter
 def check_file_type(value,arg):

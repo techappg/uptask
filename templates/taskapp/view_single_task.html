@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load CustomTaskappTags %}
 {% block content %}
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -19,13 +20,29 @@
             </div>
             <div class="card-body">
                 <p class="card-text">Description: {{all_task_details.details}}</p>
+                    <p class="card-text">Uploaded File:{{uploaded_files_data.uploaded_file}}</p>
+                      {% for file_uploaded_data in uploaded_files_data %}
+                      {% ifequal file_uploaded_data.task_id task.id %}
+                      {{file_uploaded_data.extension|check_file_type:file_uploaded_data.uploaded_file}}
+
+                      {% endifequal %}
+                      {% endfor %}
+
             </div>
 
-             <div class="card-body">
-                <p class="card-text" >Uploaded Files:  {{uploaded_files_data.uploaded_file }}</p><br>
-                 <a href = "{{uploaded_files_data.uploaded_file }}" download>Download</a>
-            </div>
+<!--             <div class="card-body">-->
+<!--                 {%for files in uploaded_files_data%}-->
+<!--                <p class="card-text" >Uploaded Files:  {{files.uploaded_file }}&nbsp&nbsp&nbsp   <a href = "{{files.uploaded_file }}" download>Download</a></p>-->
+<!--&lt;!&ndash;                 <a href = "{{files.uploaded_file }}" download>Download</a>&ndash;&gt;-->
+<!--                 {%endfor%}-->
+<!--            </div>-->
 
+<!--            {%ifnotequal uploaded_files_data.task_id task.id %}-->
+<!--              <div class="card-body">-->
+<!--                <p class="card-text" hidden>Uploaded Files:  {{uploaded_files_data.uploaded_file }}</p><br>-->
+<!--                 <a href = "{{uploaded_files_data.uploaded_file }}" download>Download</a>-->
+<!--            </div>-->
+<!--            {%endifnotequal%}-->
             <div class="card-footer d-sm-flex justify-content-between align-items-center">
                 <div class="card-footer-link mb-4 mb-sm-0">
                     <p class="card-text text-dark d-inline">added on {{all_task_details.added_on}}</p>
