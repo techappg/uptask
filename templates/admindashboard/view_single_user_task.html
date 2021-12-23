@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load CustomTaskappTags %}
 {% block content %}
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -18,7 +19,12 @@
                 <h5 class="card-title">Task Type : {{task.task_type.type_name}}</h5>
             </div>
             <div class="card-body">
-                <p class="card-text">{{task.details}}</p>
+                <p class="card-text"><h4><b>Description:</b></h4>{{task.details}}</p>
+                {% for file_uploaded_data in uploaded_files_data %}
+                      {% ifequal file_uploaded_data.task_id task.id %}
+                <p class="card-text"><h4><b>Uploaded File:</b></h4>{{file_uploaded_data.extension|check_file_type:file_uploaded_data.uploaded_file}}</p>
+                      {% endifequal %}
+                      {% endfor %}
             </div>
             <div class="card-footer d-sm-flex justify-content-between align-items-center">
                 <div class="card-footer-link mb-4 mb-sm-0">

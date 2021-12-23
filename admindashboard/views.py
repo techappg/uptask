@@ -149,7 +149,7 @@ def update_task_type(request,id):
         view_type_name.type_name = request.POST["type_name"]
         view_type_name.for_all = request.POST["for_all"]
         view_type_name.is_active=request.POST["is_active"]
-        print(type(request.POST.get('for_all')),request.POST.get('for_all'))
+        # print(type(request.POST.get('for_all')),request.POST.get('for_all'))
         if request.POST.get('for_all') == "False":
          view_type_name.programming_language_id = request.POST["programming_language"]
         elif request.POST.get('for_all') == "True":
@@ -248,6 +248,10 @@ def view_all_user_task(request):
 #
 def view_single_user_task(request,id):
         task=Task.objects.get(id=id)
+        uploaded_files_data = task_uploaded_file.objects.filter(task__id=id)
+        for i in  uploaded_files_data:
+            print(i.uploaded_file)
+
         return render(request,"admindashboard/view_single_user_task.html", locals())
 
 
@@ -259,7 +263,7 @@ def view_all_user_project(request):
 
 def view_single_user_project(request,project_id):
     userproject=Project.objects.get(id=project_id)
-    task_details = Task.objects.filter(user=request.user, project_id=project_id).order_by('-id')
+    task_details = Task.objects.filter(project_id=project_id).order_by('-id')
     uploaded_files_data = task_uploaded_file.objects.filter(task__project_id=project_id)
     return render(request,"admindashboard/view_single_user_project.html",locals())
 
@@ -276,6 +280,10 @@ def view_single_user_all_task(request,user_id):
    return  render(request,"admindashboard/single_user_all_task.html",locals())
 
 
-def view_single_user_all_project(request,user_id):
-    projectdetail=Project.objects.filter(user_id=user_id)
+def view_single_user_all_project(request,user_id=None):
+    all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
+
+    # userproject = Project.objects.get(id=project_id)
+    # task_details = Task.objects.filter(user=request.user, project_id=project_id).order_by('-id')
+    # uploaded_files_data = task_uploaded_file.objects.filter(task__project_id=project_id)
     return render(request,"admindashboard/view_single_user_all_project.html",locals())
