@@ -4,7 +4,9 @@ from django.shortcuts import render,redirect
 from taskapp.models import *
 from admindashboard.forms import *
 from django.core.exceptions import ValidationError
-#
+
+
+
 # def all_users(request):
 #     all_users_admin_data=User.objects.filter(is_superuser=True).values()
 #     print(all_users_admin_data)
@@ -166,8 +168,6 @@ def delete_task_type(request,id):
 
 
 
-
-
 def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
@@ -282,8 +282,4 @@ def view_single_user_all_task(request,user_id):
 
 def view_single_user_all_project(request,user_id=None):
     all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
-
-    # userproject = Project.objects.get(id=project_id)
-    # task_details = Task.objects.filter(user=request.user, project_id=project_id).order_by('-id')
-    # uploaded_files_data = task_uploaded_file.objects.filter(task__project_id=project_id)
     return render(request,"admindashboard/view_single_user_all_project.html",locals())
