@@ -37,7 +37,7 @@
                         {% for typename in  view_type_name  %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td>{{typename.type_name}}</td>
+                                <td>{{typename.type_name|title}}</td>
                                      {% if typename.is_active == True %}
                                   <td> <span class="badge light badge-info">
                                   <i class="fa fa-circle text-info mr-1"></i>
@@ -63,7 +63,7 @@
                                     </span>
                                 {% endif %}</td>
 
-                                <td>{{typename.programming_language.language_name}}</td>
+                                <td>{{typename.programming_language.language_name|title}}</td>
                                 <td>
                                     <a href="/admin-dashboard/edit-task-type/{{typename.id}}"  class="btn btn-sm btn-success">EDIT</a>
                                 <a href=<a href="#delete_{{typename.id}}" data-toggle="modal" data-target="#delete_{{typename.id}}"   class="btn btn-sm btn-danger">DELETE</a></td>

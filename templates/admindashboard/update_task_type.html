@@ -35,7 +35,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Task Type Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="type_name"  value="{{view_type_name.type_name}}" required>
+                                <input type="text" class="form-control" name="type_name"  value="{{view_type_name.type_name|title}}" required>
                             </div>
                         </div>
 <!--                        <div class="form-group row">-->
@@ -61,10 +61,10 @@
                             <label class="col-sm-3 col-form-label">Status</label>
                                 <div>
                                     {% if view_type_name.is_active == False %}
-                                   &nbsp &nbsp <input type="radio" name="is_active" value="False" checked="checked">In-Active&nbsp&nbsp&nbsp
+                                   &nbsp &nbsp <input type="radio" name="is_active" value="False" checked="checked">In-Active&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="is_active" value="True" >Active
                                     {% else%}
-                                     &nbsp &nbsp <input type="radio" name="is_active" value="False">In-Active&nbsp&nbsp&nbsp
+                                     &nbsp &nbsp <input type="radio" name="is_active" value="False">In-Active&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="is_active" value="True" checked="checked">Active
                                     {%endif%}
                                 </div>

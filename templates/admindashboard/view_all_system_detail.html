@@ -39,13 +39,13 @@
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{detail.system_id}}</td>
-                                <td>{{detail.system_type}}</td>
-                                <td>{{detail.specification}}</td>
-                                <td>{{detail.system_service}}</td>
+                                <td>{{detail.system_type|title}}</td>
+                                <td>{{detail.specification|title}}</td>
+                                <td>{{detail.system_service|title}}</td>
                                 <td>{{detail.added_on}}</td>
                                 <td><a href="#view_single_system_detail{{detail.pk}}" data-toggle="modal" data-target="#view_single_system_detail{{detail.pk}}" class="btn btn-sm btn-primary">VIEW</a>
                                <a href="/admin-dashboard/edit-system-details/{{detail.pk}}"  class="btn btn-sm btn-success">EDIT</a>
-                                <a href=<a href="#delete_{{detail.pk}}" data-toggle="modal" data-target="#delete_{{detail.pk}}" class="btn btn-sm btn-danger">DELETE</a></td>
+                                <a href="#delete_{{detail.pk}}" data-toggle="modal" data-target="#delete_{{detail.pk}}" class="btn btn-sm btn-danger">DELETE</a></td>
                             </tr>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="delete_{{detail.pk}}">
                                 <div class="modal-dialog modal-lg">
@@ -96,21 +96,21 @@
                                                                                 <div class="form-group row">
                                                                                     <label class="col-sm-3 col-form-label">System Type</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control" name="system_type" value="{{detail.system_type}}" readonly>
+                                                                                        <input type="text" class="form-control" name="system_type" value="{{detail.system_type|title}}" readonly>
                                                                                     </div>
                                                                                 </div>
 
                                                                                  <div class="form-group row">
                                                                                     <label class="col-sm-3 col-form-label">Specification</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control" name="specification" value="{{detail.specification}}" readonly>
+                                                                                        <input type="text" class="form-control" name="specification" value="{{detail.specification|title}}" readonly>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="form-group row">
                                                                                     <label class="col-sm-3 col-form-label">System Service</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control"  name="system_service"  value="{{detail.system_service}}" readonly>
+                                                                                        <input type="text" class="form-control"  name="system_service"  value="{{detail.system_service|title}}" readonly>
                                                                                     </div>
                                                                                 </div>
 

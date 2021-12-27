@@ -38,8 +38,8 @@
                             <tr>
                                 <td>{{forloop.counter}}</td>
 <!--                                <td>{{task.user.username}}</td>-->
-                                <td>{{detail.task_type.type_name}}</td>
-                                <td>{{detail.details|truncatechars:60}} <a href="#view_detail_{{task.id}}" data-toggle="modal" data-target="#view_detail_{{task.id}}" class="text-info"> view more</a></td>
+                                <td>{{detail.task_type.type_name|title}}</td>
+                                <td>{{detail.details|truncatechars:60}} <a href="#view_detail_{{detail.id}}" data-toggle="modal" data-target="#view_detail_{{detail.id}}" class="text-info"> view more</a></td>
 <!--                                <td>{{task.details}}</td>-->
                                 <td>{{detail.added_on}}</td>
                                 <td>{{detail.updated_on}}</td>
@@ -47,7 +47,7 @@
 <!--                                <td><a href="/admin-dashboard/delete-user/{{person.id}}"  class="btn btn-sm btn-info">Delete</a></td>-->
                                 <td><a href="/admin-dashboard/view-single-user-task/{{detail.id}}" class="btn btn-sm btn-primary">VIEW</a></td>
                             </tr>
-                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_detail_{{task.id}}">
+                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_detail_{{detail.id}}">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">

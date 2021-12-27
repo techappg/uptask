@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Task Type : {{task.task_type.type_name}}</h5>
+                <h5 class="card-title">Task Type : {{task.task_type.type_name|title}}</h5>
             </div>
             <div class="card-body">
                 <p class="card-text"><h4><b>Description:</b></h4>{{task.details}}</p>
@@ -28,7 +28,7 @@
             </div>
             <div class="card-footer d-sm-flex justify-content-between align-items-center">
                 <div class="card-footer-link mb-4 mb-sm-0">
-                    <p class="card-text text-dark d-inline">added on:{{task.added_on}}</p>
+                    <p class="card-text text-dark d-inline"><h4><b>added on:</b></h4>{{task.added_on}}</p>
                 </div>
 
                 <a href="/admin-dashboard/view-all-users/" class="btn btn-primary">Go Back</a>

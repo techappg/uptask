@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)"></a>{{request.user.programming_language.language_name|title}} Team</li>
+        </ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -25,7 +33,7 @@
                                 {% for detail in team_member %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td>{{detail.username}}</td>
+                                <td>{{detail.username|title}}</td>
                                 <td>{{detail.phone_number}}</td>
                                 <td>{{detail.email}}</td>
                                 <td><a href="tel:+91{{reporting_to.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>

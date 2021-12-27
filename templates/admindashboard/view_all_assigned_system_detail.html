@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{detail.system_id.system_type}}</td>
-                                <td>{{detail.user}}</td>
+                                <td>{{detail.user|title}}</td>
                                 <td>{{detail.assigned_type}}</td>
                                 <td>{{detail.assigned_on}}</td>
                                 <td>{{detail.returned_on}}</td>
@@ -101,20 +101,20 @@
                                                                          <div class="form-group row">
                                                                                     <label class="col-sm-3 col-form-label">Specification</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control" name="specification" value="{{detail.system_id.specification}}" readonly>
+                                                                                        <input type="text" class="form-control" name="specification" value="{{detail.system_id.specification|title}}" readonly>
                                                                                     </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                                     <label class="col-sm-3 col-form-label">System Service</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control"  name="system_service"  value="{{detail.system_id.system_service}}" readonly>
+                                                                                        <input type="text" class="form-control"  name="system_service"  value="{{detail.system_id.system_service|title}}" readonly>
                                                                                     </div>
                                                                         </div>
 
                                                                         <div class="form-group row">
                                                                             <label class="col-sm-3 col-form-label">Assigned To</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" name="user" value="{{detail.user}}" readonly>
+                                                                                <input type="text" class="form-control" name="user" value="{{detail.user|title}}" readonly>
                                                                             </div>
                                                                         </div>
 

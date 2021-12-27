@@ -50,7 +50,7 @@
                                   <select class="form-control"  name="user"  id="id_user_id">
 
                                              {%for i in  user%}
-                                        <option value={{i.pk}} {% if assignedsystem.user.pk == i.pk %} selected {% endif %}>{{i.username}}</option>
+                                        <option value={{i.pk}} {% if assignedsystem.user.pk == i.pk %} selected {% endif %}>{{i.username|title}}</option>
                                         {% endfor %}
                                     </select>
                             </div>
