@@ -24,7 +24,9 @@ from django.core.exceptions import ValidationError
 
 
 def add_new_user(request):
-    data = ProgrammingLanguage.objects.all()
+    data = ProgrammingLanguage.objects.filter(is_active=True)
+    for i in data:
+        print(i.language_name)
     if request.method=='POST':
       form = UserCreationForm(request.POST)
       first_name=request.POST["first_name"]
@@ -92,17 +94,21 @@ def delete_user(request,id):
 
 
 
-def add_programming_language(request):
-    if request.method=="POST":
-        form = ProgrammingLanguageForm(request.POST)
-        print(form)
-        if form.is_valid():
-            form.save()
 
-            added=True
+def add_programming_language(request):
+    if request.method == "POST":
+        form = ProgrammingLanguageForm(request.POST)
+        f = form.save(commit=False)
+        f.language_name=request.POST['language_name']
+        f.save()
+
+        added = True
     else:
+
+
         form =ProgrammingLanguageForm(request.POST)
     return render(request, "admindashboard/add_programming_language.html", locals())
+
 
 def view_all_programming_language(request):
     view_language=ProgrammingLanguage.objects.all()
@@ -132,10 +138,14 @@ def add_new_task_type(request):
     data = ProgrammingLanguage.objects.all()
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
-        if form.is_valid():
-            form.save()
+        type_name = request.POST['type_name']
+        created_task_type = TaskType.objects.create(type_name=type_name)
 
-            added=True
+        print(request.POST.getlist('programming_language'),"request.POST.getlist('programming_language')")
+        for d in request.POST.getlist('programming_language'):
+            print(d)
+            multiple_select_language.objects.create(task_type_id=created_task_type.pk,programming_language_id=d)
+        added=True
     else:
         form =TaskTypeForm(request.POST)
     return render(request, "admindashboard/add_new_task_type.html", locals())
@@ -277,9 +287,11 @@ def view_user_contact(request):
 
 def view_single_user_all_task(request,user_id):
    taskdetail=Task.objects.filter(user_id=user_id)
+   userdetail=User.objects.filter(id=user_id)
    return  render(request,"admindashboard/single_user_all_task.html",locals())
 
 
 def view_single_user_all_project(request,user_id=None):
     all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
+    userdetail = User.objects.filter(id=user_id)
     return render(request,"admindashboard/view_single_user_all_project.html",locals())

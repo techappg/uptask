@@ -52,7 +52,9 @@ class TaskType(models.Model):
      class Meta:
          verbose_name = 'Task Type'
 
-
+class multiple_select_language(models.Model):
+    task_type=models.ForeignKey(TaskType,on_delete=models.CASCADE,null=True,blank=True)
+    programming_language=models.ForeignKey(ProgrammingLanguage, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class Task(models.Model):

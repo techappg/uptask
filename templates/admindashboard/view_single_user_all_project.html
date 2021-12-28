@@ -14,9 +14,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">PROJECT</h4>
-                <div class="float-right"><a href="/projects/add-project" class="btn btn-primary btn-sm">ADD NEW PROJECT</a>
+                  {%for detail in userdetail%}
+                <h4 class="card-title"><b>USER:{{detail.username|title}}</b></h4>
+                 <div class="float-right"><a href="tel:+91{{detail.phone_number}}" class="btn btn-sm btn-primary">CALL</a>
+                     <a href="mailto:{{detail.email}}"  class="btn btn-sm btn-success">SEND MAIL</a>
                 </div>
+                {%endfor%}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
