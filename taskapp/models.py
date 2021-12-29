@@ -44,6 +44,7 @@ class TaskType(models.Model):
      type_name=models.CharField(max_length=255)
      is_active=models.BooleanField(default=True)
      for_all=models.BooleanField(default=False)
+     multiple_language = models.BooleanField(default=False)
      programming_language = models.ForeignKey(ProgrammingLanguage, on_delete=models.CASCADE, null=True, blank=True)
 
      def __str__(self):
@@ -53,6 +54,7 @@ class TaskType(models.Model):
          verbose_name = 'Task Type'
 
 class multiple_select_language(models.Model):
+
     task_type=models.ForeignKey(TaskType,on_delete=models.CASCADE,null=True,blank=True)
     programming_language=models.ForeignKey(ProgrammingLanguage, on_delete=models.CASCADE, null=True, blank=True)
 
