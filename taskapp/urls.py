@@ -11,7 +11,7 @@ urlpatterns =[
     path('task-type/<str:type>', views.task_type),
     path('view-user-reporting-to/',views.contact_user_reporting_to),
     path('delete-task/<str:id>', views.delete_task),
-    path('view-user-team-member/', views.contact_team_members),
+    path('view-user-team-member/', views.contact_team_members)
     # path('view-chart',views.view_chart),
 
 ]

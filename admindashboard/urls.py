@@ -53,6 +53,7 @@ urlpatterns = [
 
     #VIEW CONTACT
     path('view-user-contact/', views.view_user_contact),
+    # path('view/', views.abc),
 
     # path('view-chart',views.view_chart),
 

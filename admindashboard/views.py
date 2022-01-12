@@ -1,4 +1,4 @@
-import self as self
+
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
@@ -137,13 +137,16 @@ def delete_programming_language(request,id):
 
 def add_new_task_type(request):
     data = ProgrammingLanguage.objects.all()
-
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
         type_name = request.POST['type_name']
         for_all = request.POST['for_all']
-        multiple_language=request.POST['multiple_language']
-        created_task_type = TaskType.objects.create(type_name=type_name,for_all=for_all,multiple_language=multiple_language)
+        # multiple_language=request.POST['multiple_language']
+        created_task_type = TaskType.objects.create(type_name=type_name,for_all=for_all)
+        mul_language= TaskType.objects.filter(for_all=False)
+        for i in mul_language :
+            i.multiple_language = True
+            i.save()
 
         print(request.POST.getlist('programming_language'),"request.POST.getlist('programming_language')")
         for d in request.POST.getlist('programming_language'):
@@ -156,9 +159,14 @@ def add_new_task_type(request):
 
 def view_all_tasktype(request):
     view_type_name=TaskType.objects.all()
-    a=multiple_select_language.objects.filter(task_type__multiple_language=True)
+    a = multiple_select_language.objects.all()
     for i in a:
-        print(i.programming_language.language_name)
+        print(i.task_type.multiple_language)
+    #     # print(b.programming_language.language_name)
+    # a=multiple_select_language.objects.filter(task_type__multiple_language=True)
+    # for i in a:
+    #     print(i.programming_language.language_name)
+        # print(i.programming_language.language_name)
     return render(request,"admindashboard/view_all_task_type.html",locals())
 
 def update_task_type(request,id):

@@ -76,11 +76,12 @@
                                 {% endif %}</td>
                                 {%if typename.multiple_language == False %}
 
-                                <td>{{i.programming_language.language_name|title}}</td>
+                                <td>{{typename.id.programming_language.id|title}}</td>
 
 
                                 {%elif typename.multiple_language == True %}
-                                <td><a href="#view_multiple_language_{{typename.id}}" data-toggle="modal" data-target="#view_multiple_language_{{typename.id}}"   class="btn btn-sm btn-outline-danger">View Languages</a></td>
+                                <td>
+                                    <a href="#view_multiple_language_{{typename.id}}" data-toggle="modal" data-target="#view_multiple_language_{{typename.id}}"   class="btn btn-sm btn-outline-danger">View Languages</a></td>
                                 {%endif%}
 
 
