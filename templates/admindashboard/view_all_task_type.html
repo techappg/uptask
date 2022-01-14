@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                          <tbody>
-                        {% for typename in  view_type_name  %}
+                        {% for typename in view_type  %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{typename.type_name|title}}</td>
@@ -111,7 +111,7 @@
 
 
 
-                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_multiple_language_{{typename.id}}">
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="view_multiple_language_{{typename.pk}}">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -134,9 +134,7 @@
                                                                      <div class="form-group row">
                                                                         <label class="col-sm-3 col-form-label">Languages</label>
                                                                         <div class="col-sm-9">
-                                                                            {%for i in  a%}
-                                                                              <input type="text" class="form-control"  name="programming_language"  value="{{i.programming_language|title}}" readonly>
-                                                                            {%endfor%}
+                                                                              <input type="text" class="form-control"  name="programming_language"  value="{{typename.programming_language|title}}" readonly>
                                                                         </div>
                                                                      </div>
                                                                     <div class="modal-footer">

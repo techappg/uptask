@@ -158,16 +158,11 @@ def add_new_task_type(request):
     return render(request, "admindashboard/add_new_task_type.html", locals())
 
 def view_all_tasktype(request):
-    view_type_name=TaskType.objects.all()
-    a = multiple_select_language.objects.all()
-    for i in a:
-        print(i.task_type.multiple_language)
-    #     # print(b.programming_language.language_name)
-    # a=multiple_select_language.objects.filter(task_type__multiple_language=True)
-    # for i in a:
-    #     print(i.programming_language.language_name)
-        # print(i.programming_language.language_name)
-    return render(request,"admindashboard/view_all_task_type.html",locals())
+  view_type=TaskType.objects.all()
+  a=multiple_select_language.objects.all()
+  for i in view_type:
+      print(i.id)
+  return render(request,"admindashboard/view_all_task_type.html",locals())
 
 def update_task_type(request,id):
     ProgrammingLanguage_data = ProgrammingLanguage.objects.all()

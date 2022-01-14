@@ -16,6 +16,8 @@ def all_tasks(request):
     all_task_details = Task.objects.select_related().filter(user=request.user).order_by('-id')
     return render(request, "taskapp/all_tasks.html", {'all_task_details': all_task_details})
 
+@login_required(login_url="/")
+
 def view_single_task(request,id):
     all_task_details = Task.objects.get(id=id)
     uploaded_files_data = task_uploaded_file.objects.filter(task__id=id)
@@ -144,6 +146,12 @@ def view_chart(request, id):
 def contact_user_reporting_to(request):
     reporting_to_user=User.objects.get(username=request.user.reporting_to)
     return render(request, "taskapp/view_user_reporting_to_contact_detail.html", locals())
+
+def contact_user_reporting_by(request):
+    reporting_by_user=User.objects.filter(reporting_to=request.user)
+    for i in reporting_by_user:
+        print(i.office_user_id)
+    return render(request, "taskapp/view_user_reporting_by_contact_detail.html", locals())
 
 
 def delete_task(request,id):

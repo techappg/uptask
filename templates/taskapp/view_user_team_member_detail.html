@@ -36,8 +36,8 @@
                                 <td>{{detail.username|title}}</td>
                                 <td>{{detail.phone_number}}</td>
                                 <td>{{detail.email}}</td>
-                                <td><a href="tel:+91{{reporting_to.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>
-                                    <a href="mailto:{{reporting_to.email}}"  class="btn btn-sm btn-success">SEND MAIL</a></td>
+                                <td><a href="tel:+91{{detail.phone_number}}"  class="btn btn-sm btn-primary">CALL</a>
+                                    <a href="mailto:{{detail.email}}"  class="btn btn-sm btn-success">SEND MAIL</a></td>
 
                             </tr>
                                 {% endfor %}

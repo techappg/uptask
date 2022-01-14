@@ -39,6 +39,13 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+class Reporting(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    programming_language=models.ForeignKey(ProgrammingLanguage,on_delete=models.CASCADE,null=True,blank=True)
+    user_from=models.CharField(max_length=30)
+    user_to=models.CharField(max_length=30)
+    duration_from=models.DateTimeField(auto_now_add=False)
+    duration_till=models.DateTimeField(auto_now_add=False, null=True, blank=True)
 
 class TaskType(models.Model):
      type_name=models.CharField(max_length=255)
