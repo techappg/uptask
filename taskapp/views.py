@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 # from taskapp.forms import LoginForm
+from taskapp.forms import ManageReportForm
 from taskapp.models import *
 
 
@@ -162,3 +163,18 @@ def delete_task(request,id):
 def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
+
+def manage_report(request):
+    user=User.objects.all()
+    data=ProgrammingLanguage.objects.all()
+    if request.method == "POST":
+        form = ManageReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            added = True
+
+    else:
+        form = ManageReportForm(request.POST)
+    return render(request, "taskapp/manage_reporting.html", locals())
+

@@ -31,3 +31,9 @@ class TaskUploadedFileForm(forms.ModelForm):
     class Meta:
         model=task_uploaded_file
         exclude =('task', 'uploaded_file', 'extension', )
+
+
+class ManageReportForm(forms.ModelForm):
+    class Meta:
+        model= Reporting
+        fields='__all__'

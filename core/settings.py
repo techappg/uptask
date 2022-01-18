@@ -88,11 +88,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #
 #LOCAL
 
-
-# LOCAL
-
-
-#PRODUCTION
 #
 # DATABASES = {
 #     'default': {
@@ -100,6 +95,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+
+
+
 
 
 
