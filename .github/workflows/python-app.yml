@@ -37,5 +37,5 @@ jobs:
           - uses: akhileshns/heroku-deploy@v3.12.12
             with:
               heroku_api_key: 2facbf5d-28b0-45d5-ad52-e09629d4f3fb
-              heroku_app_name: uptask2022
+              heroku_app_name: dev-uptask
               heroku_email: haninderkaur0410@gmail.com
