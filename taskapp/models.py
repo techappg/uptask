@@ -20,11 +20,6 @@ def get_upload_path(instance, filename):
 
 def get_upload_files_path(instance, filename):
     return 'files/{0}/{1}'.format(instance.task.user.username, filename)
-#
-# class Reporting(models.Model):
-#     username=models.CharField(max_length=15)
-#     phone_number=models.CharField(max_length=15,null=True,blank=)
-#
 
 
 class User(AbstractUser):
@@ -41,11 +36,10 @@ class User(AbstractUser):
 
 class Reporting(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    programming_language=models.ForeignKey(ProgrammingLanguage,on_delete=models.CASCADE,null=True,blank=True)
     user_from=models.CharField(max_length=30)
     user_to=models.CharField(max_length=30)
-    duration_from=models.DateTimeField(auto_now_add=False)
-    duration_till=models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    duration_from=models.DateField(auto_now_add=False)
+    duration_till=models.DateField(auto_now_add=False, null=True, blank=True)
 
 class TaskType(models.Model):
      type_name=models.CharField(max_length=255)

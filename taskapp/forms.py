@@ -36,4 +36,4 @@ class TaskUploadedFileForm(forms.ModelForm):
 class ManageReportForm(forms.ModelForm):
     class Meta:
         model= Reporting
-        fields='__all__'
+        fields=('user','user_from','user_to','duration_from','duration_till')

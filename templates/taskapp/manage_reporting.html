@@ -20,7 +20,7 @@
                         <polyline points="9 11 12 14 22 4"></polyline>
                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                     </svg>
-                    <strong>Success!</strong> system added successfully.
+                    <strong>Success!</strong> Shift Reporting Successfully.
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                     </button>
                 </div>
@@ -30,43 +30,48 @@
                 <div class="basic-form">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">System Type</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Reported By</label>
                             <div class="col-sm-9">
-                                <select class="form-control"  name="system_type"  id="id_system_type">
-                                      {% for computer,macbook in form.fields.system_type.choices %}
-                                             <option value="{{ computer }}"{% if form.fields.system_type.value == computer %} selected
-                                                     {% endif %}>{{macbook}}</option>
-                                     {% endfor %}
-                                </select>
+                              <select class="form-control"  name="user"  id="id_user"  required>
+                                     <option value="">---------</option>
+                                    {%for i in reporting_by_user%}
+                                        <option value={{i.pk}}>{{i.first_name}}</option>
+                                        {% endfor %}
+                                    </select>
                             </div>
-                         </div>
+                        </div>
 
                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Specification</label>
+                            <label class="col-sm-3 col-form-label">Reporting To</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="specification" placeholder="Enter System Specification"  required>
+                                <input type="text" class="form-control" name="user_from" value="{{request.user}}" >
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">System Service</label>
+                            <label class="col-sm-3 col-form-label">New Reporting To</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="system_service" placeholder="Enter System Service"  required>
+                                <select class="form-control"  name="user_to"  id="id_user_to"  required>
+                                     <option value="">---------</option>
+                                    {%for i in data%}
+                                        <option value={{i.first_name}}>{{i.first_name}}</option>
+                                        {% endfor %}
+                                    </select>
                             </div>
                         </div>
 
                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">System Id</label>
+                            <label class="col-sm-3 col-form-label">Report From</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name=" system_id" placeholder="Enter System Id"  required>
+                                <input type="date-local" class="form-control" name="duration_from" placeholder="Enter Reporting From"  required>
                             </div>
                         </div>
 
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Added On</label>
+                            <label class="col-sm-3 col-form-label">Report Till</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control" name="added_on" placeholder="Enter Added On" required >
+                                <input type="date-local" class="form-control" name="duration_till" placeholder="Enter Reporting Till" required >
                             </div>
                         </div>
 
@@ -75,13 +80,6 @@
                                      <button type="submit" class="btn btn-sm btn-primary">SAVE</button>&nbsp;
                                      <button type="reset" class="btn btn-sm btn-warning">CANCEL</button>
                              </div>
-                           </div>
-                        <!-- <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Joined Date</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{request.user.programming_language.language_name}} " readonly>
-                                            </div>
-                                        </div> -->
 
                     </form>
                 </div>

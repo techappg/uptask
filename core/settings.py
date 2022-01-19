@@ -88,32 +88,32 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #
 #LOCAL
 
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-
-
-
-
-
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2qoh4nvls7n42' ,
-        'USER': 'lefxeqapimkmim' ,
-        'PASSWORD': '7e5f62ab3a195380478b502c258ba5fe560f4e195a0dd2e2904e9182c756b3cc',
-        'HOST': 'ec2-34-230-198-12.compute-1.amazonaws.com',
-        'PORT':  5432,
-                }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+
+
+
+
+
+#HEROKU DATABASE
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd2qoh4nvls7n42' ,
+#         'USER': 'lefxeqapimkmim' ,
+#         'PASSWORD': '7e5f62ab3a195380478b502c258ba5fe560f4e195a0dd2e2904e9182c756b3cc',
+#         'HOST': 'ec2-34-230-198-12.compute-1.amazonaws.com',
+#         'PORT':  5432,
+#                 }
+# }
+#
 
 
 # PRODUCTION

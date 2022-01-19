@@ -144,15 +144,45 @@ def view_chart(request, id):
         empty = True
     return render(request, "view_chart.html", locals())
 
+def manage_reporting(request):
+    data=User.objects.filter(programming_language_id=request.user.programming_language)
+    reporting_by_user = User.objects.filter(reporting_to=request.user)
+    if request.method == 'POST':
+        form = ManageReportForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            added = True
+    else:
+        form = ManageReportForm(request.POST)
+    return render(request, "taskapp/manage_reporting.html", locals())
+
+
+
+
 def contact_user_reporting_to(request):
     reporting_to_user=User.objects.get(username=request.user.reporting_to)
     return render(request, "taskapp/view_user_reporting_to_contact_detail.html", locals())
 
 def contact_user_reporting_by(request):
     reporting_by_user=User.objects.filter(reporting_to=request.user)
-    for i in reporting_by_user:
-        print(i.office_user_id)
+    # for i in reporting_by_user:
+    #     print(i.office_user_id)
     return render(request, "taskapp/view_user_reporting_by_contact_detail.html", locals())
+
+
+def view_reported_by_user_all_task(request,user_id):
+   taskdetail=Task.objects.filter(user_id=user_id)
+   userdetail=User.objects.filter(id=user_id)
+   return  render(request,"taskapp/view_reported_by_user_all_task.html",locals())
+
+
+def view_reported_by_user_all_project(request,user_id=None):
+
+    all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
+    userdetail = User.objects.filter(id=user_id)
+    return render(request,"taskapp/view_reported_by_user_all_project.html",locals())
+
 
 
 def delete_task(request,id):
@@ -164,17 +194,23 @@ def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
 
-def manage_report(request):
-    user=User.objects.all()
-    data=ProgrammingLanguage.objects.all()
-    if request.method == "POST":
-        form = ManageReportForm(request.POST)
-        if form.is_valid():
-            form.save()
+def det(request):
+    import datetime
+    c=datetime.datetime.now().date()
+    print(c)
+    a=Reporting.objects.get(user_id=19)
+    print(a.duration_till)
+    b=User.objects.get(id=19)
 
-            added = True
-
+    print(b.username)
+    # print(d)
+    #
+    if datetime.datetime.now().date() < Reporting.duration_till:
+        b.reporting_to = a.user_to
     else:
-        form = ManageReportForm(request.POST)
-    return render(request, "taskapp/manage_reporting.html", locals())
+        b.reporting_to=a.user_from
+    b.save()
 
+
+
+    return HttpResponse("hloofo")
