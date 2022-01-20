@@ -38,8 +38,8 @@ class Reporting(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     user_from=models.CharField(max_length=30)
     user_to=models.CharField(max_length=30)
-    duration_from=models.DateField(auto_now_add=False)
-    duration_till=models.DateField(auto_now_add=False, null=True, blank=True)
+    duration_from=models.DateTimeField(auto_now_add=False)
+    duration_till=models.DateTimeField(auto_now_add=False, null=True, blank=True)
 
 class TaskType(models.Model):
      type_name=models.CharField(max_length=255)

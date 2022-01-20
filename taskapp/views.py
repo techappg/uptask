@@ -196,8 +196,10 @@ def contact_team_members(request):
 
 def det(request):
     import datetime
-    c=datetime.datetime.now().date()
-    print(c)
+    # c=datetime.datetime.now().date()
+    from datetime import datetime, timedelta
+
+
     a=Reporting.objects.get(user_id=19)
     print(a.duration_till)
     b=User.objects.get(id=19)
@@ -205,12 +207,19 @@ def det(request):
     print(b.username)
     # print(d)
     #
-    if datetime.datetime.now().date() < Reporting.duration_till:
-        b.reporting_to = a.user_to
-    else:
-        b.reporting_to=a.user_from
-    b.save()
+    # if datetime.datetime.now().date() < Reporting.duration_till:
+    #     b.reporting_to = a.user_to
+    # else:
+    #     b.reporting_to=a.user_from
+    # b.save()
+    # Using current time
+    time_from = a.duration_from
+    print("initial_date", str(time_from))
 
+    time_till = a.duration_till
 
+    print("new_final_time", str(time_till))
+
+    print('Time difference:', str(time_till - time_from))
 
     return HttpResponse("hloofo")
