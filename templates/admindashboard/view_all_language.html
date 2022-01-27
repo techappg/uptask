@@ -37,7 +37,7 @@
                         {% for language in view_language  %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td>{{language.language_name|title}}</td>
+                                <td>{{language.language_name}}</td>
                                    {% if language.is_active == True %}
                                 <td> <span class="badge light badge-info">
                                   <i class="fa fa-circle text-info mr-1"></i>
@@ -82,7 +82,8 @@
 
 </div>
 {% endblock %}
-{% block js %}<script type="text/javascript">
+{% block js %}
+<script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();
 });

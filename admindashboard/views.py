@@ -45,9 +45,29 @@ def add_new_user(request):
           f1.first_name=first_name
           f1.last_name=last_name
           f1.username=username
+          alert = {
+              "username": request.GET.get('username', ''),
+          }
+
+          if request.method == 'POST':
+              username = request.POST.get('username', '')
+
+              if User.objects.filter(username=request.POST['username']).exists():
+                  alert['username'] = "Username already exists"
+
           f1.password1=password1
           f1.password2=password2
           f1.email=email
+          alert = {
+              "email": request.GET.get('email', ''),
+          }
+
+          if request.method == 'POST':
+              username = request.POST.get('email', '')
+
+              if User.objects.filter(email=request.POST['email']).exists():
+                  alert['email'] = "email already exists"
+
           f1.phone_number=phone_number
           f1.office_user_id=office_user_id
           f1.reporting_to=reporting_to
@@ -102,7 +122,6 @@ def add_programming_language(request):
         f = form.save(commit=False)
         f.language_name=request.POST['language_name']
         f.save()
-
         added = True
     else:
 

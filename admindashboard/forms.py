@@ -15,16 +15,15 @@ class UserCreationForm(forms.ModelForm):
         # fields = '__all__'
         fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language")
 
-    def clean_username(self):
-        print("eeee")
-        username = self.cleaned_data.get('username')
-        if "_" in username:
-            print("eeee")
-            raise forms.ValidationError("Don't use special character")
-        else:
-            if User.objects.filter(username=username).exists():
-                raise forms.ValidationError("Username already exists")
-        return username
+
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if "_" in email:
+    #         raise forms.ValidationError("Don't use special character")
+    #     else:
+    #         if User.objects.filter(email=email).exists():
+    #             raise forms.ValidationError("Email already exists")
+    #     return email
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -45,6 +44,16 @@ class ProgrammingLanguageForm(forms.ModelForm):
     class Meta:
         model=ProgrammingLanguage
         fields=("language_name",)
+
+    def clean_language_name(self):
+        # Get the email
+        language_name = self.cleaned_data.get('language_name')
+        print(language_name)
+        try:
+            match = ProgrammingLanguage.objects.get(language_name=language_name)
+        except language_name.DoesNotExist:
+            return language_name
+        raise forms.ValidationError('This language is already in use.')
 
 class TaskTypeForm(forms.ModelForm):
 

@@ -35,11 +35,11 @@ class User(AbstractUser):
         return self.username
 
 class Reporting(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    user_from=models.CharField(max_length=30)
-    user_to=models.CharField(max_length=30)
-    duration_from=models.DateTimeField(auto_now_add=False)
-    duration_till=models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    reported_by=models.CharField(max_length=30,null=True, blank=True)
+    existing_reporting_to=models.CharField(max_length=30)
+    new_reporting_to=models.CharField(max_length=30)
+    duration_from=models.DateField(auto_now_add=False)
+    duration_till=models.DateField(auto_now_add=False, null=True, blank=True)
 
 class TaskType(models.Model):
      type_name=models.CharField(max_length=255)

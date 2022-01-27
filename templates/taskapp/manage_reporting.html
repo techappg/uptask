@@ -4,7 +4,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/tasks/">Tasks</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Manage Reporting</a></li>
         </ol>
     </div>
 </div>
@@ -33,29 +33,26 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Reported By</label>
                             <div class="col-sm-9">
-                              <select class="form-control"  name="user"  id="id_user"  required>
-                                     <option value="">---------</option>
                                     {%for i in reporting_by_user%}
-                                        <option value={{i.pk}}>{{i.first_name}}</option>
-                                        {% endfor %}
-                                    </select>
+                                        <input type="text" class="form-control" name="reported_by" value="{{i.username}}" readonly>
+                                    {% endfor %}
                             </div>
                         </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Reporting To</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="user_from" value="{{request.user}}" >
+                                <input type="text" class="form-control" name="existing_reporting_to" value="{{request.user}}" >
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">New Reporting To</label>
                             <div class="col-sm-9">
-                                <select class="form-control"  name="user_to"  id="id_user_to"  required>
+                                <select class="form-control"  name="new_reporting_to"  id="id_new_reporting_to"  required>
                                      <option value="">---------</option>
                                     {%for i in data%}
-                                        <option value={{i.first_name}}>{{i.first_name}}</option>
+                                        <option value={{i.username}}>{{i.username}}</option>
                                         {% endfor %}
                                     </select>
                             </div>
@@ -64,14 +61,14 @@
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Report From</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control" name="duration_from" placeholder="Enter Reporting From"  required>
+                                <input type="date" class="form-control" name="duration_from" placeholder="Enter Reporting From"  required>
                             </div>
                         </div>
 
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Report Till</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control" name="duration_till" placeholder="Enter Reporting Till" required >
+                                <input type="date" class="form-control" name="duration_till" placeholder="Enter Reporting Till" required >
                             </div>
                         </div>
 

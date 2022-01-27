@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'dashboardapp',
     'indexapp',
     'admindashboard',
-    'projectapp'
+    'projectapp',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -219,3 +220,7 @@ if DEBUG:
 
 
 django_heroku.settings(locals())
+
+CRONJOBS = [
+    ('*/1 * * * *', 'admindashboard.cron.my_cron_job')
+]

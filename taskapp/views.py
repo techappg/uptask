@@ -149,10 +149,16 @@ def manage_reporting(request):
     reporting_by_user = User.objects.filter(reporting_to=request.user)
     if request.method == 'POST':
         form = ManageReportForm(request.POST)
-        print(form)
-        if form.is_valid():
-            form.save()
-            added = True
+        new_reporting_to = request.POST['new_reporting_to']
+        existing_reporting_to = request.POST['existing_reporting_to']
+        duration_from = request.POST['duration_from']
+        duration_till = request.POST['duration_till']
+        print(request.POST.getlist('reported_by'),"request.POST.getlist('reported_by')")
+        for d in request.POST.getlist('reported_by'):
+            print(d)
+            Reporting.objects.create(reported_by=d,new_reporting_to=new_reporting_to, existing_reporting_to=existing_reporting_to,
+                                     duration_from=duration_from,duration_till=duration_till)
+        added = True
     else:
         form = ManageReportForm(request.POST)
     return render(request, "taskapp/manage_reporting.html", locals())
@@ -162,12 +168,11 @@ def manage_reporting(request):
 
 def contact_user_reporting_to(request):
     reporting_to_user=User.objects.get(username=request.user.reporting_to)
+    print(reporting_to_user)
     return render(request, "taskapp/view_user_reporting_to_contact_detail.html", locals())
 
 def contact_user_reporting_by(request):
     reporting_by_user=User.objects.filter(reporting_to=request.user)
-    # for i in reporting_by_user:
-    #     print(i.office_user_id)
     return render(request, "taskapp/view_user_reporting_by_contact_detail.html", locals())
 
 
@@ -193,33 +198,29 @@ def delete_task(request,id):
 def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
-
-def det(request):
-    import datetime
-    # c=datetime.datetime.now().date()
-    from datetime import datetime, timedelta
-
-
-    a=Reporting.objects.get(user_id=19)
-    print(a.duration_till)
-    b=User.objects.get(id=19)
-
-    print(b.username)
-    # print(d)
-    #
-    # if datetime.datetime.now().date() < Reporting.duration_till:
-    #     b.reporting_to = a.user_to
-    # else:
-    #     b.reporting_to=a.user_from
-    # b.save()
-    # Using current time
-    time_from = a.duration_from
-    print("initial_date", str(time_from))
-
-    time_till = a.duration_till
-
-    print("new_final_time", str(time_till))
-
-    print('Time difference:', str(time_till - time_from))
-
-    return HttpResponse("hloofo")
+#
+# def det(request):
+#
+#     import datetime
+#     report=Reporting.objects.filter(duration_from=datetime.datetime.now().date())
+#     for data in report:
+#         print(data.existing_reporting_to)
+#         print(data.new_reporting_to)
+#
+#         person=User.objects.filter(reporting_to=data.existing_reporting_to)
+#
+#         for name in person:
+#             name.reporting_to=data.new_reporting_to
+#             name.save()
+#
+#     report = Reporting.objects.filter(duration_till=datetime.datetime.now().date())
+#     for data in report:
+#         print(data.existing_reporting_to)
+#         print(data.new_reporting_to)
+#
+#         person = User.objects.filter(reporting_to=data.new_reporting_to)
+#
+#         for name in person:
+#             name.reporting_to = data.existing_reporting_to
+#             name.save()
+#     return HttpResponse("hloofo")
