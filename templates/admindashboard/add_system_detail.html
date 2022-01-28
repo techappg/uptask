@@ -21,7 +21,7 @@
                         <polyline points="9 11 12 14 22 4"></polyline>
                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                     </svg>
-                    <strong>Success!</strong> system added successfully.
+                    <strong>Success!</strong> System added successfully.
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                     </button>
                 </div>
@@ -61,6 +61,14 @@
                             <label class="col-sm-3 col-form-label">System Id</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name=" system_id" placeholder="Enter System Id"  required>
+                                {% if system_id %}
+                                    <div class="alert alert-warning alert-dismissible fade show">
+                                   System already exists
+
+                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
 

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from django.db import models
 import uuid
 # Create your models here.
@@ -23,7 +24,8 @@ def get_upload_files_path(instance, filename):
 
 
 class User(AbstractUser):
-    phone_number=models.CharField(max_length=15,null=True,blank=True)
+
+    phone_number=models.CharField(max_length=10,null=True,blank=True)
     office_user_id=models.CharField(max_length=255,null=True,blank=True)
     reporting_to=models.CharField(max_length=50,null=True,blank=True)
     is_employee=models.BooleanField(default=False)

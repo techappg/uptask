@@ -45,28 +45,27 @@ def add_new_user(request):
           f1.first_name=first_name
           f1.last_name=last_name
           f1.username=username
-          alert = {
-              "username": request.GET.get('username', ''),
-          }
 
-          if request.method == 'POST':
-              username = request.POST.get('username', '')
 
-              if User.objects.filter(username=request.POST['username']).exists():
-                  alert['username'] = "Username already exists"
+
+
+          # alert = {
+          #     "username": request.GET.get('username', ''),
+          # }
+          #
+          # if request.method == 'POST':
+          #     username = request.POST.get('username', '')
+          #
+          #     if User.objects.filter(username=request.POST['username']).exists():
+          #         alert['username'] = "Username already exists"
 
           f1.password1=password1
           f1.password2=password2
           f1.email=email
-          alert = {
-              "email": request.GET.get('email', ''),
-          }
-
-          if request.method == 'POST':
-              username = request.POST.get('email', '')
-
-              if User.objects.filter(email=request.POST['email']).exists():
-                  alert['email'] = "email already exists"
+          if "@" in email:
+              return email
+          else:
+              raise ValidationError("This field accepts mail id of google only")
 
           f1.phone_number=phone_number
           f1.office_user_id=office_user_id
@@ -119,10 +118,22 @@ def delete_user(request,id):
 def add_programming_language(request):
     if request.method == "POST":
         form = ProgrammingLanguageForm(request.POST)
-        f = form.save(commit=False)
-        f.language_name=request.POST['language_name']
-        f.save()
-        added = True
+        language_name = request.POST["language_name"]
+        if form.is_valid():
+            f = form.save()
+            f.language_name=language_name
+            alert = {
+                "language_name": request.GET.get('language_name', ''),
+            }
+
+            if request.method == 'POST':
+                language_name = request.POST.get('language_name', '')
+
+                if ProgrammingLanguage.objects.filter(language_name=request.POST['language_name']).exists():
+                    alert['language_name'] = " language already exists"
+
+            f.save()
+            added = True
     else:
 
 
@@ -158,14 +169,16 @@ def add_new_task_type(request):
     data = ProgrammingLanguage.objects.all()
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
-        type_name = request.POST['type_name']
-        for_all = request.POST['for_all']
-        # multiple_language=request.POST['multiple_language']
-        created_task_type = TaskType.objects.create(type_name=type_name,for_all=for_all)
-        mul_language= TaskType.objects.filter(for_all=False)
-        for i in mul_language :
-            i.multiple_language = True
-            i.save()
+        print(form)
+        if form.is_valid():
+            type_name = request.POST['type_name']
+            for_all = request.POST['for_all']
+
+            created_task_type = TaskType.objects.create(type_name=type_name,for_all=for_all)
+            mul_language= TaskType.objects.filter(for_all=False)
+            for i in mul_language :
+                i.multiple_language = True
+                i.save()
 
         print(request.POST.getlist('programming_language'),"request.POST.getlist('programming_language')")
         for d in request.POST.getlist('programming_language'):
@@ -210,8 +223,31 @@ def delete_task_type(request,id):
 def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
+        print(form)
+        system_type = request.POST["system_type"]
+        specification = request.POST["specification"]
+        system_service = request.POST["system_service"]
+        system_id = request.POST["system_id"]
+        added_on = request.POST["added_on"]
         if form.is_valid():
-            form.save()
+            f = form.save()
+            f.system_type =system_type
+            f.specification =specification
+            f.system_service =system_service
+            f.system_id =system_id
+            alert = {
+                "system_id": request.GET.get('system_id', ''),
+            }
+
+            if request.method == 'POST':
+                system_id = request.POST.get('system_id', '')
+
+                if system_detail.objects.filter(system_id=request.POST['system_id']).exists():
+                    alert['system_id'] = " System already exists"
+
+            f.added_on =added_on
+            f.save()
+
             added=True
     else:
         form = SystemDetailForm(request.POST)

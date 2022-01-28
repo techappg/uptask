@@ -1,5 +1,7 @@
 from django import forms
 
+from django.core.exceptions import ValidationError
+
 from taskapp.models import *
 from projectapp.models import *
 
@@ -15,15 +17,12 @@ class UserCreationForm(forms.ModelForm):
         # fields = '__all__'
         fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language")
 
-
-    # def clean_email(self):
-    #     email = self.cleaned_data.get('email')
-    #     if "_" in email:
-    #         raise forms.ValidationError("Don't use special character")
+    # def validate_mail(value):
+    #     if "@gmail.com" in value:
+    #         return value
     #     else:
-    #         if User.objects.filter(email=email).exists():
-    #             raise forms.ValidationError("Email already exists")
-    #     return email
+    #         raise ValidationError("This field accepts mail id of google only")
+
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -44,16 +43,13 @@ class ProgrammingLanguageForm(forms.ModelForm):
     class Meta:
         model=ProgrammingLanguage
         fields=("language_name",)
+    #
 
     def clean_language_name(self):
-        # Get the email
         language_name = self.cleaned_data.get('language_name')
-        print(language_name)
-        try:
-            match = ProgrammingLanguage.objects.get(language_name=language_name)
-        except language_name.DoesNotExist:
-            return language_name
-        raise forms.ValidationError('This language is already in use.')
+        if ProgrammingLanguage.objects.filter(language_name=language_name).exists():
+            raise forms.ValidationError("Language name already exists")
+        return language_name
 
 class TaskTypeForm(forms.ModelForm):
 
@@ -61,10 +57,20 @@ class TaskTypeForm(forms.ModelForm):
          model= TaskType
          fields=("type_name","programming_language","for_all")
 
+
+
+
 class  SystemDetailForm(forms.ModelForm):
      class Meta:
          model= system_detail
          fields=("system_type","specification","system_service","system_id","added_on")
+
+         def system_id(self):
+             system_id = self.cleaned_data.get('system_id')
+             print(system_id)
+             if system_detail.objects.filter(system_id=system_id).exists():
+                 raise forms.ValidationError("System already exists")
+             return system_id
 
 class SystemAssignedDetailForm(forms.ModelForm):
     class Meta:
