@@ -45,28 +45,9 @@ def add_new_user(request):
           f1.first_name=first_name
           f1.last_name=last_name
           f1.username=username
-
-
-
-
-          # alert = {
-          #     "username": request.GET.get('username', ''),
-          # }
-          #
-          # if request.method == 'POST':
-          #     username = request.POST.get('username', '')
-          #
-          #     if User.objects.filter(username=request.POST['username']).exists():
-          #         alert['username'] = "Username already exists"
-
           f1.password1=password1
           f1.password2=password2
           f1.email=email
-          if "@" in email:
-              return email
-          else:
-              raise ValidationError("This field accepts mail id of google only")
-
           f1.phone_number=phone_number
           f1.office_user_id=office_user_id
           f1.reporting_to=reporting_to
@@ -122,16 +103,6 @@ def add_programming_language(request):
         if form.is_valid():
             f = form.save()
             f.language_name=language_name
-            alert = {
-                "language_name": request.GET.get('language_name', ''),
-            }
-
-            if request.method == 'POST':
-                language_name = request.POST.get('language_name', '')
-
-                if ProgrammingLanguage.objects.filter(language_name=request.POST['language_name']).exists():
-                    alert['language_name'] = " language already exists"
-
             f.save()
             added = True
     else:
@@ -235,16 +206,6 @@ def add_system_details(request):
             f.specification =specification
             f.system_service =system_service
             f.system_id =system_id
-            alert = {
-                "system_id": request.GET.get('system_id', ''),
-            }
-
-            if request.method == 'POST':
-                system_id = request.POST.get('system_id', '')
-
-                if system_detail.objects.filter(system_id=request.POST['system_id']).exists():
-                    alert['system_id'] = " System already exists"
-
             f.added_on =added_on
             f.save()
 
@@ -276,17 +237,26 @@ def delete_system_details(request,pk):
       return redirect("/admin-dashboard/view-all-system-details/")
 
 
-
-
 def add_new_assigned_system_detail(request):
     user=User.objects.all()
     systemdetail=system_detail.objects.all()
     if request.method == "POST":
         form =SystemAssignedDetailForm(request.POST)
+        print(form)
+        system_id = request.POST["system_id"]
+        user = request.POST["user"]
+        assigned_type = request.POST["assigned_type"]
+        assigned_on = request.POST["assigned_on"]
         if form.is_valid():
-            form.save()
+            f1 = form.save()
+            f1.assigned_type = assigned_type
+            f1.assigned_on = assigned_on
+            f1.save()
+            # form.save()
+        added = True
 
-            added = True
+
+
     else:
         form =SystemAssignedDetailForm(request.POST)
     return render(request, "admindashboard/add_new_assigned_system_detail.html", locals())
@@ -320,7 +290,7 @@ def delete_assigned_system_details(request,id):
 def view_all_user_task(request):
     usertask = Task.objects.all()
     return render(request, "admindashboard/view_all_user_task.html", locals())
-#
+
 def view_single_user_task(request,id):
         task=Task.objects.get(id=id)
         uploaded_files_data = task_uploaded_file.objects.filter(task__id=id)

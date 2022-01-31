@@ -114,8 +114,8 @@ class Assigned_System_Detail(models.Model):
     system_id=models.ForeignKey(system_detail,on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     assigned_type = models.CharField(max_length=255, choices=assigned_type_choices, )
-    assigned_on = models.DateTimeField()
-    returned_on=models.DateTimeField(null=True,blank=True)
+    assigned_on = models.DateField()
+    returned_on=models.DateField(null=True,blank=True)
 
     class Meta:
         verbose_name = 'Assigned System Detail'

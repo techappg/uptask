@@ -40,8 +40,7 @@
 <!--                           {{form.language_name.errors}}-->
                               {% if language_name %}
                                     <div class="alert alert-warning alert-dismissible fade show">
-                                   language name already exists
-
+                                   {{form.language_name.errors}}
                                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                                     </button>
                                     </div>
