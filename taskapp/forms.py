@@ -37,3 +37,9 @@ class ManageReportForm(forms.ModelForm):
     class Meta:
         model= Reporting
         fields=('reported_by','existing_reporting_to','new_reporting_to','duration_from','duration_till')
+
+
+class AttendenceForm(forms.ModelForm):
+    class Meta:
+        model=Attendence
+        fields=('user','punch_in','punch_out')

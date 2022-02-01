@@ -36,6 +36,14 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+class Attendence(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    attend_date=models.DateField(auto_now_add=True)
+    punch_in=models.DateTimeField()
+    punch_out=models.DateTimeField()
+    working_hours=models.CharField(max_length=2)
+
+
 class Reporting(models.Model):
     reported_by=models.CharField(max_length=30,null=True, blank=True)
     existing_reporting_to=models.CharField(max_length=30)
