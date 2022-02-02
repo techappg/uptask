@@ -15,6 +15,7 @@ urlpatterns =[
     path('view-user-reporting-by-all-task/<str:user_id>', views.view_reported_by_user_all_task),
     path('view-user-reporting-by-all-project/<str:user_id>', views.view_reported_by_user_all_project),
     path('manage-reporting/', views.manage_reporting),
+    path('mark-attendence/', views.mark_attendence),
     # path('dee', views.det)
 
     # path('view-chart',views.view_chart),

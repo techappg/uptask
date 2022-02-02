@@ -1,5 +1,5 @@
 from datetime import timedelta
-
+import datetime
 import pytz
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 # from taskapp.forms import LoginForm
-from taskapp.forms import ManageReportForm
+from taskapp.forms import ManageReportForm, AttendenceForm
 from taskapp.models import *
 
 
@@ -198,7 +198,28 @@ def delete_task(request,id):
 def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
-#
+
+def mark_attendence(request):
+    a=Attendence.objects.all()
+    b=User.objects.all()
+    now = datetime.now()
+    print("Date: " + now.strftime("%Y-%m-%d"))
+    if request.method == 'POST':
+        form = AttendenceForm(request.POST)
+        # user = request.POST['new_reporting_to']
+        # existing_reporting_to = request.POST['existing_reporting_to']
+        # duration_from = request.POST['duration_from']
+        # duration_till = request.POST['duration_till']
+
+
+        if form.is_valid():
+            form.save()
+    else:
+        form = AttendenceForm(request.POST)
+    return render(request, "taskapp/mark_attendence.html", locals())
+
+
+
 # def det(request):
 #
 #     import datetime

@@ -37,8 +37,8 @@ class User(AbstractUser):
         return self.username
 
 class Attendence(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    attend_date=models.DateField(auto_now_add=True)
+    person=models.CharField(max_length=30)
+    attend_date=models.DateField()
     punch_in=models.DateTimeField()
     punch_out=models.DateTimeField()
     working_hours=models.CharField(max_length=2)

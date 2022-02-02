@@ -42,4 +42,4 @@ class ManageReportForm(forms.ModelForm):
 class AttendenceForm(forms.ModelForm):
     class Meta:
         model=Attendence
-        fields=('user','punch_in','punch_out')
+        fields=("attend_date",'punch_in','punch_out')
