@@ -200,20 +200,24 @@ def contact_team_members(request):
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
 
 def mark_attendence(request):
+    print("hello")
     a=Attendence.objects.all()
     b=User.objects.all()
-    now = datetime.now()
-    print("Date: " + now.strftime("%Y-%m-%d"))
+    new =datetime.now().date()
+    print(new)
+    a=datetime.now()
+    punch_in_now=datetime.now().time().replace(second=0,microsecond=0)
+    print(punch_in_now)
+
     if request.method == 'POST':
         form = AttendenceForm(request.POST)
-        # user = request.POST['new_reporting_to']
-        # existing_reporting_to = request.POST['existing_reporting_to']
-        # duration_from = request.POST['duration_from']
-        # duration_till = request.POST['duration_till']
-
-
-        if form.is_valid():
-            form.save()
+        person=request.POST['person']
+        attend_date = request.POST["attend_date"]
+        print(attend_date)
+        punch_in_now=request.POST["punch_in"]
+        print(punch_in_now)
+        Attendence.objects.create(person=person,attend_date=attend_date,punch_in=punch_in_now)
+        added = True
     else:
         form = AttendenceForm(request.POST)
     return render(request, "taskapp/mark_attendence.html", locals())

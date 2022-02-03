@@ -195,21 +195,7 @@ def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
         print(form)
-        system_type = request.POST["system_type"]
-        specification = request.POST["specification"]
-        system_service = request.POST["system_service"]
-        system_id = request.POST["system_id"]
-        added_on = request.POST["added_on"]
-        if form.is_valid():
-            f = form.save()
-            f.system_type =system_type
-            f.specification =specification
-            f.system_service =system_service
-            f.system_id =system_id
-            f.added_on =added_on
-            f.save()
 
-            added=True
     else:
         form = SystemDetailForm(request.POST)
     return render(request, "admindashboard/add_system_detail.html", locals())

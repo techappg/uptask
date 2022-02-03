@@ -38,10 +38,10 @@ class User(AbstractUser):
 
 class Attendence(models.Model):
     person=models.CharField(max_length=30)
-    attend_date=models.DateField()
-    punch_in=models.DateTimeField()
-    punch_out=models.DateTimeField()
-    working_hours=models.CharField(max_length=2)
+    attend_date=models.DateField(auto_now_add=False)
+    punch_in=models.TimeField()
+    punch_out=models.TimeField(default="")
+    working_hours=models.CharField(max_length=2,default="")
 
 
 class Reporting(models.Model):
