@@ -20,7 +20,7 @@
                         <polyline points="9 11 12 14 22 4"></polyline>
                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                     </svg>
-                    <strong>Success!</strong> Presence Marked Successfully.
+                    <strong>Success!</strong> Punched Out Successfully.
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                     </button>
                 </div>
@@ -41,13 +41,15 @@
 
                             <div class="col-sm-9">
                                 <input type="date" class="form-control" name="attend_date" id="date" readonly>
-                                 {% if attend_date %}
-                                    <div class="alert alert-warning alert-dismissible fade show">
-                                       {{form.attend_date.errors}}
-                                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-                                    </button>
-                                    </div>
-                                {% endif %}
+                            </div>
+                         </div>
+                            <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Punch In Time</label>
+
+                            <div class="col-sm-9">
+                                {%for i in a%}
+                                <input type="text" class="form-control" name="punch_in" id="punch_in"  value="{{i.punch_in}}"readonly>
+                                {%endfor%}
                             </div>
                          </div>
 <!--                             <div class="form-group row">-->
@@ -105,7 +107,7 @@
 
                             <div class="container">
                                 <div class="btn-block d-sm-flex justify-content-end">
-                                     <button type="submit" class="btn btn-sm btn-primary">Punch In</button>&nbsp;
+                                     <button type="submit" class="btn btn-sm btn-primary">Punch Out</button>&nbsp;
                                      <button type="reset" class="btn btn-sm btn-warning">CANCEL</button>
                              </div>
                             </div>

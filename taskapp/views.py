@@ -200,28 +200,52 @@ def contact_team_members(request):
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
 
 def mark_attendence(request):
-    print("hello")
-    a=Attendence.objects.all()
-    b=User.objects.all()
-    new =datetime.now().date()
-    print(new)
-    a=datetime.now()
-    punch_in_now=datetime.now().time().replace(second=0,microsecond=0)
-    print(punch_in_now)
-
     if request.method == 'POST':
         form = AttendenceForm(request.POST)
         person=request.POST['person']
         attend_date = request.POST["attend_date"]
-        print(attend_date)
-        punch_in_now=request.POST["punch_in"]
-        print(punch_in_now)
-        Attendence.objects.create(person=person,attend_date=attend_date,punch_in=punch_in_now)
-        added = True
+        if not Attendence.objects.filter(attend_date=datetime.now().date()).exists():
+          Attendence.objects.create(person=person,attend_date=attend_date)
+          added = True
     else:
         form = AttendenceForm(request.POST)
     return render(request, "taskapp/mark_attendence.html", locals())
 
+
+def mark_attendence_out(request):
+    a=Attendence.objects.filter(attend_date=datetime.now().date())
+    if request.method == 'POST':
+        form = AttendenceForm(request.POST)
+        person=request.POST['person']
+        attend_date = request.POST["attend_date"]
+        if  Attendence.objects.filter(attend_date=datetime.now().date()).exists():
+            Attendence.objects.update(punch_out=datetime.now().time())
+            added = True
+        attending = Attendence.objects.filter(attend_date=datetime.now().date())
+        for i in attending:
+            inn = i.punch_in.strftime("%H:%M:%S")
+            out = i.punch_out.strftime("%H:%M:%S")
+            FMT = '%H:%M:%S'
+            tdelta = datetime.strptime(out, FMT) - datetime.strptime(inn, FMT)
+            print(tdelta)
+            i.working_hours = tdelta
+            i.save()
+    return render(request, "taskapp/mark_punchout_attendence.html", locals())
+
+
+
+# def diff(request):
+#     a = Attendence.objects.filter(attend_date=datetime.now().date())
+#     for i in a:
+#         a=i.punch_in.strftime("%H:%M:%S")
+#         b=i.punch_out.strftime("%H:%M:%S")
+#         FMT = '%H:%M:%S'
+#         tdelta = datetime.strptime(b, FMT) - datetime.strptime(a, FMT)
+#         print(tdelta)
+#         i.working_hours=tdelta
+#         i.save()
+#
+#     return HttpResponse("hello")
 
 
 # def det(request):

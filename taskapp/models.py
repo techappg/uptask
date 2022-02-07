@@ -39,8 +39,8 @@ class User(AbstractUser):
 class Attendence(models.Model):
     person=models.CharField(max_length=30)
     attend_date=models.DateField(auto_now_add=False)
-    punch_in=models.TimeField()
-    punch_out=models.TimeField(default="")
+    punch_in=models.TimeField(auto_now_add=True)
+    punch_out= models.TimeField(null=True, blank=True)
     working_hours=models.CharField(max_length=2,default="")
 
 

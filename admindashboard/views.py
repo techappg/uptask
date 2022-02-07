@@ -137,7 +137,7 @@ def delete_programming_language(request,id):
 
 
 def add_new_task_type(request):
-    data = ProgrammingLanguage.objects.all()
+    data = ProgrammingLanguage.objects.filter(is_active=True)
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
         print(form)
