@@ -8,6 +8,7 @@ def dashboard_index(request):
         employee_tab=True
         user_tasks_count=Task.objects.filter(user=request.user).count()
         user_project_count=Project.objects.filter(user=request.user).count()
+        user_attendence_count=Attendence.objects.filter(user=request.user).count()
 
         # task_details=Task.objects.values_list('task_type__type_name',flat=True).filter(user=request.user)
 

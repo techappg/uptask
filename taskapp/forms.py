@@ -44,7 +44,7 @@ class ManageReportForm(forms.ModelForm):
 class AttendenceForm(forms.ModelForm):
     class Meta:
         model=Attendence
-        exclude=('attend_date','punch_in','punch_out','person')
+        exclude=('attend_date','punch_in','punch_out','user')
 
         def clean_attend_date(self):
             attend_date = self.cleaned_data["attend_date"]

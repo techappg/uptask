@@ -1,3 +1,5 @@
+import datetime
+
 from django.http import HttpResponse
 from rest_framework import request
 
@@ -6,7 +8,7 @@ from taskapp.models import *
 from datetime import timedelta
 
 
-def my_cron_job():
+def my_cron_job_reporting():
     import datetime
     report = Reporting.objects.filter(duration_from=datetime.datetime.now().date())
     for data in report:

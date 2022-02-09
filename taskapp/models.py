@@ -30,6 +30,7 @@ class User(AbstractUser):
     reporting_to=models.CharField(max_length=50,null=True,blank=True)
     is_employee=models.BooleanField(default=False)
     profile_updated=models.BooleanField(default=False)
+    presence=models.BooleanField(default=False)
     display_pic=models.ImageField(blank=True,null=True,upload_to=get_upload_path)
     programming_language=models.ForeignKey(ProgrammingLanguage,on_delete=models.CASCADE,null=True,blank=True)
 
@@ -37,10 +38,12 @@ class User(AbstractUser):
         return self.username
 
 class Attendence(models.Model):
-    person=models.CharField(max_length=30)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    # person=models.CharField(max_length=30)
     attend_date=models.DateField(auto_now_add=False)
-    punch_in=models.TimeField(auto_now_add=True)
+    punch_in=models.TimeField(null=True, blank=True)
     punch_out= models.TimeField(null=True, blank=True)
+    presence=models.BooleanField(default=False)
     working_hours=models.CharField(max_length=2,default="")
 
 

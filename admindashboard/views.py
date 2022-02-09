@@ -69,6 +69,7 @@ def view_all_users(request):
     data = ProgrammingLanguage.objects.all()
     usertask = Task.objects.all()
 
+
     return render (request,"admindashboard/view_all_user.html",locals())
 
 def update_user(request,id):
@@ -195,7 +196,9 @@ def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
         print(form)
-
+        if form.is_valid():
+            form.save()
+            added=True
     else:
         form = SystemDetailForm(request.POST)
     return render(request, "admindashboard/add_system_detail.html", locals())
@@ -311,8 +314,18 @@ def view_single_user_all_task(request,user_id):
    userdetail=User.objects.filter(id=user_id)
    return  render(request,"admindashboard/single_user_all_task.html",locals())
 
-
 def view_single_user_all_project(request,user_id=None):
     all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
     userdetail = User.objects.filter(id=user_id)
     return render(request,"admindashboard/view_single_user_all_project.html",locals())
+
+
+
+def view_all_user_attendance(request):
+    view_user = User.objects.all()
+    return render(request,"admindashboard/view_all_user_attendence.html",locals())
+
+def view_single_user_attendence(request,user_id):
+    get_detail=Attendence.objects.filter(user_id=user_id)
+    userdetail = User.objects.filter(id=user_id)
+    return render(request,"admindashboard/view_single_user_attendence.html",locals())

@@ -55,6 +55,9 @@ urlpatterns = [
     path('view-user-contact/', views.view_user_contact),
     # path('view/', views.abc),
 
+    #VIEW ATTENDANCE
+    path('view-all-user-attendance/', views.view_all_user_attendance),
+    path('view-single-user-attendance/<str:user_id>', views.view_single_user_attendence),
     # path('view-chart',views.view_chart),
 
 

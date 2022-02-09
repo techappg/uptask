@@ -222,5 +222,5 @@ if DEBUG:
 django_heroku.settings(locals())
 
 CRONJOBS = [
-    ('*/1 * * * *', 'admindashboard.cron.my_cron_job')
+    ('*/1 * * * *', 'admindashboard.cron.my_cron_job_reporting')
 ]
