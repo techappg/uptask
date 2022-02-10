@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/admin-dashboard/view-all-users/">All User</a></li>
+            <li class="breadcrumb-item"><a href="/admin-dashboard/user-create/">Create User</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">User Detail</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Profile</h4>
+            </div>
+             {% if added %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                        <polyline points="9 11 12 14 22 4"></polyline>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    <strong>Success!</strong> user added successfully.
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                    </button>
+                </div>
+                {% endif %}
+
+
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">First name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="first_name"  placeholder="Enter First name" required>
+
+                              {% if notadd %}
+                                    <div class="alert alert-warning alert-dismissible fade show" id="firstname_er">
+                                  {{form.first_name.errors}}
+                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Last name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="last_name" placeholder="Enter Last name"  required>
+                                {% if notadd %}
+                                    <div class="alert alert-warning alert-dismissible fade show" id="lastname_er">
+                                   {{form.last_name.errors}}
+                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-9">
+
+                                <input type="text" class="form-control" name="username" placeholder="Enter Username"  required>
+                                  {% if notadd %}
+                                    <div class="alert alert-warning alert-dismissible fade show" id="user_er">
+                                   {{form.username.errors}}
+                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password1" placeholder="Enter Password"  required>
+                                {{form.password1.errors}}
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Confirmation Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password2" placeholder="Enter Confirmation Password" required >
+                                 {% if password2%}
+                                  <div class="alert alert-warning alert-dismissible fade show" id="password_er">
+                                       {{form.password2.errors}}
+                                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                      </button>
+                                </div>
+                                {%endif%}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  name="email"  placeholder="Enter Email"  required>
+
+                                  {% if notadd %}
+                                    <div class="alert alert-warning alert-dismissible fade show" id="email_er">
+                                       {{form.email.errors}}
+                                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  name="phone_number"  placeholder="Enter Phone number"  required>
+                                {% if notadd %}
+                                    <div class="alert alert-warning alert-dismissible fade show" id="phone_er">
+                                   {{form.phone_number.errors}}
+                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Office Id</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  name="office_user_id"  placeholder="Enter Office Id"  required>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Reporting to</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  name="reporting_to"  placeholder="Enter Reporting  to"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Department</label>
+                            <div class="col-sm-9">
+                                <select class="form-control mb-4"  name="programming_language"  id="id_programming_language"  required>
+                                     <option value="">---------</option>
+                                    {%for i in data%}
+                                        <option value={{i.pk}}>{{i.language_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                <span id="er"></span>
+                            </div>
+                                <div class="container">
+                                <div class="btn-block d-sm-flex justify-content-end">
+<!--                             <div class="card-footer d-sm-flex justify-content-end">-->
+                                     <button type="submit" class="btn btn-sm btn-primary" onclick="validate()" >SAVE</button>&nbsp;
+                                     <button type="reset" class="btn btn-sm btn-warning">CANCEL</button>
+                             </div>
+                                </div>
+
+            <!--                            <div class="row">-->
+            <!--                             <div class="col-md-12  text-right">-->
+            <!--                                     <button type="submit" class="btn btn-sm btn-info" >SAVE</button>-->
+            <!--                                     <button type="reset" class="btn btn-sm btn-warning">CANCEL</button>-->
+            <!--                             </div>-->
+            <!--                           </div>-->
+            <!--                        </div>-->
+                                    <!-- <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Joined Date</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" value="{{request.user.programming_language.language_name}} " readonly>
+                                                        </div>
+                                                    </div> -->
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+
+
+// A $( document ).ready() block.
+$( document ).ready(function() {
+    console.log( "ready!" );
+    var fname=document.getElementById("firstname_er").innerHTML;
+var lname=document.getElementById("lastname_er").innerHTML;
+var user=document.getElementById("user_er").innerHTML;
+var password=document.getElementById("password_er").innerHTML;
+var email=document.getElementById("email_er").innerHTML;
+var phone=document.getElementById("phone_er").innerHTML;
+
+console.log(phone.length);
+if(fname.length==279)
+{
+document.getElementById("firstname_er").remove();
+}
+if(lname.length==280)
+{
+document.getElementById("lastname_er").remove();
+}
+if(user.length==280)
+{
+document.getElementById("user_er").remove();
+}
+if(password.length==286)
+{
+document.getElementById("password_er").remove();
+}
+if(email.length==288)
+{
+document.getElementById("email_er").remove();
+}
+if(phone.length==280)
+{
+document.getElementById("phone_er").remove();
+}
+});
+
+function validate()
+{
+var a=document.getElementById("id_programming_language").value;
+if(a==0){
+document.getElementById("er").innerHTML="Please fill out this field";
+document.getElementById("er").classList.add('alert','alert-warning');
+return false;
+}
+else{
+document.getElementById("er").innerHTML="";
+document.getElementById("er").classList.remove('alert','alert-warning');
+return true;
+}
+
+
+
+}
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
+</script>
+{% endblock %}
