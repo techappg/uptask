@@ -278,8 +278,6 @@ def single_user_detail_attendence(request):
         print(i.punch_in)
     return render(request,"taskapp/single_user_detail_attendence.html",locals())
 
-
-
 def  presence_change(request):
     a=User.objects.all()
     for i in a:
