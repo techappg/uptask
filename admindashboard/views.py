@@ -347,3 +347,13 @@ def view_single_user_all_project(request,user_id=None):
     all_projects = Project.objects.filter(user_id=user_id).order_by('-id')
     userdetail = User.objects.filter(id=user_id)
     return render(request,"admindashboard/view_single_user_all_project.html",locals())
+
+
+def view_all_user_attendance(request):
+    view_user = User.objects.all()
+    return render(request,"admindashboard/view_all_user_attendence.html",locals())
+
+def view_single_user_attendence(request,user_id):
+    get_detail=Attendence.objects.filter(user_id=user_id)
+    userdetail = User.objects.filter(id=user_id)
+    return render(request,"admindashboard/view_single_user_attendence.html",locals())

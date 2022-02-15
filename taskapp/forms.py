@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django import forms
 
 from taskapp.models import *
@@ -37,3 +39,16 @@ class ManageReportForm(forms.ModelForm):
     class Meta:
         model= Reporting
         fields=('reported_by','existing_reporting_to','new_reporting_to','duration_from','duration_till')
+
+
+
+class AttendenceForm(forms.ModelForm):
+    class Meta:
+        model=Attendence
+        exclude=('attend_date','user')
+
+        def clean_attend_date(self):
+            attend_date = self.cleaned_data["attend_date"]
+            if Attendence.objects.filter(attend_date=datetime.now().date()).exists():
+                raise forms.ValidationError('Cannot Punch In Again!!')
+            return attend_date
