@@ -134,8 +134,7 @@ def view_chart(request, id):
 
         date__range = ["2011-01-01", "2011-01-31"]
         for task in all_tasks:
-            taskapp_dict[task.task_type.typ/
-e_name] = Task.objects.filter(user=id, task_type=task.task_type,
+            taskapp_dict[task.task_type.type_name] = Task.objects.filter(user=id, task_type=task.task_type,
                                                                          added_on__gte=from_date,
                                                                          added_on__lte=to_date).count()
     for values in taskapp_dict.values():
@@ -229,6 +228,12 @@ def contact_team_members(request):
 #     return HttpResponse("hloofo")
 
 
+def  presence_change(request):
+    a=User.objects.all()
+    for i in a:
+        print(i.id)
+        created_attendence_id=Attendence.objects.create(user_id=i.id)
+    return HttpResponse("HELLO")
 
 def mark_attendence(request):
     if request.method == 'POST':
@@ -236,7 +241,9 @@ def mark_attendence(request):
         attend_date=request.POST["attend_date"]
         if  Attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
          if not Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
-             Detail_attendence.objects.create(user=request.user,punch_in=datetime.now().time())
+             get_key=Attendence.objects.get(user=request.user,attend_date=datetime.now().date())
+             value=get_key.pk
+             Detail_attendence.objects.create(user=request.user,punch_in=datetime.now().time(),attendence_id=value)
              a=Attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
              for i in a:
                     i.presence=True
@@ -254,6 +261,7 @@ def mark_attendence_out(request):
         form = AttendenceForm(request.POST)
         attend_date = request.POST["attend_date"]
         if  Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
+
             Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).update(punch_out=datetime.now().time())
             added = True
         attending = Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
@@ -277,13 +285,6 @@ def single_user_detail_attendence(request):
     for i in detail:
         print(i.punch_in)
     return render(request,"taskapp/single_user_detail_attendence.html",locals())
-
-def  presence_change(request):
-    a=User.objects.all()
-    for i in a:
-        print(i.id)
-        Attendence.objects.create(user_id=i.id)
-    return HttpResponse("HELLO")
 
 
 
