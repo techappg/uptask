@@ -10,6 +10,21 @@
             </li>
             <!-- Employee level dashboard Start-->
             {% if request.user.is_employee %}
+             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/28/000000/external-immigration-airport-icongeek26-linear-colour-icongeek26-1.png"/><span class="nav-text">My Presence</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="/tasks/mark-attendence">Punch In</a></li>
+                    <li><a href="/tasks/mark-attendence-out">Punch Out</a></li>
+                    <li><a href="/tasks/single-user-attendence-detail">Detail</a></li>
+
+<!--                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Task Type</a>-->
+<!--                        <ul aria-expanded="false">-->
+<!--                            {{request.user|user_all_task_type}}-->
+<!--                        </ul>-->
+                    </li>
+                </ul>
+            </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAACkklEQVRIie2Vy0tUURjAf+fOw3lkvvKRGlKhhFHRQ4QkQSGKooWQEEG4C1qG0Lq/wAwXUYsiSoskolZJJhVRYbQIwh6oUU6mpTk2Oq87935tbHRGnXEeq+i3Oud83/l+3HPPdy/866ilk0cjkqeUflygEaV6Dm629WVbaP076B8N7RQifYIqAxCRQSDrQm2huBK0G0BZtgXxKID+L8EtYlhGlgbGfHJ96LvZuylfm0incESZvvZ6x6f4dSvA5CzbStbFBoamjLZfhrRVaip+z5qwoD0BmuLXNYCvPrUjraoJCOhS3tQ9f7qpe37vMqFFycZsC/261Ci4rODYMiGY1pU2rZU3w17uvxpn4O2PZbGqPK2183XoTsdgaPsSYWr4QxFCYSM6L15vxzMV4POkf1muw0otQqtSZjEs6cNUZLefedCU4kRjJV6/zr2X4+zemk9IN5LuT0n4V5brtBIxhFtPx5j1R6irLqChtghTJDWhITAyY+LxCWOzgjtnZVnL/gpEhLvPv1FTkUtDbREAmkreQlHhdEDofa8zE1oMunMWCwTDJmX5Dg7tKcWiKUDReqByYbx2rACCJg+GIzGyeApz7Rypi/3ypSqLCqcDxtTEXOLEDx4fHz2+hDm5TivNu0qSC2eC6h0ILhuUuVX0XRQ4Fp/AabOQ57YlLObOSX4HrQDusPPxBmdQry/XbJZVOrOq1EVVqStpwWRoAJ0tyruvwtK+miybRBXn6u1d3qB56mdAJGIm76d0iTn0843Om809/gKQiwjp/ZdSEQIMnHR1nXkYmDMMrv4OC2aGAlfcPVvxWl067Lx2YTDsUEgH4MjQGUPCY+t4IYUWm37UFKlWCnsmIkGunK1zjGZS4z8r8gdCjuucrjANngAAAABJRU5ErkJggg=="/>
 
@@ -40,9 +55,10 @@
                     </li>
                 </ul>
             </li>
+
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-<!--            <img src="https://img.icons8.com/fluency/48/000000/business-documentation.png"/>-->
-                <i class="fas fa-people-arrows"></i>
+<img src="https://img.icons8.com/external-soft-fill-juicy-fish/28/000000/external-data-project-management-soft-fill-soft-fill-juicy-fish-2.png"/>
+                <!--                <i class="fas fa-people-arrows"></i>-->
                 <span class="nav-text">Manage Reporting</span>
 
                 </a>
@@ -72,15 +88,16 @@
                             </ul>
              </li>
 
-             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-<!--            <img src="https://img.icons8.com/fluency/48/000000/business-documentation.png"/>-->
-                <i class="fas fa-users"></i><span class="nav-text">{{request.user.programming_language.language_name|title}} Team</span>
+           <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+           <img src="https://img.icons8.com/external-sbts2018-flat-sbts2018/28/000000/external-team-work-lean-thinking-sbts2018-flat-sbts2018.png"/>
+<!--                <i class="fas fa-users">-->
+
+                </i><span class="nav-text">{{request.user.programming_language.language_name|title}} Team</span>
                 </a>
                         <ul aria-expanded="false">
                             <li><a href="/tasks/view-user-team-member/">Team Members</a></li>
                         </ul>
              </li>
-
 
 
 
@@ -157,6 +174,15 @@
                           <li><a href="/admin-dashboard/create-tasktype/">Add Task Type</a></li>
                       </ul>
             </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-language"></i>
+                    <span class="nav-text">Attendance</span>
+               </a>
+                      <ul aria-expanded="false">
+                          <li><a href="/admin-dashboard/view-all-user-attendance/">All Employees Attendance</a></li>
+<!--                          <li><a href="/admin-dashboard/create-language/">Add Department</a></li>-->
+                      </ul>
+           </li>
 
 
 <!--             <li>   <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">-->
