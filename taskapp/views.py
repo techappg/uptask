@@ -279,13 +279,13 @@ def single_user_detail_attendence(request):
     return render(request,"taskapp/single_user_detail_attendence.html",locals())
 
 
+
 def  presence_change(request):
     a=User.objects.all()
     for i in a:
         print(i.id)
         Attendence.objects.create(user_id=i.id)
     return HttpResponse("HELLO")
-
 
 
 
