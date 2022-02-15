@@ -239,6 +239,7 @@ def mark_attendence(request):
     if request.method == 'POST':
         form = AttendenceForm(request.POST)
         attend_date=request.POST["attend_date"]
+
         if  Attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
          if not Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
              get_key=Attendence.objects.get(user=request.user,attend_date=datetime.now().date())
