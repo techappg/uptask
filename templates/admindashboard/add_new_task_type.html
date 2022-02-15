@@ -55,7 +55,7 @@
                             <label class="col-sm-3 col-form-label">For All</label>
                                 <div>
                                    &nbsp; &nbsp; &nbsp;&nbsp;
-                                    <input type="checkbox" name="for_all" value="True" >
+                                    <input type="checkbox" name="for_all" value="True" id="for_all">
 
 
                                 </div>
@@ -72,11 +72,11 @@
 <!--                            </div>-->
 <!--                            </div>-->
 
-                        <div class="False selecttt">
+                        <div class="False selecttt" >
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
-                                <select class="form-control mb-4"  multiple name="programming_language"  id="id_programming_language">
+                                <select class="form-control mb-4"  multiple name="programming_language"  id="id_programming_language" required>
                                      <option value="0">---------</option>
                                     {%for i in data%}
 
@@ -85,6 +85,7 @@
                                     </select>
 
                                 <span id="er" class="mt-5 px-3"></span>
+                                <span id="info" class="mt-5 px-3"></span>
                             </div>
                         </div>
                         </div>
@@ -126,18 +127,34 @@
 
 function validate(){
 
+all=document.getElementById("for_all");
+console.log(all);
 var a=document.getElementById("id_programming_language").value;
 console.log(a);
+if(all.checked){
+console.log("ok");
+document.getElementById("id_programming_language").remove();
+}
+else{
+console.log("not checked");
+}
+
+
 if(a==0){
 document.getElementById("er").innerHTML="Please fill out this field";
+document.getElementById("info").innerHTML="Note:- For all language check above checkbox and continue ";
 document.getElementById("er").classList.add('alert','alert-warning');
-return true;
+document.getElementById("info").classList.add('alert','alert-info');
+return false;
 }
 else{
 document.getElementById("er").innerHTML="";
 document.getElementById("er").classList.remove('alert','alert-warning');
 return true;
 }
+
+
+
 }
 
 // Add the following code if you want the name of the file appear on select
