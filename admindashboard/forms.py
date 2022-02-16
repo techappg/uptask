@@ -142,10 +142,6 @@ class SystemAssignedDetailForm(forms.ModelForm):
             return a
 
 
-
-
-
-
 class ViewUserTaskForm(forms.ModelForm):
     class Meta:
         model=Task
