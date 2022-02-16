@@ -228,12 +228,12 @@ def contact_team_members(request):
 #     return HttpResponse("hloofo")
 
 
-def  presence_change(request):
-    a=User.objects.all()
-    for i in a:
-        print(i.id)
-        created_attendence_id=Attendence.objects.create(user_id=i.id)
-    return HttpResponse("HELLO")
+# def  presence_change(request):
+#     a=User.objects.all()
+#     for i in a:
+#         print(i.id)
+#         Attendence.objects.create(user_id=i.id)
+#     return HttpResponse("HELLO")
 
 def mark_attendence(request):
     if request.method == 'POST':
@@ -251,6 +251,7 @@ def mark_attendence(request):
                     i.save()
 
              added = True
+             return redirect("/tasks/mark-attendence-out/")
     else:
         form = AttendenceForm(request.POST)
     return render(request, "taskapp/mark_attendence.html", locals())
@@ -262,7 +263,6 @@ def mark_attendence_out(request):
         form = AttendenceForm(request.POST)
         attend_date = request.POST["attend_date"]
         if  Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
-
             Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).update(punch_out=datetime.now().time())
             added = True
         attending = Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
@@ -279,39 +279,14 @@ def mark_attendence_out(request):
             print(i.working_hours)
             print("helo")
             i.save()
+            return redirect("/tasks/single-user-attendence-detail/")
     return render(request, "taskapp/mark_punchout_attendence.html", locals())
 
 def single_user_detail_attendence(request):
     detail=Detail_attendence.objects.filter(user=request.user)
     for i in detail:
-        print(i.punch_in)
+        print(i.attendence.presence)
     return render(request,"taskapp/single_user_detail_attendence.html",locals())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # def diff(request):
 #     a = Attendence.objects.filter(attend_date=datetime.now().date())
@@ -352,21 +327,21 @@ def single_user_detail_attendence(request):
 #             name.reporting_to = data.existing_reporting_to
 #             name.save()
 #     return HttpResponse("hloofo")
-def value(request):
-  now = datetime.now().time().strftime('%H:%M:%S')
-  print(now)
-  a=Attendence.objects.filter(attend_date=datetime.now().date())
-  for i in a:
-      b=i.punch_in.strftime('%H:%M:%S')
-      # c = i.punch_out.strftime('%H:%M:%S')
-      print(b)
-      if b <= now:
-          for i in a:
-              person = User.objects.filter(username=i.user.username)
-              for name in person:
-                  name.presence = True
-                  name.save()
-      return HttpResponse("HELLO")
+# def value(request):
+#   now = datetime.now().time().strftime('%H:%M:%S')
+#   print(now)
+#   a=Attendence.objects.filter(attend_date=datetime.now().date())
+#   for i in a:
+#       b=i.punch_in.strftime('%H:%M:%S')
+#       # c = i.punch_out.strftime('%H:%M:%S')
+#       print(b)
+#       if b <= now:
+#           for i in a:
+#               person = User.objects.filter(username=i.user.username)
+#               for name in person:
+#                   name.presence = True
+#                   name.save()
+#       return HttpResponse("HELLO")
 
       # elif c >= now:
       #     for i in a:
@@ -380,9 +355,9 @@ def value(request):
 
 from datetime import date, datetime, time, timedelta
 
-def getting(request):
-    now = datetime.now().time().strftime('%H:%M:%S')
-    print(now)
+# def getting(request):
+#     now = datetime.now().time().strftime('%H:%M:%S')
+#     print(now)
     # a = Attendence.objects.get(id=14)
     # b = a.punch_in.strftime('%H:%M:%S')
     # c = a.punch_out.strftime('%H:%M:%S')
@@ -391,23 +366,23 @@ def getting(request):
     # m=datetime.combine(a.attend_date, a.punch_out) + timedelta(minutes=1)
     # r=m.strftime('%H:%M:%S')
     # print(r)
-    now = datetime.now().time().strftime('%H:%M:%S')
-    print(now)
-    a = Attendence.objects.filter(attend_date=datetime.now().date())
-    for i in a:
-        b = i.punch_in.strftime('%H:%M:%S')
-        # c = i.punch_out.strftime('%H:%M:%S')
-        # print(b)
-        # print(c)
-        m = datetime.combine(a.attend_date, a.punch_out) + timedelta(minutes=1)
-        r = m.strftime('%H:%M:%S')
-        print(r)
-        if b<=r:
-            for i in a:
-                person = User.objects.filter(username=i.user.username)
-                for name in person:
-                    name.presence = True
-                    name.save()
+    # now = datetime.now().time().strftime('%H:%M:%S')
+    # print(now)
+    # a = Attendence.objects.filter(attend_date=datetime.now().date())
+    # for i in a:
+    #     b = i.punch_in.strftime('%H:%M:%S')
+    #     # c = i.punch_out.strftime('%H:%M:%S')
+    #     # print(b)
+    #     # print(c)
+    #     m = datetime.combine(a.attend_date, a.punch_out) + timedelta(minutes=1)
+    #     r = m.strftime('%H:%M:%S')
+    #     print(r)
+    #     if b<=r:
+    #         for i in a:
+    #             person = User.objects.filter(username=i.user.username)
+    #             for name in person:
+    #                 name.presence = True
+    #                 name.save()
         # elif c<=r:
         #     for i in a:
         #         person = User.objects.filter(username=i.user.username)
@@ -415,4 +390,4 @@ def getting(request):
         #             name.presence = False
         #             name.save()
 
-    return HttpResponse("HELLO")
+    # return HttpResponse("HELLO")

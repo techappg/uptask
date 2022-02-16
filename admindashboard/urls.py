@@ -60,5 +60,5 @@ urlpatterns = [
     path('view-single-user-attendance/<str:user_id>', views.view_single_user_attendence),
     # path('view-chart',views.view_chart),
 
-
+    path('view-today-all-attendence/', views.view_today_all_attendence),
 ]

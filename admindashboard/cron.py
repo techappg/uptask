@@ -20,3 +20,9 @@ def my_cron_job():
         for name in person:
             name.reporting_to = data.existing_reporting_to
             name.save()
+
+def create_daily_attendence():
+        a = User.objects.all()
+        for i in a:
+            print(i.id)
+            Attendence.objects.create(user_id=i.id)

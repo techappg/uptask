@@ -48,12 +48,12 @@
 <!--                                <td>{{i.punch_in}}</td>-->
 <!--                                <td>{{i.punch_out}}</td>-->
                                 <td>{{i.working_hours}}</td>
-                                   {% if i.presence == True %}
+                                   {% if i.attendence.presence == True %}
                                 <td> <span class="badge light badge-info">
                                    <i class="text-info mr-1"></i>
                                     Present
                                 </span></td>
-                                  {% elif i.presence == False %}
+                                  {% elif i.attendence.presence == False %}
                                 <td> <span class="badge light badge-warning">
                                     <i class="text-info mr-1"></i>
                                   Absent

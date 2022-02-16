@@ -29,9 +29,9 @@ urlpatterns =[
     path('single-user-attendence-detail/', views.single_user_detail_attendence),
 
 
-    path('value/', views.value),
-    path('value1/', views.getting),
-    path('hello/', views.presence_change),
+    # path('value/', views.value),
+    # path('value1/', views.getting),
+    # path('hello/', views.presence_change),
 
 
 
