@@ -33,7 +33,7 @@ urlpatterns =[
     # path('value1/', views.getting),
     # path('hello/', views.presence_change),
 
-
+    path('hello/', views.create_daily_attendence),
 
 
     # path('view-chart',views.view_chart),

@@ -210,7 +210,7 @@ def delete_task_type(request,id):
 def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
-        # print(form)
+        print(form)
         system_type = request.POST["system_type"]
         specification = request.POST["specification"]
         system_service = request.POST["system_service"]
@@ -362,3 +362,22 @@ def view_single_user_attendence(request,user_id):
 def view_today_all_attendence(request):
     today=Attendence.objects.filter(attend_date=datetime.now().date())
     return render(request, "admindashboard/view_today_all_attendence.html", locals())
+
+#
+def add_holidays(request):
+    if request.method == "POST":
+        form = holidaysForm(request.POST)
+        print(form)
+        from_date = request.POST["from_date"]
+        to_date = request.POST["to_date"]
+        event_name = request.POST["event_name"]
+        if form.is_valid():
+            f1 = form.save()
+            f1.from_date = from_date
+            f1.to_date = to_date
+            f1.event_name = event_name
+            f1.save()
+            added = True
+    else:
+        form = holidaysForm(request.POST)
+    return render(request,"admindashboard/add_holidays.html",locals())

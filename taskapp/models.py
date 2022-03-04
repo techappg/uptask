@@ -24,7 +24,6 @@ def get_upload_files_path(instance, filename):
 
 
 class User(AbstractUser):
-
     phone_number=models.CharField(max_length=10,null=True,blank=True)
     office_user_id=models.CharField(max_length=255,null=True,blank=True)
     reporting_to=models.CharField(max_length=50,null=True,blank=True)
@@ -41,6 +40,23 @@ class Attendence(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     attend_date=models.DateField(auto_now_add=True)
     presence=models.BooleanField(default=False)
+    mark_leave=models.BooleanField(default=False)
+
+leave_type_choices= [
+        ("Casual", 'Casual'),
+        ("Study", 'Study'),
+        ("Maternity", 'Maternity'),
+        ("Medical ", 'Medical'),
+        ("Quarantine ", 'Quarantine'),
+        ("Emergency ", 'Emergency'),
+    ]
+
+class Holidays(models.Model):
+    event_name=models.CharField(max_length=30,null=True,blank=True)
+    from_date=models.DateField(auto_now_add=False)
+    to_date=models.DateField(auto_now_add=False,null=True,blank=True)
+
+
 
 class Detail_attendence(models.Model):
     attendence=models.ForeignKey(Attendence,on_delete=models.CASCADE,null=True,blank=True)
@@ -105,7 +121,6 @@ system_type_choices= [
         ("Laptop", 'Laptop'),
         ("Macbook", 'MacBook'),
     ]
-#
 
 class  system_detail(models.Model):
     # created_on= models.DateTimeField()

@@ -61,4 +61,7 @@ urlpatterns = [
     # path('view-chart',views.view_chart),
 
     path('view-today-all-attendence/', views.view_today_all_attendence),
+
+    path('add-holiday/', views.add_holidays),
+
 ]
