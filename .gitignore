@@ -1,4 +1,3 @@
-requirements.txt
 /my_env/
 /my_env
 my_env
@@ -9,3 +8,16 @@ uptask-haninder_code/
 .idea/
 .idea
 Procfile
+=======
+.idea
+*.pyc
+*.csv
+.env
+/venv
+
+bin
+lib
+logs
+pyvenv.cfg
+static
+
