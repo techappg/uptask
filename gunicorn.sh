@@ -7,4 +7,3 @@ sudo systemctl restart uptask
 sudo systemctl status uptask
 
 echo "uptask has restarted."
-
