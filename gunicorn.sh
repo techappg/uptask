@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Restarting.....!"
+
 sudo systemctl daemon-reload
 
 sudo systemctl restart uptask
