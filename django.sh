@@ -1,11 +1,10 @@
 #!/bin/bash
 
-if [ -d "env" ]
+if [ -d "env" ] 
 then
-    echo "Python virtual environment exists."
+    echo "Python virtual environment exists." 
 else
-    echo "Creating Python virtual environment."
-    virtualenv -p python3.8 env
+    python3 -m venv env
 fi
 
 source env/bin/activate
