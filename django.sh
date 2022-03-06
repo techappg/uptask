@@ -16,3 +16,4 @@ python manage.py makemigrations merge --noinput
 python manage.py migrate
 
 python manage.py test
+
