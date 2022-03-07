@@ -44,7 +44,7 @@ class User_Admin(ImportExportModelAdmin,UserAdmin):
         (None, {'fields': ('is_employee','programming_language','office_user_id')}),
     )
 
-    list_display = ("first_name", "last_name","username","office_user_id","programming_language","my_url_field")
+    list_display = ("pk","first_name", "last_name","username","office_user_id","programming_language","my_url_field")
     search_fields = ("username__startswith","first_name__startswith","email__startswith",)
     def my_url_field(self, obj):
         # "<a href='http://pre.com{0}'>{0}</a>", obj.url)
