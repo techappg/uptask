@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -28,7 +25,6 @@ SECRET_KEY = 'django-insecure-am^e$fi82!y9(ey@@34ls)ab6eg0g4b7$!cj6p5of+5@m5z@$o
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -64,7 +60,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,11 +79,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #
-#LOCAL
+# LOCAL
 #
 #
 # DATABASES = {
@@ -97,7 +92,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 #
-
 
 
 DATABASES = {
@@ -111,10 +105,7 @@ DATABASES = {
     }
 }
 
-
-
-
-#HEROKU DATABASE
+# HEROKU DATABASE
 #
 # DATABASES = {
 #     'default': {
@@ -164,7 +155,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -178,13 +168,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ( BASE_DIR /'static',)
-STATIC_ROOT =  BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = (BASE_DIR / 'static',)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media (USer Uploaded Files)
 
@@ -195,43 +184,39 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL='taskapp.user'
-
+AUTH_USER_MODEL = 'taskapp.user'
 
 LOGOUT_REDIRECT_URL = '/'
 
 if DEBUG:
-   INTERNAL_IPS = ('127.0.0.1', 'localhost',)
-   MIDDLEWARE += (
-       'debug_toolbar.middleware.DebugToolbarMiddleware',
-   )
+    INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+    MIDDLEWARE += (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )
 
-   INSTALLED_APPS += (
-       'debug_toolbar',
-   )
+    INSTALLED_APPS += (
+        'debug_toolbar',
+    )
 
-   DEBUG_TOOLBAR_PANELS = [
-       'debug_toolbar.panels.versions.VersionsPanel',
-       'debug_toolbar.panels.timer.TimerPanel',
-       'debug_toolbar.panels.settings.SettingsPanel',
-       'debug_toolbar.panels.headers.HeadersPanel',
-       'debug_toolbar.panels.request.RequestPanel',
-       'debug_toolbar.panels.sql.SQLPanel',
-       'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-       'debug_toolbar.panels.templates.TemplatesPanel',
-       'debug_toolbar.panels.cache.CachePanel',
-       'debug_toolbar.panels.signals.SignalsPanel',
-       'debug_toolbar.panels.logging.LoggingPanel',
-       'debug_toolbar.panels.redirects.RedirectsPanel',
-   ]
+    DEBUG_TOOLBAR_PANELS = [
+        'debug_toolbar.panels.versions.VersionsPanel',
+        'debug_toolbar.panels.timer.TimerPanel',
+        'debug_toolbar.panels.settings.SettingsPanel',
+        'debug_toolbar.panels.headers.HeadersPanel',
+        'debug_toolbar.panels.request.RequestPanel',
+        'debug_toolbar.panels.sql.SQLPanel',
+        'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+        'debug_toolbar.panels.templates.TemplatesPanel',
+        'debug_toolbar.panels.cache.CachePanel',
+        'debug_toolbar.panels.signals.SignalsPanel',
+        'debug_toolbar.panels.logging.LoggingPanel',
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+    ]
 
-   DEBUG_TOOLBAR_CONFIG = {
-       # 'INTERCEPT_REDIRECTS': False,
-       'SHOW_TOOLBAR_CALLBACK': lambda r: False,
-   }
-
-
-django_heroku.settings(locals())
+    DEBUG_TOOLBAR_CONFIG = {
+        # 'INTERCEPT_REDIRECTS': False,
+        'SHOW_TOOLBAR_CALLBACK': lambda r: False,
+    }
 
 CRONJOBS = [
     ('*/1 * * * *', 'admindashboard.cron.my_cron_job'),
