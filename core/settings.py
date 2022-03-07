@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #
 # LOCAL
-#
+# #
 #
 # DATABASES = {
 #     'default': {
@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-#
+
 
 
 DATABASES = {

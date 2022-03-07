@@ -147,13 +147,13 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
-                                <select class="form-control mb-4"  name="programming_language"  id="id_programming_language"  required>
+                                <select class="form-control mb-4"  name="programming_language"  id="id_programming_language">
                                      <option value="">---------</option>
                                     {%for i in data%}
                                         <option value={{i.pk}}>{{i.language_name}}</option>
                                         {% endfor %}
                                     </select>
-                                <span id="er"></span>
+
                             </div>
                                 <div class="container">
                                 <div class="btn-block d-sm-flex justify-content-end">
