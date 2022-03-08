@@ -34,7 +34,7 @@
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">System</label>
                             <div class="col-sm-9">
-                                <select class="form-control"  name="system_id"  id="id_system_id">
+                                <select class="form-control"  name="system_id"  id="id_system_id" required>
                                      <option value="">---------</option>
                                     {%for detail in systemdetail%}
                                         <option value={{detail.pk}}>{{detail.system_type}}</option>
@@ -58,7 +58,7 @@
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Assigned To</label>
                             <div class="col-sm-9">
-                                <select class="form-control "  name="user"  id="id_user">
+                                <select class="form-control "  name="user"  id="id_user" required>
                                      <option value="">---------</option>
                                     {%for person in user%}
                                         <option value="{{person.id}}">{{person.username}}</option>
@@ -80,7 +80,7 @@
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Assigned Type</label>
                             <div class="col-sm-9">
-                                <select class="form-control"  name="assigned_type"  id="id_assigned_type">
+                                <select class="form-control"  name="assigned_type"  id="id_assigned_type" required>
                                       {% for temporary,permanent in form.fields.assigned_type.choices %}
                                              <option value="{{ temporary }}"{% if form.fields.system_type.value == temporary %} selected
                                                      {% endif %}>{{permanent}}</option>
@@ -89,13 +89,7 @@
                                 <div id="er2"></div>
 
                                 <div id="typerror">
-                                     {% if notadd %}
-                                    <div class="alert alert-warning alert-dismissible fade show mt-1 " >
-                                     {{form.assigned_type.errors}}
-                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-                                    </button>
-                                    </div>
-                                {% endif %}
+
                                 </div>
                             </div>
                          </div>
@@ -152,11 +146,12 @@ var c=document.getElementById("id_assigned_type").value;
 var d=document.getElementById("sysnotadd").innerHTML;
 var e=document.getElementById("usererror").innerHTML;
 var f=document.getElementById("typerror").innerHTML;
+console.log(f);
 console.log(f.length)
 if(a==0){
 if(d.length==76){
-document.getElementById("er").classList.add('alert','alert-warning',"mt-2");
-document.getElementById("er").innerHTML="this field is required";
+document.getElementById("er").classList.add('alert','alert-warning',"mt-2,'err'");
+document.getElementById("er").innerHTML='this field is required <button type="button" class="close h-100" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>';
 return false;
 }
 }
@@ -168,7 +163,7 @@ document.getElementById("er").innerHTML="";
 if(b==0){
 if(e.length==71){
 document.getElementById("er1").classList.add('alert','alert-warning',"mt-2");
-document.getElementById("er1").innerHTML="this field is required";
+document.getElementById("er1").innerHTML='this field is required<button type="button" class="close h-100" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>';
 return false;
 }
 }
@@ -178,11 +173,9 @@ document.getElementById("er1").innerHTML="";
 }
 
 if(c==0){
-if(f.length==71){
 document.getElementById("er2").classList.add('alert','alert-warning',"mt-2");
-document.getElementById("er2").innerHTML="this field is required";
+document.getElementById("er2").innerHTML='this field is required <button type="button" class="close h-100" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>';
 return false;
-}
 }
 else{
 document.getElementById("er2").classList.remove('alert','alert-warning',"mt-2");
@@ -190,5 +183,22 @@ document.getElementById("er2").innerHTML="";
 }
 
 }
+
+$("#er").click(function(){
+    console.log("ok");
+    $("#er").toggleClass();
+    $(this).html('');
+});
+$("#er1").click(function(){
+    console.log("ok");
+    $(this).toggleClass();
+    $(this).html('');
+});
+$("#er2").click(function(){
+    console.log("ok");
+    $(this).toggleClass();
+    $(this).html('');
+});
+
 </script>
 {% endblock %}

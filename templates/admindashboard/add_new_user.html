@@ -26,6 +26,19 @@
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                     </button>
                 </div>
+                               
+                {% endif %}
+
+                {% if notadd %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-excel" viewBox="0 0 16 16">
+                        <path d="M5.18 4.616a.5.5 0 0 1 .704.064L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 0 1 .064-.704z"/>
+                        <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                      </svg>
+                    <strong>Error!</strong>User not credentials
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                    </button>
+                </div>
                 {% endif %}
 
 
@@ -135,6 +148,13 @@
                             <label class="col-sm-3 col-form-label">Office Id</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control"  name="office_user_id"  placeholder="Enter Office Id"  required>
+                                {% if notadd %}
+                                <div class="alert alert-warning alert-dismissible fade show" id="office_id_er">
+                               {{form.office_user_id.errors}}
+                                <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                                </button>
+                                </div>
+                            {% endif %}
                             </div>
                         </div>
 
@@ -147,19 +167,20 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Department</label>
                             <div class="col-sm-9">
-                                <select class="form-control mb-4"  name="programming_language"  id="id_programming_language">
-                                     <option value="">---------</option>
+                                <select class="form-control mb-4"  name="programming_language"  id="id_programming_language"  required>
+                                     <option value="0">---------</option>
                                     {%for i in data%}
                                         <option value={{i.pk}}>{{i.language_name}}</option>
                                         {% endfor %}
                                     </select>
-
+                                    
+                                <span id="er"></span>
                             </div>
                                 <div class="container">
                                 <div class="btn-block d-sm-flex justify-content-end">
 <!--                             <div class="card-footer d-sm-flex justify-content-end">-->
                                      <button type="submit" class="btn btn-sm btn-primary" onclick="validate()" >SAVE</button>&nbsp;
-                                     <button type="reset"  class="btn btn-sm btn-warning">CANCEL</button>
+                                     <button type="reset" class="btn btn-sm btn-warning">CANCEL</button>
                              </div>
                                 </div>
 
@@ -198,11 +219,15 @@ var user=document.getElementById("user_er").innerHTML;
 var password=document.getElementById("password_er").innerHTML;
 var email=document.getElementById("email_er").innerHTML;
 var phone=document.getElementById("phone_er").innerHTML;
-
-console.log(phone.length);
+var office_id=document.getElementById("office_id_er").innerHTML;
+console.log(office_id.length);
 if(fname.length==279)
 {
 document.getElementById("firstname_er").remove();
+}
+if(office_id.length<270)
+{
+document.getElementById("office_id_er").remove();
 }
 if(lname.length==280)
 {
