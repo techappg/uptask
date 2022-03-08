@@ -78,13 +78,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #
-# LOCAL
+# # Database
+# # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # #
-#
+# # LOCAL
+# # #
+# #
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 
-
+#
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
