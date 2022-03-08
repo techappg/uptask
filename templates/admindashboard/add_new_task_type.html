@@ -84,8 +84,7 @@
                                         {% endfor %}
                                     </select>
 
-                                <span id="er" class="mt-5 px-3"></span>
-                                <span id="info" class="mt-5 px-3"></span>
+                                <span id="er" class="mt-5 px-3"> </span>
                             </div>
                         </div>
                         </div>
@@ -141,10 +140,8 @@ console.log("not checked");
 
 
 if(a==0){
-document.getElementById("er").innerHTML="Please fill out this field";
-document.getElementById("info").innerHTML="Note:- For all language check above checkbox and continue ";
+document.getElementById("er").innerHTML='Please fill out this field';
 document.getElementById("er").classList.add('alert','alert-warning');
-document.getElementById("info").classList.add('alert','alert-info');
 return false;
 }
 else{

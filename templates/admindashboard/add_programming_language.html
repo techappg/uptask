@@ -36,15 +36,15 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Language Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="language_name"  placeholder="Enter Language" required>
+                                <input type="text" class="form-control text-capitalize" name="language_name"  placeholder="Enter Language" required>
 <!--                           {{form.language_name.errors}}-->
-                              {% if language_name %}
-                                    <div class="alert alert-warning alert-dismissible fade show">
-                                   {{form.language_name.errors}}
-                                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-                                    </button>
-                                    </div>
-                                {% endif %}
+{% if notadd %}
+<div class="alert alert-warning alert-dismissible fade show">
+{{form.language_name.errors}}
+<button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+</button>
+</div>
+{% endif %}
                             </div>
                         </div>
 

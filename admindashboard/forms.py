@@ -17,9 +17,17 @@ class UserCreationForm(forms.ModelForm):
         # fields = '__all__'
         fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language")
 
+
+    def clean_programming_language(self):
+        programming_language=self.cleaned_data["programming_language"]
+        if programming_language=="":
+            raise forms.ValidationError("this field is required")
+
+        return programming_language
+
     def clean_email(self):
         email = self.cleaned_data["email"]
-        if "@" not in email:
+        if "@" not in email and "." not in email and " " in email:
             raise forms.ValidationError("Not an Email Address")
         elif User.objects.filter(email=email).exists():
             raise forms.ValidationError('Email already exists.')
@@ -39,15 +47,40 @@ class UserCreationForm(forms.ModelForm):
             raise forms.ValidationError("This field cannot contain Digits")
         elif '@' in last_name or '-' in last_name or '|' in last_name or '%' in last_name:
             raise ValidationError("This field must contain only alphabet")
+
         return last_name
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
+        pun='''!"#$%&'()*+, -./:;<=>?@[\]^_`{|}~'''
         if phone_number.isalpha():
             raise forms.ValidationError("This field contains digits only")
         elif User.objects.filter(phone_number=phone_number).exists():
             raise ValidationError("Phone number already exists")
+
+        elif len(phone_number)<10:
+            raise ValidationError("this field contain only 10 digit number")
+
+        for i in pun:
+            if i in phone_number:
+                raise ValidationError(f"number field contain only number not {i}")
+
+
         return phone_number
+
+    def clean_office_user_id(self):
+        office_user_id=self.cleaned_data["office_user_id"]
+        print(office_user_id,"here")
+        print(type(len(office_user_id)))
+        if office_user_id.isalpha():
+            print("working")
+            raise forms.ValidationError("This field contains digits only")
+        elif User.objects.filter(office_user_id=office_user_id).exists():
+            raise forms.ValidationError("Office id is already exit")
+        elif len(office_user_id)<6 or len(office_user_id) > 6:
+            print("hered")
+            raise forms.ValidationError("This field contain only 6 digit number")
+        return office_user_id
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -83,9 +116,9 @@ class ProgrammingLanguageForm(forms.ModelForm):
         language_name = self.cleaned_data["language_name"]
         if  language_name.isdigit():
             raise forms.ValidationError("This field cannot contain Digits")
-        elif ProgrammingLanguage.objects.filter(language_name=language_name).exists():
+        elif ProgrammingLanguage.objects.filter(language_name__icontains=language_name).exists():
             raise forms.ValidationError('Language name already exists.')
-        elif  '@' in language_name or '-' in language_name or '|' in language_name or '%' in language_name:
+        elif '@' in language_name or '-' in language_name or '|' in language_name or '%' in language_name:
             raise ValidationError("This field cannot contain Special Character")
         return language_name
 
@@ -116,11 +149,29 @@ class  SystemDetailForm(forms.ModelForm):
          system_id = self.cleaned_data.get('system_id')
          if system_detail.objects.filter(system_id=system_id).exists():
              raise forms.ValidationError("System already exists")
-         elif '@' in system_id or '-' in system_id or '|' in system_id or '%' in system_id:
+         elif '@' in system_id  or '|' in system_id or '%' in system_id:
              raise ValidationError("This field cannot contain Special Character")
          elif system_id.isalpha():
-             raise ValidationError("This field connot contain only alphabets")
+             raise ValidationError("This field cannot contain only alphabets")
+         elif system_id.isdigit():
+             raise ValidationError("this field can't contain only number")
          return system_id
+
+     def clean_specification(self):
+         specification=self.cleaned_data.get('specification')
+         if '@' in specification or '-' in specification or '|' in specification or '%' in specification:
+             print('hjj')
+             raise ValidationError("This field cannot contain Special Character")
+         elif specification.isdigit():
+             raise ValidationError("this field can't contain only number")
+         return specification
+
+     def clean_system_service(self):
+         system_service= self.cleaned_data.get('system_service')
+         if '@' in system_service or '-' in system_service or '|' in system_service or '%' in system_service:
+             raise ValidationError("This field cannot contain Special Character")
+
+         return system_service
 
 class SystemAssignedDetailForm(forms.ModelForm):
     class Meta:
@@ -152,8 +203,3 @@ class ViewUserProjectForm(forms.ModelForm):
         model= Project
         fields=('user', 'title', 'details', 'is_active', 'completed', 'started', 'started_on', 'completed_on','id')
 
-
-class holidaysForm(forms.ModelForm):
-    class Meta:
-        model=Holidays
-        fields=('event_name','from_date','to_date')
