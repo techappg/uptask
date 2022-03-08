@@ -221,3 +221,4 @@ CRONJOBS = [
     ('*/1 * * * *', 'admindashboard.cron.my_cron_job'),
     ('1 0 * * *', 'admindashboard.cron.create_daily_attendence')
 ]
+
