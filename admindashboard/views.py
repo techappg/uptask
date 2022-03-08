@@ -107,6 +107,9 @@ def add_programming_language(request):
             f.language_name=language_name
             f.save()
             added = True
+
+        else:
+            notadd=True
     else:
 
 
