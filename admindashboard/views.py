@@ -206,14 +206,14 @@ def update_task_type(request,id):
 def delete_task_type(request,id):
     tasktype=TaskType.objects.get(id=id)
     tasktype.delete()
-    return redirect ("/admin-dashboard/view-all-tasktype/")
+    return redirect ("/admi#n-dashboard/view-all-tasktype/")
 
 
 
 def add_system_details(request):
     if request.method == 'POST':
         form = SystemDetailForm(request.POST)
-        print(form)
+        # print(form)
         system_type = request.POST["system_type"]
         specification = request.POST["specification"]
         system_service = request.POST["system_service"]
@@ -356,17 +356,17 @@ def view_single_user_all_project(request,user_id=None):
 def view_all_user_attendance(request):
     view_user = User.objects.all()
     return render(request,"admindashboard/view_all_user_attendence.html",locals())
-#
-# def view_single_user_attendence(request,user_id):
-#     get_detail=Detail_attendence.objects.filter(user_id=user_id)
-#     userdetail = User.objects.filter(id=user_id)
-#     return render(request,"admindashboard/view_single_user_attendence.html",locals())
-# #
-# def view_today_all_attendence(request):
-#     today=Attendence.objects.filter(attend_date=datetime.now().date())
-#     return render(request, "admindashboard/view_today_all_attendence.html", locals())
 
-#
+def view_single_user_attendence(request,user_id):
+    get_detail=Detail_attendence.objects.filter(user_id=user_id)
+    userdetail = User.objects.filter(id=user_id)
+    return render(request,"admindashboard/view_single_user_attendence.html",locals())
+
+def view_today_all_attendence(request):
+    today=Attendence.objects.filter(attend_date=datetime.now().date())
+    return render(request, "admindashboard/view_today_all_attendence.html", locals())
+
+
 def add_holidays(request):
     if request.method == "POST":
         form = holidaysForm(request.POST)
