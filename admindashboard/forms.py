@@ -77,9 +77,7 @@ class UserCreationForm(forms.ModelForm):
             raise forms.ValidationError("This field contains digits only")
         elif User.objects.filter(office_user_id=office_user_id).exists():
             raise forms.ValidationError("Office id is already exit")
-        elif len(office_user_id)<6 or len(office_user_id) > 6:
-            print("hered")
-            raise forms.ValidationError("This field contain only 6 digit number")
+
         return office_user_id
 
     def clean_username(self):
