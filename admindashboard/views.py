@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from taskapp.models import *
-from admindashboard.forms import *
+from .forms import *
 from django.core.exceptions import ValidationError
 
 

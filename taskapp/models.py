@@ -40,6 +40,7 @@ class Attendence(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     attend_date=models.DateField(auto_now_add=True)
     presence=models.BooleanField(default=False)
+    absent=models.BooleanField(default=False)
 
 
 
