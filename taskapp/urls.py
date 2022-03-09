@@ -24,9 +24,13 @@ urlpatterns =[
 
 
     # ATTENDENCE
-    # path('mark-attendence/', views.mark_attendence),
-    # path('mark-attendence-out/', views.mark_attendence_out),
-    # path('single-user-attendence-detail/', views.single_user_detail_attendence),
+    path('mark-attendence/', views.mark_attendence),
+    path('mark-attendence-out/', views.mark_attendence_out),
+    path('single-user-attendence-detail/', views.single_user_detail_attendence),
+
+
+
+
 
 
     # path('value/', views.value),
