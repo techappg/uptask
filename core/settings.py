@@ -101,7 +101,7 @@ DATABASES = {
         'USER': 'vk_admin',
         'PASSWORD': 'qwerty@123',
         'HOST': '38.242.219.47',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
