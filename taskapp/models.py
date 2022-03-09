@@ -40,16 +40,8 @@ class Attendence(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     attend_date=models.DateField(auto_now_add=True)
     presence=models.BooleanField(default=False)
-    mark_leave=models.BooleanField(default=False)
 
-leave_type_choices= [
-        ("Casual", 'Casual'),
-        ("Study", 'Study'),
-        ("Maternity", 'Maternity'),
-        ("Medical ", 'Medical'),
-        ("Quarantine ", 'Quarantine'),
-        ("Emergency ", 'Emergency'),
-    ]
+
 
 class Holidays(models.Model):
     event_name=models.CharField(max_length=30,null=True,blank=True)

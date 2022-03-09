@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from rest_framework import request
+
 
 from taskapp.forms import ManageReportForm
 from taskapp.models import *
