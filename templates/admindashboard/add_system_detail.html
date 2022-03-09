@@ -62,13 +62,19 @@
                             <label class="col-sm-3 col-form-label">System Id</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name=" system_id" placeholder="Enter System Id" required >
+
+                                {% if added %}
+
+                                {% else %}
+
                                 {% if system_id %}
-                                    <div class="alert alert-warning alert-dismissible fade show">
+                                    <div class="alert alert-warning alert-dismissible fade show" id="systemdetailsid">
                                    {{form.system_id.errors}}
 
                                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
                                     </button>
                                     </div>
+                                {% endif %}
                                 {% endif %}
 
 
@@ -105,9 +111,18 @@
 {% endblock %}
 {% block js %}
 <script>
+
+var systemid=document.getElementById("systemdetailsid").innerHTML;
+console.log(systemid.length);
+
+if(systemid.length==281){
+document.getElementById("systemdetailsid").classList.remove('alert','alert-warning','alert-dismissible'");
+}
+
 function validate(){
 
 var a=document.getElementById("id_system_type").value;
+
 console.log(a);
 if(a==0){
 document.getElementById("er").innerHTML="Please fill out this field";
