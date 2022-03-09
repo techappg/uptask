@@ -57,10 +57,10 @@ urlpatterns = [
 
     # VIEW ATTENDANCE
     path('view-all-user-attendance/', views.view_all_user_attendance),
-    path('view-single-user-attendance/<str:user_id>', views.view_single_user_attendence),
+    # path('view-single-user-attendance/<str:user_id>', views.view_single_user_attendence),
     # path('view-chart',views.view_chart),
 
-    path('view-today-all-attendence/', views.view_today_all_attendence),
+    # path('view-today-all-attendence/', views.view_today_all_attendence),
 
     path('add-holiday/', views.add_holidays),
 

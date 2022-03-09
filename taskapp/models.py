@@ -36,11 +36,11 @@ class User(AbstractUser):
         return self.username
 
 
-class Attendence(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    attend_date=models.DateField(auto_now_add=True)
-    presence=models.BooleanField(default=False)
-    absent=models.BooleanField(default=False)
+# class Attendence(models.Model):
+#     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+#     attend_date=models.DateField(auto_now_add=True)
+#     presence=models.BooleanField(default=False)
+
 
 
 
@@ -49,15 +49,15 @@ class Holidays(models.Model):
     from_date=models.DateField(auto_now_add=False)
     to_date=models.DateField(auto_now_add=False,null=True,blank=True)
 
-
-
-class Detail_attendence(models.Model):
-    attendence=models.ForeignKey(Attendence,on_delete=models.CASCADE,null=True,blank=True)
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    punch_in=models.TimeField(null=True,blank=True)
-    punch_out=models.TimeField(null=True,blank=True)
-    attend_date=models.DateField(auto_now_add=True,null=True,blank=True)
-    working_hours=models.CharField(max_length=30,null=True,blank=True)
+#
+#
+# class Detail_attendence(models.Model):
+#     attendence=models.ForeignKey(Attendence,on_delete=models.CASCADE,null=True,blank=True)
+#     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+#     punch_in=models.TimeField(null=True,blank=True)
+#     punch_out=models.TimeField(null=True,blank=True)
+#     attend_date=models.DateField(auto_now_add=True,null=True,blank=True)
+#     working_hours=models.CharField(max_length=30,null=True,blank=True)
 
 
 class Reporting(models.Model):

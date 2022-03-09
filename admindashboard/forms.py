@@ -201,3 +201,7 @@ class ViewUserProjectForm(forms.ModelForm):
         model= Project
         fields=('user', 'title', 'details', 'is_active', 'completed', 'started', 'started_on', 'completed_on','id')
 
+class holidaysForm(forms.ModelForm):
+    class Meta:
+        model=Holidays
+        fields=('event_name','from_date','to_date')

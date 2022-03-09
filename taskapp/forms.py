@@ -42,13 +42,13 @@ class ManageReportForm(forms.ModelForm):
 
 
 
-class AttendenceForm(forms.ModelForm):
-    class Meta:
-        model=Attendence
-        exclude=('attend_date','user')
-
-        def clean_attend_date(self):
-            attend_date = self.cleaned_data["attend_date"]
-            if Attendence.objects.filter(attend_date=datetime.now().date()).exists():
-                raise forms.ValidationError('Cannot Punch In Again!!')
-            return attend_date
+# class AttendenceForm(forms.ModelForm):
+#     class Meta:
+#         model=Attendence
+#         exclude=('attend_date','user')
+#
+#         def clean_attend_date(self):
+#             attend_date = self.cleaned_data["attend_date"]
+#             if Attendence.objects.filter(attend_date=datetime.now().date()).exists():
+#                 raise forms.ValidationError('Cannot Punch In Again!!')
+#             return attend_date
