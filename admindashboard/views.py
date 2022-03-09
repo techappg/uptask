@@ -356,15 +356,15 @@ def view_single_user_all_project(request,user_id=None):
 def view_all_user_attendance(request):
     view_user = User.objects.all()
     return render(request,"admindashboard/view_all_user_attendence.html",locals())
-
-def view_single_user_attendence(request,user_id):
-    get_detail=Detail_attendence.objects.filter(user_id=user_id)
-    userdetail = User.objects.filter(id=user_id)
-    return render(request,"admindashboard/view_single_user_attendence.html",locals())
-
-def view_today_all_attendence(request):
-    today=Attendence.objects.filter(attend_date=datetime.now().date())
-    return render(request, "admindashboard/view_today_all_attendence.html", locals())
+#
+# def view_single_user_attendence(request,user_id):
+#     get_detail=Detail_attendence.objects.filter(user_id=user_id)
+#     userdetail = User.objects.filter(id=user_id)
+#     return render(request,"admindashboard/view_single_user_attendence.html",locals())
+# #
+# def view_today_all_attendence(request):
+#     today=Attendence.objects.filter(attend_date=datetime.now().date())
+#     return render(request, "admindashboard/view_today_all_attendence.html", locals())
 
 #
 def add_holidays(request):

@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 # from taskapp.forms import LoginForm
-from taskapp.forms import ManageReportForm, AttendenceForm
+from taskapp.forms import ManageReportForm
 from taskapp.models import *
 
 
@@ -200,65 +200,65 @@ def contact_team_members(request):
     team_member=User.objects.filter(programming_language_id=request.user.programming_language)
     return render(request, "taskapp/view_user_team_member_detail.html", locals())
 
+#
+# def mark_attendence(request):
+#     if request.method == 'POST':
+#         form = AttendenceForm(request.POST)
+#         attend_date=request.POST["attend_date"]
+#
+#         if  Attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
+#          if not Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
+#              get_key=Attendence.objects.get(user=request.user,attend_date=datetime.now().date())
+#              value=get_key.pk
+#              Detail_attendence.objects.create(user=request.user,punch_in=datetime.now().time(),attendence_id=value)
+#              a=Attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
+#              for i in a:
+#                     i.presence=True
+#                     i.save()
+#
+#              added = True
+#              return redirect("/tasks/mark-attendence-out/")
+#     else:
+#         form = AttendenceForm(request.POST)
+#     return render(request, "taskapp/mark_attendence.html", locals())
+#
+#
+# def mark_attendence_out(request):
+#     a=Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
+#     if request.method == 'POST':
+#         form = AttendenceForm(request.POST)
+#         attend_date = request.POST["attend_date"]
+#         if  Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
+#             Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).update(punch_out=datetime.now().time())
+#             added = True
+#         attending = Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
+#
+#         for i in attending:
+#             inn = i.punch_in.strftime("%H:%M:%S")
+#             print(inn)
+#             out = i.punch_out.strftime("%H:%M:%S")
+#             print(out)
+#             FMT = '%H:%M:%S'
+#             tdelta = datetime.strptime(out, FMT) - datetime.strptime(inn, FMT)
+#             print(tdelta)
+#             i.working_hours = tdelta
+#             print(i.working_hours)
+#             print("helo")
+#             i.save()
+#             return redirect("/tasks/single-user-attendence-detail/")
+#     return render(request, "taskapp/mark_punchout_attendence.html", locals())
+#
 
-def mark_attendence(request):
-    if request.method == 'POST':
-        form = AttendenceForm(request.POST)
-        attend_date=request.POST["attend_date"]
-
-        if  Attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
-         if not Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
-             get_key=Attendence.objects.get(user=request.user,attend_date=datetime.now().date())
-             value=get_key.pk
-             Detail_attendence.objects.create(user=request.user,punch_in=datetime.now().time(),attendence_id=value)
-             a=Attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
-             for i in a:
-                    i.presence=True
-                    i.save()
-
-             added = True
-             return redirect("/tasks/mark-attendence-out/")
-    else:
-        form = AttendenceForm(request.POST)
-    return render(request, "taskapp/mark_attendence.html", locals())
-
-
-def mark_attendence_out(request):
-    a=Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
-    if request.method == 'POST':
-        form = AttendenceForm(request.POST)
-        attend_date = request.POST["attend_date"]
-        if  Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).exists():
-            Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date()).update(punch_out=datetime.now().time())
-            added = True
-        attending = Detail_attendence.objects.filter(user=request.user,attend_date=datetime.now().date())
-
-        for i in attending:
-            inn = i.punch_in.strftime("%H:%M:%S")
-            print(inn)
-            out = i.punch_out.strftime("%H:%M:%S")
-            print(out)
-            FMT = '%H:%M:%S'
-            tdelta = datetime.strptime(out, FMT) - datetime.strptime(inn, FMT)
-            print(tdelta)
-            i.working_hours = tdelta
-            print(i.working_hours)
-            print("helo")
-            i.save()
-            return redirect("/tasks/single-user-attendence-detail/")
-    return render(request, "taskapp/mark_punchout_attendence.html", locals())
-
-
-def single_user_detail_attendence(request):
-    detail=Detail_attendence.objects.filter(user=request.user)
-    for i in detail:
-        print(i.attendence.presence)
-    return render(request,"taskapp/single_user_detail_attendence.html",locals())
-
-
-def create_daily_attendence(request):
-        a = User.objects.all()
-        for i in a:
-            print(i.id)
-            Attendence.objects.create(user_id=i.id)
-        return HttpResponse("HELO")
+# def single_user_detail_attendence(request):
+#     detail=Detail_attendence.objects.filter(user=request.user)
+#     for i in detail:
+#         print(i.attendence.presence)
+#     return render(request,"taskapp/single_user_detail_attendence.html",locals())
+# #
+#
+# def create_daily_attendence(request):
+#         a = User.objects.all()
+#         for i in a:
+#             print(i.id)
+#             Attendence.objects.create(user_id=i.id)
+#         return HttpResponse("HELO")
