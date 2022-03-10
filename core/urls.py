@@ -33,6 +33,7 @@ urlpatterns = [
     path('tasks/', include('taskapp.urls')),
     path('projects/', include('projectapp.urls')),
     path('admin-dashboard/', include('admindashboard.urls')),
+    path('manage-reporting/', include('manage_reporting.urls')),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     # path('view-chart',views.view_chart),
 

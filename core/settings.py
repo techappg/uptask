@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'admindashboard',
     'projectapp',
     'django_crontab',
+    'manage_reporting'
 ]
 
 MIDDLEWARE = [
