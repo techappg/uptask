@@ -83,27 +83,26 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # #
 # # LOCAL
-# # #
-# # #
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-#
 
-#
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'uptask',
-        'USER': 'vk_admin',
-        'PASSWORD': 'qwerty@123',
-        'HOST': '38.242.219.47',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#PRODUCTION
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'uptask',
+#         'USER': 'vk_admin',
+#         'PASSWORD': 'qwerty@123',
+#         'HOST': '38.242.219.47',
+#         'PORT': '',
+#     }
+# }
 
 # HEROKU DATABASE
 #
@@ -220,6 +219,6 @@ if DEBUG:
 
 CRONJOBS = [
     ('*/1 * * * *', 'admindashboard.cron.my_cron_job'),
-    ('*/1 * * * 1-5', 'admindashboard.cron.create_daily_attendence')
+    ('*/5 * * * 1-5', 'admindashboard.cron.create_daily_attendence')
 ]
 
