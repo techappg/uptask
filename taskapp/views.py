@@ -202,6 +202,8 @@ def contact_team_members(request):
 
 
 def mark_attendence(request):
+
+
     if request.method == 'POST':
         form = AttendenceForm(request.POST)
         attend_date=request.POST["attend_date"]

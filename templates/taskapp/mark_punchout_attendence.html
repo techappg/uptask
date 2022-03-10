@@ -4,7 +4,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Mark Presence</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Attendance</a></li>
         </ol>
     </div>
 </div>
@@ -12,7 +12,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Mark Presence</h4>
+                <h4 class="card-title">Punch Out</h4>
             </div>
              {% if added %}
                 <div class="alert alert-success alert-dismissible fade show">
@@ -52,58 +52,6 @@
                                 {%endfor%}
                             </div>
                          </div>
-<!--                             <div class="form-group row">-->
-<!--                            <label class="col-sm-3 col-form-label">Entry Time</label>-->
-
-<!--                            <div class="col-sm-9">-->
-<!--                                <input type="text" class="form-control" name="punch_in" id="currentTime" >-->
-<!--                            </div>-->
-<!--                         </div>-->
-<!--&lt;!&ndash;                             <div class="form-group mb-0">&ndash;&gt;-->
-<!--                                    <div class="radio">-->
-<!--                                        <label><input type="radio" name="puch_in">Punch In</label>-->
-<!--                                        <div id="show_punch_in" class="pt-1"> <label>Entry Time</label>-->
-<!--                                            <input type="text" class="form-control" name="punch_in" value="a"></div>-->
-<!--                                    </div>-->
-<!--                             <div class="form-group mb-0">-->
-<!--                            <input type="button"  class="btn btn-sm btn-secondary" name="punch_in" value="Punch In" onclick="ShowHideDiv(this)">-->
-<!--                                 <div id="dvPunchin" style="display: none">-->
-<!--                                    <input type="text" class="form-control" id="textInput" value="{{punch_in_now}}" />-->
-<!--                                 </div>-->
-<!--                                   </div>-->
-
-<!--                                    <div class="radio">-->
-<!--                                        <label><input type="radio" name="punch_out" >Punch Out</label>-->
-<!--                                        <div id="show_punch_out" class="pt-1"> <label>Exit Time</label>-->
-<!--                                            <input type="text" class="form-control" name="punch_out" value="b"></div>-->
-<!--                                    </div>-->
-
-
-<!--                        <div class="form-group row">-->
-<!--                            <label class="col-sm-3 col-form-label"> </label>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <select class="form-control"  name="new_repo"  id="id_new_reporting_to"  required>-->
-<!--                                     <option value="">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
-<!--                                    {%for i in data%}-->
-<!--                                        <option value={{i.username}}>{{i.username}}</option>-->
-<!--                                        {% endfor %}-->
-<!--                                    </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                         <div class="form-group row">-->
-<!--                            <label class="col-sm-3 col-form-label">Report From</label>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <input type="date" class="form-control" name="duration_from" placeholder="Enter Reporting From"  required>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                          <div class="form-group row">-->
-<!--                            <label class="col-sm-3 col-form-label">Report Till</label>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <input type="date" class="form-control" name="duration_till" placeholder="Enter Reporting Till" required >-->
-<!--                            </div>-->
-<!--                        </div>-->
 
                             <div class="container">
                                 <div class="btn-block d-sm-flex justify-content-end">
