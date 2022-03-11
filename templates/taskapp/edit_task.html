@@ -19,8 +19,6 @@
                 <div class="basic-form">
                     <form method="post">
                         {% csrf_token %}
-
-
                         <div class="form-group">
                             <label>Select Task Type</label>
                             <select class="form-control form-control-lg" name="selected_task_type" required>
@@ -31,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label>Task Details</label>
-                            <textarea class="form-control" rows="4" id="comment" name="task_details"></textarea>
+                            <textarea class="form-control" rows="4" id="comment" name="task_details">{{all_task_details.details}}</textarea>
                         </div>
                         <button type="submit" class="btn btn-rounded btn-info  btn-md">SUBMIT TASK</button>
                     </form>
