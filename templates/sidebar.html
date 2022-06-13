@@ -11,17 +11,19 @@
             <!-- Employee level dashboard Start-->
             {% if request.user.is_employee %}
              <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-            <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/28/000000/external-immigration-airport-icongeek26-linear-colour-icongeek26-1.png"/><span class="nav-text">Mark Presence</span>
+            <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/28/000000/external-immigration-airport-icongeek26-linear-colour-icongeek26-1.png"/><span class="nav-text">Attendance</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/tasks/mark-attendence">Punch In</a></li>
-                    <li><a href="/tasks/mark-attendence-out">Punch Out</a></li>
+                    <li><a href="/tasks/mark-attendence">Punch In/Punch Out</a></li>
+<!--                    <li><a href="/tasks/mark-attendence-out">Punch Out</a></li>-->
                     <li><a href="/tasks/single-user-attendence-detail">Detail</a></li>
 
 <!--                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Task Type</a>-->
 <!--                        <ul aria-expanded="false">-->
 <!--                            {{request.user|user_all_task_type}}-->
 <!--                        </ul>-->
+
+
                     </li>
                 </ul>
             </li>
@@ -196,7 +198,7 @@
                </a>
                       <ul aria-expanded="false">
                           <li><a href="/admin-dashboard/view-all-user-attendance/">All Employees Attendance</a></li>
-                          <li><a href="/admin-dashboard/view-today-all-attendence/">Today Attendence</a></li>
+                          <li><a href="/admin-dashboard/view-today-all-attendence/">Today Attendance</a></li>
 <!--                          <li><a href="/admin-dashboard/create-language/">Add Department</a></li>-->
                       </ul>
            </li>

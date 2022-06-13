@@ -44,7 +44,7 @@ def add_task(request):
     if not all_projects:
         no_projects=True
     all_tasks_type = TaskType.objects.filter(
-        Q(is_active=True) & (Q(for_all=True) | (Q(multiple_language=True)) | Q(programming_language=request.user.programming_language)))
+        Q(is_active=True) & (Q(for_all=True) | (Q(multiple_language=False)) | Q(programming_language=request.user.programming_language)))
     if request.method == "POST":
         selected_task_type = request.POST.get('selected_task_type')
         task_details = request.POST.get('task_details')
@@ -202,6 +202,8 @@ def contact_team_members(request):
 
 
 def mark_attendence(request):
+
+
     if request.method == 'POST':
         form = AttendenceForm(request.POST)
         attend_date=request.POST["attend_date"]
