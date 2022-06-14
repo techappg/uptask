@@ -22,14 +22,21 @@ def get_upload_path(instance, filename):
 def get_upload_files_path(instance, filename):
     return 'files/{0}/{1}'.format(instance.task.user.username, filename)
 
+def get_upload_display_profile_path(instance, filename):
+    return 'display_profile/{0}/{1}'.format(instance.username, filename)
 
 class User(AbstractUser):
+    profile=models.ImageField(null=True,blank=True,upload_to=get_upload_display_profile_path)
     phone_number=models.CharField(max_length=10,null=True,blank=True)
+    Alternate_phone_number=models.CharField(max_length=10,null=True,blank=True)
     office_user_id=models.CharField(max_length=255,null=True,blank=True)
     reporting_to=models.CharField(max_length=50,null=True,blank=True)
     is_employee=models.BooleanField(default=False)
     profile_updated=models.BooleanField(default=False)
     display_pic=models.ImageField(blank=True,null=True,upload_to=get_upload_path)
+    joining_date=models.DateField(blank=True,null=True)
+    leaving_date=models.DateField(blank=True,null=True)
+    birthday=models.DateField(blank=True,null=True)
     programming_language=models.ForeignKey(ProgrammingLanguage,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):

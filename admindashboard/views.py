@@ -25,7 +25,6 @@ from django.core.exceptions import ValidationError
 
 
 
-
 def add_new_user(request):
     data = ProgrammingLanguage.objects.filter(is_active=True)
     for i in data:
@@ -33,26 +32,34 @@ def add_new_user(request):
     if request.method=='POST':
       form = UserCreationForm(request.POST)
       first_name=request.POST["first_name"]
+      user_image=request.FILES["image"]
       last_name=request.POST["last_name"]
+      birthday=request.POST["birthday"]
       username=request.POST["username"]
       password1=request.POST["password1"]
       password2=request.POST["password2"]
       email=request.POST["email"]
       phone_number=request.POST["phone_number"]
+      alternate_phone_number=request.POST["phone_number1"]
       office_user_id=request.POST["office_user_id"]
       reporting_to=request.POST["reporting_to"]
+      joining_date=request.POST["joining_date"]
       programming_language=request.POST["programming_language"]
       if form.is_valid():
           f1=form.save()
           f1.first_name=first_name
+          f1.profile=user_image
           f1.last_name=last_name
+          f1.birthday=birthday
           f1.username=username
           f1.password1=password1
           f1.password2=password2
           f1.email=email
           f1.phone_number=phone_number
+          f1.Alternate_phone_number=alternate_phone_number
           f1.office_user_id=office_user_id
           f1.reporting_to=reporting_to
+          f1.joining_date=joining_date
           f1.is_employee=True
           f1.save()
           added=True
@@ -68,12 +75,18 @@ def add_new_user(request):
 
 ###########################################
 def view_all_users(request):
-    view_user=User.objects.all()
+    view_user=User.objects.filter(is_active=True)
     data = ProgrammingLanguage.objects.all()
     usertask = Task.objects.all()
 
     return render (request,"admindashboard/view_all_user.html",locals())
 
+def view_inactive_users(request):
+    view_user=User.objects.filter(is_active=False)
+    data = ProgrammingLanguage.objects.all()
+    usertask = Task.objects.all()
+
+    return render (request,"admindashboard/view_all_inactive_user.html",locals())
 
 
 
@@ -96,12 +109,16 @@ def update_user(request,id):
 
 
 
+from datetime import date
+
 
 def delete_user(request,id):
       user=User.objects.get(id=id)
       print(user)
       print(user.id)
-      user.delete()
+      user.is_active=False
+      user.leaving_date=date.today()
+      user.save()
       return redirect("/admin-dashboard/view-all-users/")
 
 

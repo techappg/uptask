@@ -10,6 +10,7 @@ urlpatterns = [
     # path('all-users/<str:layout>/', views.all_users),
     path('user-create/', views.add_new_user),
     path('view-all-users/', views.view_all_users),
+    path('view-all-inactive-users/', views.view_inactive_users),
     path('edit-user/<str:id>/', views.update_user),
     path('delete-user/<str:id>/', views.delete_user),
     # path('view-single-user/<str:id>/', views.view_single_user),

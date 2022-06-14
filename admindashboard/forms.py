@@ -15,7 +15,7 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         # fields = '__all__'
-        fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language")
+        fields=("first_name","last_name","username","email","phone_number","office_user_id","reporting_to","programming_language","profile","joining_date","Alternate_phone_number")
 
 
     def clean_programming_language(self):

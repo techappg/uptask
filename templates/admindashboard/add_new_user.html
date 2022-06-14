@@ -47,6 +47,15 @@
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
+
+
+                         <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Profile Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control"  name="image"  placeholder="upload user pic"  required>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">First name</label>
                             <div class="col-sm-9">
@@ -75,7 +84,12 @@
                                 {% endif %}
                             </div>
                         </div>
-
+                          <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Birthday</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control"  name="birthday"  placeholder="enter user birth date"  required>
+                                </div>
+                             </div>
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Username</label>
@@ -143,6 +157,12 @@
                                 {% endif %}
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Alternate Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  name="phone_number1"  placeholder="Enter Alternate number"  required>
+                            </div>
+                        </div>
 
                          <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Office Id</label>
@@ -176,6 +196,14 @@
                                     
                                 <span id="er"></span>
                             </div>
+                        </div>
+                             <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Joining Date</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control"  name="joining_date"  placeholder=""  required>
+                                </div>
+                             </div>
+
                                 <div class="container">
                                 <div class="btn-block d-sm-flex justify-content-end">
 <!--                             <div class="card-footer d-sm-flex justify-content-end">-->

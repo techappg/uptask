@@ -4,7 +4,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">User</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Ex User</a></li>
         </ol>
     </div>
 </div>
@@ -12,9 +12,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">USER</h4>
-                  <div class="float-right"><a href="/admin-dashboard/user-create" class="btn btn-primary btn-sm">Add New User</a>
-                  </div>
+                <h4 class="card-title">EX USER</h4>
+<!--                  <div class="float-right"><a href="/admin-dashboard/user-create" class="btn btn-primary btn-sm">Add New User</a>-->
+<!--                  </div>-->
              </div>
          <div class="card-body">
 
@@ -31,7 +31,6 @@
 <!--                                <th>Email</th>-->
                                 <th>Role</th>
                                 <th>Department/Language</th>
-                                <th>Projects</th>
                                 <th>Action</th>
                             </tr>
                     <tbody>
@@ -44,36 +43,32 @@
                                 <td>{{person.username|title}}</td>
 <!--                                <td>{{person.email}}</td>-->
 
-                                  {% if person.is_employee %}
-                               <td> <span class="badge light badge-info">
+                                  {% if person.is_active == False %}
+                               <td> <span class="badge light badge-warning">
                                   <i class="text-info mr-1"></i>
-                                  Employee
+                                    Ex Employee
                                   </span></td>
-                                   {% elif person.is_superuser %}
-                                   <td> <span class="badge light badge-info">
-                                    <i class="text-info mr-1"></i>
-                                    Admin
-                                    </span>
+
                                 {% endif %}
                                    </td>
 
                                 <td>{{person.programming_language.language_name|title}}</td>
 
-                                <td>
+<!--                                <td>-->
 
-                                <div class="btn-group" role="group" >
-                                    <a href="/admin-dashboard/view-single-user-all-task/{{person.id}}"  class="btn btn-sm btn-info">TASK</a>
-                                    <a href="/admin-dashboard/view-single-user-all-project/{{person.id}}" class="btn btn-sm btn-light">PROJECT</a>
-                                </div>
-                                </td>
+<!--&lt;!&ndash;                                <div class="btn-group" role="group" >&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a href="/admin-dashboard/view-single-user-all-task/{{person.id}}"  class="btn btn-sm btn-info">TASK</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a href="/admin-dashboard/view-single-user-all-project/{{person.id}}" class="btn btn-sm btn-light">PROJECT</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                                </td>-->
 
 
 
                                 <td>
                                <div class="btn-group" role="group" aria-label="Basic example">
                                   <button type="button" a href="#view_single_user_{{person.id}}" data-toggle="modal" data-target="#view_single_user_{{person.id}}" class="btn btn-sm btn-primary">VIEW</a></button>
-                                      <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">EDIT</a>
-                                <button type="button" a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">DELETE</a></button>
+<!--                                      <a href="/admin-dashboard/edit-user/{{person.id}}"  class="btn btn-sm btn-success">EDIT</a>-->
+<!--                                <button type="button" a href="#delete_{{person.id}}" data-toggle="modal" data-target="#delete_{{person.id}}" class="btn btn-sm btn-danger">DELETE</a></button>-->
 
                 <!--                  <div class="btn-group" role="group">-->
                 <!--                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -208,6 +203,12 @@
                                                                             <label class="col-sm-3 col-form-label">Joining Date</label>
                                                                             <div class="col-sm-9">
                                                                                  <input type="text" class="form-control" name="user_joining_date"  value="{{person.joining_date}}" >
+                                                                            </div>
+                                                                     </div>
+                                                                    <div class="form-group row">
+                                                                            <label class="col-sm-3 col-form-label">Leaving Date</label>
+                                                                            <div class="col-sm-9">
+                                                                                 <input type="text" class="form-control" name="user_leaving_date"  value="{{person.leaving_date}}" >
                                                                             </div>
                                                                      </div>
                                                                 </form>

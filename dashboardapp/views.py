@@ -22,7 +22,8 @@ def dashboard_index(request):
         # page_list=set(page_list)
     if request.user.is_superuser:
         super_user_tab=True
-        total_users=User.objects.all().count()
+        total_users=User.objects.filter(is_active=True).count()
+        total_ex_users=User.objects.filter(is_active=False).count()
         total_tasks=TaskType.objects.all().count()
         total_departments=ProgrammingLanguage.objects.all().count()
         total_systems=system_detail.objects.all().count()
